@@ -1,0 +1,333 @@
+{
+  "name": "language",
+  "id": "337af824-7b89-4ba3-ac34-d1b1c281288f",
+  "nodes": [
+    {
+      "id": "b3bff7f2-db11-4b1f-a7e8-d3389aea3120",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 696,
+      "y": 180,
+      "params": {
+        "msg": {
+          "value": "Hello",
+          "type": "textareaMentions"
+        },
+        "level": {
+          "value": "info",
+          "type": "choice"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "ba8536a9-9845-46f5-b726-11ffc0d583e9",
+          "inputId": "input"
+        }
+      ],
+      "name": "Trace",
+      "note": ""
+    },
+    {
+      "id": "3fafec2e-9057-45a2-ac13-4ad0f91a495a",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 1068,
+      "y": 1128,
+      "params": {},
+      "connections": [],
+      "name": "Fin",
+      "note": ""
+    },
+    {
+      "id": "bc3937e6-d1ba-4f0a-81d2-f6dcc5705229",
+      "feature": "onHttp",
+      "category": "http",
+      "featureVersion": "2.7",
+      "x": 636,
+      "y": 36,
+      "params": {
+        "url": {
+          "value": "/api/flows/test",
+          "type": "textMentions"
+        },
+        "method": {
+          "value": "GET",
+          "type": "choice"
+        },
+        "token": {
+          "value": null,
+          "type": "token"
+        },
+        "securityComment": {
+          "value": null,
+          "type": "comment"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ],
+          "type": "VariablesList"
+        },
+        "immediate_response": {
+          "value": true,
+          "type": "bool"
+        },
+        "response_timeout": {
+          "value": 60,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "b3bff7f2-db11-4b1f-a7e8-d3389aea3120",
+          "inputId": "input"
+        },
+        {
+          "outputId": "err",
+          "targetNodeId": "b3bff7f2-db11-4b1f-a7e8-d3389aea3120",
+          "inputId": "input"
+        }
+      ],
+      "name": "HTTP Entrant",
+      "note": ""
+    },
+    {
+      "id": "ba8536a9-9845-46f5-b726-11ffc0d583e9",
+      "feature": "makeCall",
+      "category": "softcmp",
+      "featureVersion": "1.8",
+      "x": 780,
+      "y": 324,
+      "params": {
+        "phoneDisplay": {
+          "value": null,
+          "type": "phoneDisplay"
+        },
+        "number": {
+          "value": "1500",
+          "type": "phoneNumber"
+        },
+        "ringingTimer": {
+          "value": 30,
+          "type": "numberOrVarFormat"
+        },
+        "callingNumber": {
+          "value": "1501",
+          "type": "phoneNumber"
+        },
+        "correlatorData": {
+          "value": "",
+          "type": "phoneDisplay"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "callingNumber",
+              "parameter": "callingNumber",
+              "displayed": false,
+              "type": "string"
+            },
+            {
+              "name": "calledNumber",
+              "parameter": "calledNumber",
+              "displayed": false,
+              "type": "string"
+            },
+            {
+              "name": "abcfMessageRef",
+              "parameter": "abcfMessageRef",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "callReference",
+              "parameter": "callRef",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            }
+          ],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "makeCallFailed",
+          "targetNodeId": "33b06b75-cddd-4510-931a-289755efbca9",
+          "inputId": "input"
+        },
+        {
+          "outputId": "makeCallDone",
+          "targetNodeId": "78a1ec45-b708-42af-a773-004438af0dff",
+          "inputId": "input"
+        }
+      ],
+      "name": "Appeler",
+      "note": ""
+    },
+    {
+      "id": "33b06b75-cddd-4510-931a-289755efbca9",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 1056,
+      "y": 624,
+      "params": {},
+      "connections": [],
+      "name": "Fin error",
+      "note": ""
+    },
+    {
+      "id": "f806a8cd-8591-48a5-9414-75d910d70ad1",
+      "feature": "releaseCall",
+      "category": "softcmp",
+      "featureVersion": "1.1",
+      "x": 144,
+      "y": 1140,
+      "params": {},
+      "connections": [
+        {
+          "outputId": "releaseEnded",
+          "targetNodeId": "3fafec2e-9057-45a2-ac13-4ad0f91a495a",
+          "inputId": "input"
+        },
+        {
+          "outputId": "releaseEnded",
+          "targetNodeId": "3fafec2e-9057-45a2-ac13-4ad0f91a495a",
+          "inputId": "input"
+        }
+      ],
+      "name": "Libération",
+      "note": ""
+    },
+    {
+      "id": "620e459c-6af8-495f-a736-b7578cf668c5",
+      "feature": "announcement",
+      "category": "softcmp",
+      "featureVersion": "2.6",
+      "x": 372,
+      "y": 816,
+      "params": {
+        "file": {
+          "value": "a8ee3cd9-fad1-482e-9dad-ec351d54995d",
+          "type": "prompt"
+        },
+        "bargein": {
+          "value": true,
+          "type": "bool"
+        },
+        "timeout": {
+          "value": 0,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "callReleased",
+          "targetNodeId": "3fafec2e-9057-45a2-ac13-4ad0f91a495a",
+          "inputId": "input"
+        },
+        {
+          "outputId": "ok",
+          "targetNodeId": "f806a8cd-8591-48a5-9414-75d910d70ad1",
+          "inputId": "input"
+        }
+      ],
+      "name": "Annonce",
+      "note": ""
+    },
+    {
+      "id": "93242237-df21-4b0a-8cfd-2ea5cd20befb",
+      "feature": "tts",
+      "category": "dev",
+      "featureVersion": "1.0",
+      "x": 120,
+      "y": 552,
+      "params": {
+        "tts": {
+          "value": {
+            "ttsText": "Maître Corbeau, sur un arbre perché,\nTenait en son bec un fromage.\nMaître Renard, par l'odeur alléché,\nLui tint à peu près ce langage :\nEt bonjour, Monsieur du Corbeau.\nQue vous êtes joli ! que vous me semblez beau !\nSans mentir, si votre ramage\nSe rapporte à votre plumage,\nVous êtes le Phénix",
+            "ttsConfigurationId": "f1921b91-0149-4dc2-a2b3-8d9e3a719fbf",
+            "ttstext": ""
+          },
+          "type": "tts-enabled"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "prompt",
+              "type": "file",
+              "parameter": "prompt",
+              "displayed": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "typeEditable": false,
+              "mandatoryEditable": false,
+              "mandatory": true,
+              "removable": false,
+              "multiple": false
+            }
+          ],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "ok",
+          "targetNodeId": "620e459c-6af8-495f-a736-b7578cf668c5",
+          "inputId": "input"
+        }
+      ],
+      "name": "Synthèse vocale",
+      "note": ""
+    },
+    {
+      "id": "78a1ec45-b708-42af-a773-004438af0dff",
+      "feature": "language",
+      "category": "dev",
+      "featureVersion": "1.0",
+      "x": 624,
+      "y": 660,
+      "params": {
+        "language": {
+          "value": "fr-FR",
+          "type": "language"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "620e459c-6af8-495f-a736-b7578cf668c5",
+          "inputId": "input"
+        }
+      ],
+      "name": "Langue",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false
+}

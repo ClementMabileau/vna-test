@@ -1,0 +1,1865 @@
+{
+  "name": "RCaaS_v1.0_beta",
+  "id": "47796ea4-baee-492f-a6ce-af5782e096cf",
+  "nodes": [
+    {
+      "note": "Incoming Call. Call is automatically answered. Called number is used to get departmentId and ShopID. Calling Number to RRRRR (To Complain)",
+      "feature": "incomingCall",
+      "x": 149,
+      "name": "Incoming Call",
+      "y": 80,
+      "id": "45ae9e37-336e-4c04-a0bd-8fe1fde8bd8e",
+      "category": "softcmp",
+      "params": {
+        "phoneDisplay": {
+          "type": "phoneDisplay"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "callingNumber",
+              "parameter": "callingNumber",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "calledNumber",
+              "parameter": "calledNumber",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "callingNumberType",
+              "parameter": "callingNumberType",
+              "displayed": false,
+              "editable": false,
+              "type": "object"
+            },
+            {
+              "name": "calledNumberType",
+              "parameter": "calledNumberType",
+              "displayed": false,
+              "editable": false,
+              "type": "object"
+            },
+            {
+              "name": "chargingNumber",
+              "parameter": "chargingNumber",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "initialCalledNumber",
+              "parameter": "initialCalledNumber",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "diversionReason",
+              "parameter": "diversionReason",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "redirectingNumber",
+              "parameter": "redirectingNumber",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "redirectingName",
+              "parameter": "redirectingName",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "abcfMessageRef",
+              "parameter": "abcfMessageRef",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "partyCategory",
+              "parameter": "partyCategory",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "correlatorData",
+              "parameter": "correlatorData",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "globalCallId",
+              "parameter": "globalCallId",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "callingName",
+              "parameter": "callingName",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "callReference",
+              "parameter": "callRef",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            }
+          ]
+        },
+        "callednumber": {
+          "type": "callednumber",
+          "value": "5001"
+        },
+        "auto_answer": {
+          "type": "bool",
+          "value": true
+        },
+        "sipHeader": {
+          "type": "sipHeader",
+          "value": {
+            "sipHeadersNames": [],
+            "checked": false
+          }
+        },
+        "activateDtmf": {
+          "type": "bool",
+          "value": true
+        }
+      },
+      "featureVersion": "2.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "msg",
+          "targetNodeId": "fb735d2d-543a-4696-b83b-883975cc2ee4"
+        }
+      ]
+    },
+    {
+      "note": "You need to pass the right token corresponding to your target store.\nToken is available in admin website int the store configuration panel.",
+      "feature": "httpRequest",
+      "x": 149,
+      "name": "Call RCaaS Server",
+      "y": 512,
+      "id": "b7f5158c-4d54-4c7a-ab63-df5eb527cd05",
+      "category": "http",
+      "params": {
+        "headers": {
+          "type": "keyValueList",
+          "value": {
+            "Authorization": "VAR(storeToken)",
+            "User-Agent": "VNA",
+            "Content-Type": "application/json"
+          }
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": false,
+              "originEditable": false,
+              "editable": true,
+              "removable": false,
+              "parameter": "body",
+              "name": "body",
+              "parameterEditable": false,
+              "type": "object"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "statusCode",
+              "name": "statusCode",
+              "type": "int"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "httpRequestResult.error",
+              "name": "error",
+              "type": "string"
+            },
+            {
+              "origin": "body",
+              "parameter": "code",
+              "name": "code",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "status",
+              "name": "status",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "data.mainList",
+              "name": "mainList",
+              "type": "object",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "data.rules",
+              "name": "rules",
+              "type": "object",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "data.backupList",
+              "name": "backupList",
+              "type": "object",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "data.lang",
+              "name": "lang",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "headers",
+              "parameter": "x-qid",
+              "name": "qid",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "data.rules.retries",
+              "name": "retries",
+              "type": "int",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "data.rules.answerTimeout",
+              "name": "answerTimeout",
+              "type": "int",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "data.rules.timeoutBeforeEscalation",
+              "name": "timeoutBeforeEscalation",
+              "type": "int",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "data.rules.fallbackOnDeptMembers",
+              "name": "fallbackOnDeptMembers",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "data.rules.escalationForwardDest",
+              "name": "escalationForwardDest",
+              "type": "object",
+              "mandatory": false
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "method": {
+          "type": "choice",
+          "value": "POST"
+        },
+        "noProxy": {
+          "type": "bool",
+          "value": true
+        },
+        "body": {
+          "type": "textareaMentions",
+          "value": "{\n\"caller\" : \"VAR(callingNumber)\"\n}"
+        },
+        "sslVerification": {
+          "type": "bool",
+          "value": false
+        },
+        "url": {
+          "type": "textMentions",
+          "value": "VAR(apiServer)/api/callrouting/extensions/VAR(calledNumber)/availability"
+        },
+        "timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "featureVersion": "6.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "70e4978f-18e9-4bfa-b654-5ffe9c340656"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "c227025b-d212-47ee-ae9b-7bda681733e9"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 2053,
+      "name": "LoopEntry :: Get user",
+      "y": 1376,
+      "id": "199aede1-a113-4412-94ef-29cbdea79dbf",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "numToTransfer",
+              "type": "string",
+              "value": "VAR(collaboratorList)[VAR(idxLoop)].telExt"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "b885ece2-00c6-422e-9b3a-e1fd10cdb169"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "16ff35bb-a6c7-4b22-80cf-45ff6482d265"
+        }
+      ]
+    },
+    {
+      "note": "CHANGE TO THE SUCCESS NODE ",
+      "feature": "transfer",
+      "x": 2652,
+      "name": "Loop: Main and Backup list",
+      "y": 1592,
+      "id": "b885ece2-00c6-422e-9b3a-e1fd10cdb169",
+      "category": "softcmp",
+      "params": {
+        "number": {
+          "type": "phoneNumber",
+          "value": "VAR(numToTransfer)"
+        },
+        "phoneDisplay": {
+          "type": "phoneDisplay",
+          "value": "VAR(callingNumber)"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "transferredNumber",
+              "parameter": "transferredNumber",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            }
+          ]
+        },
+        "ringtoneBack": {
+          "type": "prompt",
+          "value": "5873aa0e-17ca-4bc0-939e-b41bbf4e03cc"
+        },
+        "callingNumber": {
+          "type": "phoneNumber",
+          "value": "VAR(callingNumber)"
+        },
+        "timeout": {
+          "type": "numberOrVarFormat",
+          "value": "10"
+        },
+        "supervisedTransfer": {
+          "type": "bool"
+        },
+        "correlatorData": {
+          "type": "phoneDisplay",
+          "value": "VAR(correlatorData)"
+        }
+      },
+      "featureVersion": "1.4",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "ec85a58d-dd16-4e91-aa55-c7c2e9d24120"
+        },
+        {
+          "inputId": "input",
+          "outputId": "ok",
+          "targetNodeId": "7d7b70f4-f00f-49e8-8a53-7f9896fcc1b3"
+        },
+        {
+          "inputId": "input",
+          "outputId": "callReleased",
+          "targetNodeId": "3ba13d53-1e1f-4c14-ade7-ae594094a19f"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 1786,
+      "name": "answer timeout",
+      "y": 1808,
+      "id": "ec85a58d-dd16-4e91-aa55-c7c2e9d24120",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "result",
+              "type": "object",
+              "value": "VAR(cdrRecord).retries.push({\"retrySeq\":VAR(idxRetries), \"telNr\":VAR(numToTransfer).toString(), \"status\":\"timeout\",\"listType\":VAR(currentList)})"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "0b220f79-513e-4d2d-ba96-827adf5ee1ed"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 3058,
+      "name": "Update tries with transferredTo",
+      "y": 3320,
+      "id": "7d7b70f4-f00f-49e8-8a53-7f9896fcc1b3",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "res1",
+              "type": "object",
+              "value": "VAR(cdrRecord).retries.push({\"retrySeq\":VAR(idxRetries), \"telNr\":VAR(numToTransfer).toString(), \"status\":\"answered\",\"listType\":VAR(currentList)}))"
+            },
+            {
+              "name": "res2",
+              "type": "object",
+              "value": "VAR(cdrRecord).transferredTo=VAR(numToTransfer).toString()"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "49c38810-9d54-424f-826b-a7a4ec344766"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "transfer",
+      "x": 2464,
+      "name": "Transfer to escalation",
+      "y": 3104,
+      "id": "e9c48ab7-5aac-4ffe-a6d2-855936489292",
+      "category": "softcmp",
+      "params": {
+        "number": {
+          "type": "phoneNumber",
+          "value": "VAR(forwardDest)"
+        },
+        "phoneDisplay": {
+          "type": "phoneDisplay",
+          "value": "VAR(callingNumber)"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "transferredNumber",
+              "parameter": "transferredNumber",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            }
+          ]
+        },
+        "ringtoneBack": {
+          "type": "prompt",
+          "value": "5873aa0e-17ca-4bc0-939e-b41bbf4e03cc"
+        },
+        "callingNumber": {
+          "type": "phoneNumber",
+          "value": "VAR(callingNumber)"
+        },
+        "timeout": {
+          "type": "numberOrVarFormat",
+          "value": "10"
+        },
+        "supervisedTransfer": {
+          "type": "bool"
+        },
+        "correlatorData": {
+          "type": "phoneDisplay",
+          "value": "VAR(correlatorData)"
+        }
+      },
+      "featureVersion": "1.4",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "ok",
+          "targetNodeId": "ae17ed2e-625e-404b-835f-025daec51ef9"
+        },
+        {
+          "inputId": "input",
+          "outputId": "callReleased",
+          "targetNodeId": "3ba13d53-1e1f-4c14-ade7-ae594094a19f"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "f2ce8b53-aab9-4e8a-9556-491243806030"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 3330,
+      "name": "Modify  CDR escalation status success",
+      "y": 3320,
+      "id": "ae17ed2e-625e-404b-835f-025daec51ef9",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "res1",
+              "type": "object",
+              "value": "VAR(cdrRecord).escalations.push({\"telNr\": VAR(forwardDest), \"status\":\"answered\"})"
+            },
+            {
+              "name": "res2",
+              "type": "object",
+              "value": "VAR(cdrRecord).transferredTo=VAR(forwardDest)"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "49c38810-9d54-424f-826b-a7a4ec344766"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "end",
+      "x": 2817,
+      "name": "End",
+      "y": 4832,
+      "id": "fddf00c5-ede6-4038-9646-8e37ce467287",
+      "category": "dev",
+      "params": {},
+      "featureVersion": "1.1",
+      "connections": []
+    },
+    {
+      "note": "",
+      "feature": "releaseCall",
+      "x": 432,
+      "name": "Release Call",
+      "y": 4400,
+      "id": "ea5144cc-907b-4f04-85e3-4818702bcd20",
+      "category": "softcmp",
+      "params": {},
+      "featureVersion": "1.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "releaseEnded",
+          "targetNodeId": "09fa8300-66d1-4d81-8d01-20b5ac9e9c98"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "httpRequest",
+      "x": 2769,
+      "name": "Send CDR to bot",
+      "y": 4616,
+      "id": "09fa8300-66d1-4d81-8d01-20b5ac9e9c98",
+      "category": "http",
+      "params": {
+        "headers": {
+          "type": "keyValueList",
+          "value": {
+            "Authorization": "VAR(storeToken)",
+            "Content-type": "application/json",
+            "User-Agent": "VNA"
+          }
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": false,
+              "originEditable": false,
+              "editable": true,
+              "removable": false,
+              "parameter": "body",
+              "name": "body",
+              "parameterEditable": false,
+              "type": "object",
+              "mandatory": false
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "statusCode",
+              "name": "statusCode",
+              "type": "int"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "httpRequestResult.error",
+              "name": "error",
+              "type": "string"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "method": {
+          "type": "choice",
+          "value": "PUT"
+        },
+        "noProxy": {
+          "type": "bool",
+          "value": false
+        },
+        "body": {
+          "type": "textareaMentions",
+          "value": "VAR(cdrRecord)"
+        },
+        "sslVerification": {
+          "type": "bool",
+          "value": false
+        },
+        "url": {
+          "type": "textMentions",
+          "value": "VAR(apiServer)/api/callrouting/cdrs/VAR(qid)"
+        },
+        "timeout": {
+          "type": "int",
+          "value": "60"
+        }
+      },
+      "featureVersion": "6.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "fddf00c5-ede6-4038-9646-8e37ce467287"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "fddf00c5-ede6-4038-9646-8e37ce467287"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "announcement",
+      "x": 1108,
+      "name": "Retry EN",
+      "y": 3968,
+      "id": "f5d968b4-526c-4807-870c-010513779d56",
+      "category": "softcmp",
+      "params": {
+        "file": {
+          "type": "prompt",
+          "value": "PleaseWaitFindingCorrespondent"
+        },
+        "bargein": {
+          "type": "bool",
+          "value": true
+        },
+        "timeout": {
+          "type": "int",
+          "value": 0
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "callReleased",
+          "targetNodeId": "3ba13d53-1e1f-4c14-ade7-ae594094a19f"
+        },
+        {
+          "inputId": "input",
+          "outputId": "ok",
+          "targetNodeId": "199aede1-a113-4412-94ef-29cbdea79dbf"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "e7292c62-9760-414c-b224-6928ee7de139"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 1446,
+      "name": "set Transfer number",
+      "y": 2888,
+      "id": "cdee942c-11f7-4058-9c83-69ff94d1a7ea",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "forwardDest",
+              "type": "string",
+              "value": " VAR(escalationForwardDest)[VAR(loopForwardDestIdx)]"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "e9c48ab7-5aac-4ffe-a6d2-855936489292"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 100,
+      "name": "Update CDR Error NoCallParams",
+      "y": 3536,
+      "id": "e661e7e8-2851-4d06-8e0d-a6b6eecf6f6a",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "res",
+              "type": "string",
+              "value": "VAR(cdrRecord).processingErrors.push({code:500,message: \"Fall back on local data failed\"})"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "e06b669c-7785-40b1-843b-e5d6cb90bb86"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "condition",
+      "x": 317,
+      "name": "ERROR DETECTED Condition",
+      "y": 3752,
+      "id": "e06b669c-7785-40b1-843b-e5d6cb90bb86",
+      "category": "dev",
+      "params": {
+        "condition": {
+          "type": "choiceWithTranslation",
+          "value": "equals"
+        },
+        "name": {
+          "type": "variableName",
+          "value": "VAR(lang)"
+        },
+        "value": {
+          "type": "variableValues",
+          "value": [
+            {
+              "id": "nl",
+              "value": "nl"
+            },
+            {
+              "id": "en",
+              "value": "en"
+            },
+            {
+              "id": "fr",
+              "value": "fr"
+            }
+          ]
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "nl",
+          "targetNodeId": "cedce83d-84dd-4176-aa77-dea8d5fbf8d2"
+        },
+        {
+          "inputId": "input",
+          "outputId": "fr",
+          "targetNodeId": "807aa187-9cfd-4f1b-906a-38f648410f5e"
+        },
+        {
+          "inputId": "input",
+          "outputId": "else",
+          "targetNodeId": "cedce83d-84dd-4176-aa77-dea8d5fbf8d2"
+        },
+        {
+          "inputId": "input",
+          "outputId": "en",
+          "targetNodeId": "cedce83d-84dd-4176-aa77-dea8d5fbf8d2"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "announcement",
+      "x": 305,
+      "name": "Announcement Exit-EN",
+      "y": 3968,
+      "id": "cedce83d-84dd-4176-aa77-dea8d5fbf8d2",
+      "category": "softcmp",
+      "params": {
+        "file": {
+          "type": "prompt",
+          "value": "RetailExitEN"
+        },
+        "bargein": {
+          "type": "bool",
+          "value": true
+        },
+        "timeout": {
+          "type": "int",
+          "value": 0
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "ok",
+          "targetNodeId": "ea5144cc-907b-4f04-85e3-4818702bcd20"
+        },
+        {
+          "inputId": "input",
+          "outputId": "callReleased",
+          "targetNodeId": "3ba13d53-1e1f-4c14-ade7-ae594094a19f"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "e7292c62-9760-414c-b224-6928ee7de139"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "announcement",
+      "x": 764,
+      "name": "Announcement Exit-fr",
+      "y": 3968,
+      "id": "807aa187-9cfd-4f1b-906a-38f648410f5e",
+      "category": "softcmp",
+      "params": {
+        "file": {
+          "type": "prompt",
+          "value": "RetailExitFR"
+        },
+        "bargein": {
+          "type": "bool",
+          "value": true
+        },
+        "timeout": {
+          "type": "int",
+          "value": 0
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "ok",
+          "targetNodeId": "ea5144cc-907b-4f04-85e3-4818702bcd20"
+        },
+        {
+          "inputId": "input",
+          "outputId": "callReleased",
+          "targetNodeId": "3ba13d53-1e1f-4c14-ade7-ae594094a19f"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "e7292c62-9760-414c-b224-6928ee7de139"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "condition",
+      "x": 1175,
+      "name": "Condition",
+      "y": 944,
+      "id": "70e4978f-18e9-4bfa-b654-5ffe9c340656",
+      "category": "dev",
+      "params": {
+        "condition": {
+          "type": "choiceWithTranslation",
+          "value": "="
+        },
+        "name": {
+          "type": "variableName",
+          "value": "VAR(statusCode)"
+        },
+        "value": {
+          "type": "variableValues",
+          "value": [
+            {
+              "id": "200",
+              "value": "200"
+            },
+            {
+              "id": "221",
+              "value": "221"
+            },
+            {
+              "id": "222",
+              "value": "222"
+            }
+          ]
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "200",
+          "targetNodeId": "9b436c43-442f-4b04-91d4-9f700164df14"
+        },
+        {
+          "inputId": "input",
+          "outputId": "221",
+          "targetNodeId": "9b436c43-442f-4b04-91d4-9f700164df14"
+        },
+        {
+          "inputId": "input",
+          "outputId": "222",
+          "targetNodeId": "9b436c43-442f-4b04-91d4-9f700164df14"
+        },
+        {
+          "inputId": "input",
+          "outputId": "else",
+          "targetNodeId": "bebd14c7-225c-4dc3-9919-b239f512ceb8"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 2838,
+      "name": "call hung-up by the client",
+      "y": 4184,
+      "id": "3ba13d53-1e1f-4c14-ade7-ae594094a19f",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "result",
+              "type": "object",
+              "value": "VAR(cdrRecord).status='hung-up'"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "09fa8300-66d1-4d81-8d01-20b5ac9e9c98"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 1300,
+      "name": "Update CDR Error NoUsersInList",
+      "y": 2456,
+      "id": "0f40d836-1e7b-4d6b-934e-7fbf55f32fbd",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "res",
+              "type": "string",
+              "value": "VAR(cdrRecord).processingErrors.push({code:500,message: \"Processing Main list check failed\"})"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "4e73e774-d4f0-481d-bf86-eed103b74e8a"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 3271,
+      "name": "call answered",
+      "y": 3536,
+      "id": "49c38810-9d54-424f-826b-a7a4ec344766",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "res",
+              "type": "object",
+              "value": "VAR(cdrRecord).status = \"answered\""
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "09fa8300-66d1-4d81-8d01-20b5ac9e9c98"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "javascript",
+      "x": 1762,
+      "name": "check timeout before escalation",
+      "y": 2024,
+      "id": "0b220f79-513e-4d2d-ba96-827adf5ee1ed",
+      "category": "dev",
+      "params": {
+        "code": {
+          "type": "text",
+          "value": "try{\nif( Date.now() < message.payload.timeoutBeforeEscalationTS.value){\n goTo('out1');\n}else{\n goTo('out2');\n}\n}catch(err){\nmessage.payload.lastException = e.toString();\n goTo('err')\n}\n"
+        }
+      },
+      "featureVersion": "1.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "out1",
+          "targetNodeId": "a2271bca-6152-4ce5-8e49-e18d48803273"
+        },
+        {
+          "inputId": "input",
+          "outputId": "out2",
+          "targetNodeId": "4e73e774-d4f0-481d-bf86-eed103b74e8a"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "16ff35bb-a6c7-4b22-80cf-45ff6482d265"
+        }
+      ]
+    },
+    {
+      "note": "1 Next\n2 End of list",
+      "feature": "javascript",
+      "x": 1932,
+      "name": "Check end of list",
+      "y": 2240,
+      "id": "a2271bca-6152-4ce5-8e49-e18d48803273",
+      "category": "dev",
+      "params": {
+        "code": {
+          "type": "text",
+          "value": "try {\n     const max = message.payload.currentList.value === 'main' ? message.payload.numUsersMainList.value : message.payload.numUsersBackupList.value;\n    message.payload.idxLoop.value++;\n    if (message.payload.idxLoop.value < max) {\n        goTo('out1');\n    } else {\n        goTo('out2');\n    }\n} catch (e) {\n    message.payload.lastException = e.toString();\n    goTo('err');\n}"
+        }
+      },
+      "featureVersion": "1.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "out1",
+          "targetNodeId": "199aede1-a113-4412-94ef-29cbdea79dbf"
+        },
+        {
+          "inputId": "input",
+          "outputId": "out2",
+          "targetNodeId": "635db357-1bad-4a4e-b78f-c71d4711414b"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "16ff35bb-a6c7-4b22-80cf-45ff6482d265"
+        }
+      ]
+    },
+    {
+      "note": "1 Retry \n2 go escalade  \n3 Backuplist",
+      "feature": "javascript",
+      "x": 2102,
+      "name": "Retry  | go escalade | backuplist",
+      "y": 2456,
+      "id": "635db357-1bad-4a4e-b78f-c71d4711414b",
+      "category": "dev",
+      "params": {
+        "code": {
+          "type": "text",
+          "value": "try {\n    if (message.payload.idxRetries.value < message.payload.retries.value) {\n        message.payload.idxRetries.value++;\n        // reset idx\n        message.payload.idxLoop.value = 0;\n\n        goTo('out1');\n    } else {\n        if (message.payload.fallbackOnDeptMembers?.value === true && message.payload.currentList.value !== 'backup'\n            && message.payload.backupList && message.payload.numUsersBackupList?.value > 0) {\n            message.payload.currentList.value = 'backup';\n            message.payload.collaboratorList.value = message.payload.backupList.value;\n\n            // reset loop vars\n            message.payload.idxLoop.value = 0;\n            message.payload.idxRetries.value = 0;\n            goTo('out3');\n        } else {\n            goTo('out2');\n        }\n\n    }\n} catch (e) {\n    message.payload.lastException = e.toString();\n    goTo('err');\n}"
+        }
+      },
+      "featureVersion": "1.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "out2",
+          "targetNodeId": "4e73e774-d4f0-481d-bf86-eed103b74e8a"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "16ff35bb-a6c7-4b22-80cf-45ff6482d265"
+        },
+        {
+          "inputId": "input",
+          "outputId": "out3",
+          "targetNodeId": "199aede1-a113-4412-94ef-29cbdea79dbf"
+        },
+        {
+          "inputId": "input",
+          "outputId": "out1",
+          "targetNodeId": "ef723372-1a5f-4fbd-83a4-f3bd2626c3ea"
+        }
+      ]
+    },
+    {
+      "note": "1. Go next\n2. Stop here",
+      "feature": "javascript",
+      "x": 394,
+      "name": "Go next or stop here",
+      "y": 3536,
+      "id": "b001f62c-1c52-40bf-96d4-6a5b53441f7b",
+      "category": "dev",
+      "params": {
+        "code": {
+          "type": "text",
+          "value": "try {\n    // Check if we go next or stop here\n    if (message.payload.loopForwardDestIdx.value < message.payload.escalationForwardDest.value.length) {\n        message.payload.forwardDest.value = message.payload.escalationForwardDest.value[message.payload.loopForwardDestIdx.value];\n        goTo('out1');\n    } else {\n        goTo('out2');\n\n    }\n} catch (e) {\n    goTo('err');\n}"
+        }
+      },
+      "featureVersion": "1.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "out1",
+          "targetNodeId": "cdee942c-11f7-4058-9c83-69ff94d1a7ea"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "e7292c62-9760-414c-b224-6928ee7de139"
+        },
+        {
+          "inputId": "input",
+          "outputId": "out2",
+          "targetNodeId": "e06b669c-7785-40b1-843b-e5d6cb90bb86"
+        }
+      ]
+    },
+    {
+      "note": "1. Go to escalade loop\n2. Go to bye",
+      "feature": "javascript",
+      "x": 1422,
+      "name": "Init escalation loop",
+      "y": 2672,
+      "id": "4e73e774-d4f0-481d-bf86-eed103b74e8a",
+      "category": "dev",
+      "params": {
+        "code": {
+          "type": "text",
+          "value": "try {\n\n    message.payload.numForwardDest = { value: message.payload.escalationForwardDest.value.length, type: 'int' };\n    message.payload.loopForwardDestIdx = { value: 0, type: 'int' };\n\n    if (message.payload.numForwardDest.value > 0) {\n        goTo('out1');\n    } else {\n        goTo('out2');\n    }\n} catch (e) {\n    goTo('err');\n}"
+        }
+      },
+      "featureVersion": "1.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "out1",
+          "targetNodeId": "cdee942c-11f7-4058-9c83-69ff94d1a7ea"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "16ff35bb-a6c7-4b22-80cf-45ff6482d265"
+        },
+        {
+          "inputId": "input",
+          "outputId": "out2",
+          "targetNodeId": "e06b669c-7785-40b1-843b-e5d6cb90bb86"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "trace",
+      "x": 2053,
+      "name": "Exception occurred",
+      "y": 2888,
+      "id": "16ff35bb-a6c7-4b22-80cf-45ff6482d265",
+      "category": "dev",
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "Exception occurred : VAR(lastException)"
+        },
+        "level": {
+          "type": "choice",
+          "value": "info"
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "e7292c62-9760-414c-b224-6928ee7de139"
+        }
+      ]
+    },
+    {
+      "note": "1. Main list or Backup list\n2. Escalade",
+      "feature": "javascript",
+      "x": 2114,
+      "name": "Setup default variables & go to 1st list",
+      "y": 1160,
+      "id": "9b436c43-442f-4b04-91d4-9f700164df14",
+      "category": "dev",
+      "params": {
+        "code": {
+          "type": "text",
+          "value": "try {\n\n    if (message.payload.mainList != undefined) {\n        message.payload.numUsersMainList = { type: 'int', value: message.payload.mainList.value.length };\n        message.payload.currentList = { type: 'string', value: 'main' };\n        message.payload.collaboratorList = { type: 'object', value: message.payload.mainList.value };\n    } else {\n        message.payload.numUsersMainList = { type: 'int', value: 0 };\n    }\n\n    if (message.payload.backupList != undefined) {\n        message.payload.numUsersBackupList = { type: 'int', value: message.payload.backupList.value.length };\n    } else {\n        message.payload.numUsersBackupList = { type: 'int', value: 0 };\n    }\n\n    message.payload.timeoutBeforeEscalationTS = {\n        type: 'int', value: Date.now() + (message.payload?.timeoutBeforeEscalation?.value || 600) * 1000,\n    };\n\n    message.payload.idxRetries = { type: 'int', value: 0 };\n    message.payload.idxLoop = { type: 'int', value: 0 };\n\n    if (message.payload.numUsersMainList.value > 0) {\n        goTo('out1');\n    } else if (message.payload.numUsersBackupList.value > 0) {\n        message.payload.currentList.value = 'backup';\n        message.payload.collaboratorList.value = message.payload.backupList.value;\n        goTo('out1');\n    } else {\n        goTo('out2');\n    }\n\n} catch (e) {\n    message.payload.lastException = e.toString();\n    goTo('err');\n}"
+        }
+      },
+      "featureVersion": "1.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "out1",
+          "targetNodeId": "199aede1-a113-4412-94ef-29cbdea79dbf"
+        },
+        {
+          "inputId": "input",
+          "outputId": "out2",
+          "targetNodeId": "0f40d836-1e7b-4d6b-934e-7fbf55f32fbd"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "16ff35bb-a6c7-4b22-80cf-45ff6482d265"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 173,
+      "name": "Init default variables",
+      "y": 296,
+      "id": "fb735d2d-543a-4696-b83b-883975cc2ee4",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "currentList",
+              "type": "string",
+              "value": "main"
+            },
+            {
+              "name": "collaboratorList",
+              "type": "object",
+              "value": "[]"
+            },
+            {
+              "name": "idxRetries",
+              "type": "int",
+              "value": "0"
+            },
+            {
+              "name": "idxLoop",
+              "type": "int",
+              "value": "0"
+            },
+            {
+              "name": "cdrRecord",
+              "type": "object",
+              "value": "{\"status\": \"rejected\",\"retries\": [],\"escalations\": [], \"processingErros\":[]}"
+            },
+            {
+              "name": "timeoutBeforeEscalationTS",
+              "type": "int",
+              "value": "0"
+            },
+            {
+              "name": "lastException",
+              "type": "string",
+              "value": "none"
+            },
+            {
+              "name": "loopForwardDestIdx",
+              "type": "int",
+              "value": "0"
+            },
+            {
+              "name": "apiServer",
+              "type": "string",
+              "value": "https://int-store-com-aas.openrainbow.io"
+            },
+            {
+              "name": "storeToken",
+              "type": "string",
+              "value": "Bearer Put here your store token"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "b7f5158c-4d54-4c7a-ab63-df5eb527cd05"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "condition",
+      "x": 2294,
+      "name": "Select announce lang",
+      "y": 3752,
+      "id": "ef723372-1a5f-4fbd-83a4-f3bd2626c3ea",
+      "category": "dev",
+      "params": {
+        "condition": {
+          "type": "choiceWithTranslation",
+          "value": "equals"
+        },
+        "name": {
+          "type": "variableName",
+          "value": "VAR(lang)"
+        },
+        "value": {
+          "type": "variableValues",
+          "value": [
+            {
+              "id": "nl",
+              "value": "nl"
+            },
+            {
+              "id": "en",
+              "value": "en"
+            },
+            {
+              "id": "fr",
+              "value": "fr"
+            }
+          ]
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "en",
+          "targetNodeId": "f5d968b4-526c-4807-870c-010513779d56"
+        },
+        {
+          "inputId": "input",
+          "outputId": "nl",
+          "targetNodeId": "f5d968b4-526c-4807-870c-010513779d56"
+        },
+        {
+          "inputId": "input",
+          "outputId": "fr",
+          "targetNodeId": "3e5dd53c-18a4-44c1-954a-a51566a17cab"
+        },
+        {
+          "inputId": "input",
+          "outputId": "else",
+          "targetNodeId": "f5d968b4-526c-4807-870c-010513779d56"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "announcement",
+      "x": 2860,
+      "name": "Retry FR",
+      "y": 3968,
+      "id": "3e5dd53c-18a4-44c1-954a-a51566a17cab",
+      "category": "softcmp",
+      "params": {
+        "file": {
+          "type": "prompt",
+          "value": "RetailWaitFR"
+        },
+        "bargein": {
+          "type": "bool",
+          "value": true
+        },
+        "timeout": {
+          "type": "int",
+          "value": 0
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "ok",
+          "targetNodeId": "199aede1-a113-4412-94ef-29cbdea79dbf"
+        },
+        {
+          "inputId": "input",
+          "outputId": "callReleased",
+          "targetNodeId": "3ba13d53-1e1f-4c14-ade7-ae594094a19f"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "e7292c62-9760-414c-b224-6928ee7de139"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 608,
+      "name": "Internal exception occurred",
+      "y": 4184,
+      "id": "e7292c62-9760-414c-b224-6928ee7de139",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "result",
+              "type": "object",
+              "value": "VAR(cdrRecord).status='error'"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "ea5144cc-907b-4f04-85e3-4818702bcd20"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "javascript",
+      "x": 309,
+      "name": "esacalation Call not answered",
+      "y": 3320,
+      "id": "f2ce8b53-aab9-4e8a-9556-491243806030",
+      "category": "dev",
+      "params": {
+        "code": {
+          "type": "text",
+          "value": "try {\n\n    // Update CDR\n    message.payload.cdrRecord.value.escalations.push({\n        'telNr': message.payload.forwardDest.value.toString(),\n        'status': 'timeout',\n    });\n    message.payload.loopForwardDestIdx.value++;\n    goTo('out1')\n\n} catch (e) {\n    message.payload.lastException = e.toString();\n    goTo('err');\n}"
+        }
+      },
+      "featureVersion": "1.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "out1",
+          "targetNodeId": "b001f62c-1c52-40bf-96d4-6a5b53441f7b"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "condition",
+      "x": 375,
+      "name": "Lines closed",
+      "y": 1160,
+      "id": "bebd14c7-225c-4dc3-9919-b239f512ceb8",
+      "category": "dev",
+      "params": {
+        "condition": {
+          "type": "choiceWithTranslation",
+          "value": "equals"
+        },
+        "name": {
+          "type": "variableName",
+          "value": "VAR(lang)"
+        },
+        "value": {
+          "type": "variableValues",
+          "value": [
+            {
+              "id": "nl",
+              "value": "nl"
+            },
+            {
+              "id": "en",
+              "value": "en"
+            },
+            {
+              "id": "fr",
+              "value": "fr"
+            }
+          ]
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "fr",
+          "targetNodeId": "94934ad6-2522-411e-a866-640d97947226"
+        },
+        {
+          "inputId": "input",
+          "outputId": "else",
+          "targetNodeId": "d4c4cb99-c6a1-4e3f-98ae-60b0ac2e1a3f"
+        },
+        {
+          "inputId": "input",
+          "outputId": "en",
+          "targetNodeId": "d4c4cb99-c6a1-4e3f-98ae-60b0ac2e1a3f"
+        },
+        {
+          "inputId": "input",
+          "outputId": "nl",
+          "targetNodeId": "d4c4cb99-c6a1-4e3f-98ae-60b0ac2e1a3f"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "announcement",
+      "x": 258,
+      "name": "Retail Closed FR",
+      "y": 1376,
+      "id": "94934ad6-2522-411e-a866-640d97947226",
+      "category": "softcmp",
+      "params": {
+        "file": {
+          "type": "prompt",
+          "value": "RetailClosedFR"
+        },
+        "bargein": {
+          "type": "bool",
+          "value": true
+        },
+        "timeout": {
+          "type": "int",
+          "value": 0
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "ok",
+          "targetNodeId": "75b1d023-e3ea-48fe-bf3f-5145e6e66691"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "75b1d023-e3ea-48fe-bf3f-5145e6e66691"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "announcement",
+      "x": 835,
+      "name": "Retail closed EN",
+      "y": 1376,
+      "id": "d4c4cb99-c6a1-4e3f-98ae-60b0ac2e1a3f",
+      "category": "softcmp",
+      "params": {
+        "file": {
+          "type": "prompt",
+          "value": "RetailClosedEN"
+        },
+        "bargein": {
+          "type": "bool",
+          "value": true
+        },
+        "timeout": {
+          "type": "int",
+          "value": 0
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "75b1d023-e3ea-48fe-bf3f-5145e6e66691"
+        },
+        {
+          "inputId": "input",
+          "outputId": "ok",
+          "targetNodeId": "75b1d023-e3ea-48fe-bf3f-5145e6e66691"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "releaseCall",
+      "x": 411,
+      "name": "Libération",
+      "y": 1592,
+      "id": "75b1d023-e3ea-48fe-bf3f-5145e6e66691",
+      "category": "softcmp",
+      "params": {},
+      "featureVersion": "1.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "releaseEnded",
+          "targetNodeId": "8401332c-b4ab-493c-a16a-d5ea8eeeafec"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "end",
+      "x": 423,
+      "name": "Fin",
+      "y": 1820,
+      "id": "8401332c-b4ab-493c-a16a-d5ea8eeeafec",
+      "category": "dev",
+      "params": {},
+      "featureVersion": "1.1",
+      "connections": []
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 100,
+      "name": "Fall-back on local DATA",
+      "y": 728,
+      "id": "c227025b-d212-47ee-ae9b-7bda681733e9",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "escalationList",
+              "type": "object",
+              "value": "[\"1100\"]"
+            },
+            {
+              "name": "retries",
+              "type": "int",
+              "value": "0"
+            },
+            {
+              "name": "answerTimeout",
+              "type": "int",
+              "value": "30"
+            },
+            {
+              "name": "timeoutBeforeEscalation",
+              "type": "int",
+              "value": "60"
+            },
+            {
+              "name": "fallbackOnDeptMembers",
+              "type": "string",
+              "value": "false"
+            },
+            {
+              "name": "fallbackExcludedRoles",
+              "type": "object",
+              "value": "[]"
+            },
+            {
+              "name": "lang",
+              "type": "string",
+              "value": "\"en\""
+            },
+            {
+              "name": "mainList",
+              "type": "object",
+              "value": "[]"
+            },
+            {
+              "name": "backupList",
+              "type": "object",
+              "value": "[]"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "70e4978f-18e9-4bfa-b654-5ffe9c340656"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "e661e7e8-2851-4d06-8e0d-a6b6eecf6f6a"
+        }
+      ]
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "folder": "test"
+}

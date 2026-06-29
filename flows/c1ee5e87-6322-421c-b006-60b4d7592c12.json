@@ -1,0 +1,519 @@
+{
+  "name": "Join",
+  "id": "c1ee5e87-6322-421c-b006-60b4d7592c12",
+  "nodes": [
+    {
+      "id": "e844865f-076e-45bf-abff-1399e731f8d3",
+      "feature": "onHttp",
+      "category": "http",
+      "featureVersion": "2.8",
+      "x": 360,
+      "y": 60,
+      "params": {
+        "url": {
+          "value": "/api/flows/test",
+          "type": "textMentions"
+        },
+        "method": {
+          "value": "GET",
+          "type": "choice"
+        },
+        "token": {
+          "value": null,
+          "type": "token"
+        },
+        "securityComment": {
+          "value": null,
+          "type": "comment"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "clientip",
+              "parameter": "ip",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            }
+          ],
+          "type": "VariablesList"
+        },
+        "immediate_response": {
+          "value": true,
+          "type": "bool"
+        },
+        "response_timeout": {
+          "value": 60,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "3b107f4c-d659-4a17-9067-6fc67f9c5c90",
+          "inputId": "input"
+        },
+        {
+          "outputId": "err",
+          "targetNodeId": "3b107f4c-d659-4a17-9067-6fc67f9c5c90",
+          "inputId": "input"
+        }
+      ],
+      "name": "HTTP Entrant",
+      "note": ""
+    },
+    {
+      "id": "24aa359d-7bb2-4f88-8a9f-f6781de7be4f",
+      "feature": "split",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 360,
+      "y": 348,
+      "params": {
+        "output": {
+          "value": 3,
+          "type": "outputsNumber"
+        },
+        "comment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "split1",
+          "targetNodeId": "ab31a8ca-aefa-428f-88a2-68bd225c614c",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split0",
+          "targetNodeId": "2c72d19b-0afa-4440-b6fa-7ff61f031d0b",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split2",
+          "targetNodeId": "284ff247-e976-44fa-92c7-06bc6f8a735f",
+          "inputId": "input"
+        }
+      ],
+      "name": "Split",
+      "note": ""
+    },
+    {
+      "id": "088edb2f-1710-4db5-9737-1fa27c3a469a",
+      "feature": "wait",
+      "category": "dev",
+      "featureVersion": "1.2",
+      "x": 348,
+      "y": 588,
+      "params": {
+        "time": {
+          "value": 3,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "e972aa14-640d-4cd8-b0b4-ea179633edbc",
+          "inputId": "input"
+        }
+      ],
+      "name": "Attente",
+      "note": ""
+    },
+    {
+      "id": "3b107f4c-d659-4a17-9067-6fc67f9c5c90",
+      "feature": "variable",
+      "category": "dev",
+      "featureVersion": "3.1",
+      "x": 372,
+      "y": 204,
+      "params": {
+        "variable": {
+          "value": [
+            {
+              "type": "int",
+              "name": "count",
+              "value": "0"
+            }
+          ],
+          "type": "variableMgt"
+        },
+        "comment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "24aa359d-7bb2-4f88-8a9f-f6781de7be4f",
+          "inputId": "input"
+        }
+      ],
+      "name": "Variable",
+      "note": ""
+    },
+    {
+      "id": "f2e34e96-c05d-44f0-8200-773670c530fd",
+      "feature": "variable",
+      "category": "dev",
+      "featureVersion": "3.1",
+      "x": 216,
+      "y": 960,
+      "params": {
+        "variable": {
+          "value": [
+            {
+              "type": "int",
+              "name": "count",
+              "value": "VAR(count)+1"
+            }
+          ],
+          "type": "variableMgt"
+        },
+        "comment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "fd9068af-7058-460c-af36-0d9f6c50d0e1",
+          "inputId": "input"
+        }
+      ],
+      "name": "Variable",
+      "note": ""
+    },
+    {
+      "id": "fd9068af-7058-460c-af36-0d9f6c50d0e1",
+      "feature": "condition",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 216,
+      "y": 1080,
+      "params": {
+        "name": {
+          "value": "VAR(count)",
+          "type": "variableName"
+        },
+        "condition": {
+          "value": "=",
+          "type": "choiceWithTranslation"
+        },
+        "value": {
+          "value": [
+            {
+              "value": "1",
+              "id": "1"
+            }
+          ],
+          "type": "variableValues"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "1",
+          "targetNodeId": "6e73ba3e-b9b8-49bf-b4d7-e4b98a5d7daf",
+          "inputId": "input"
+        }
+      ],
+      "name": "Condition",
+      "note": ""
+    },
+    {
+      "id": "6e73ba3e-b9b8-49bf-b4d7-e4b98a5d7daf",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 216,
+      "y": 1200,
+      "params": {},
+      "connections": [],
+      "name": "Fin",
+      "note": ""
+    },
+    {
+      "id": "5b1654d7-5ca8-4388-8bf5-30e04461a6c9",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 60,
+      "y": 2260,
+      "params": {},
+      "connections": [],
+      "name": "Fin error",
+      "note": ""
+    },
+    {
+      "id": "28013e51-548a-47d4-9a5c-7c1c51e53187",
+      "feature": "condition",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 72,
+      "y": 588,
+      "params": {
+        "name": {
+          "value": "VAR(count)",
+          "type": "variableName"
+        },
+        "condition": {
+          "value": "=",
+          "type": "choiceWithTranslation"
+        },
+        "value": {
+          "value": [
+            {
+              "value": "0",
+              "id": "0"
+            }
+          ],
+          "type": "variableValues"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "0",
+          "targetNodeId": "179f1569-87a8-46cf-9b76-2ce59934a667",
+          "inputId": "input"
+        }
+      ],
+      "name": "Condition",
+      "note": ""
+    },
+    {
+      "id": "ab31a8ca-aefa-428f-88a2-68bd225c614c",
+      "feature": "variable",
+      "category": "dev",
+      "featureVersion": "3.1",
+      "x": 348,
+      "y": 468,
+      "params": {
+        "variable": {
+          "value": [
+            {
+              "type": "string",
+              "name": "name",
+              "value": "Alice"
+            },
+            {
+              "type": "string",
+              "name": "status",
+              "value": "ok"
+            }
+          ],
+          "type": "variableMgt"
+        },
+        "comment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "088edb2f-1710-4db5-9737-1fa27c3a469a",
+          "inputId": "input"
+        }
+      ],
+      "name": "Variable",
+      "note": ""
+    },
+    {
+      "id": "2c72d19b-0afa-4440-b6fa-7ff61f031d0b",
+      "feature": "wait",
+      "category": "dev",
+      "featureVersion": "1.2",
+      "x": 132,
+      "y": 468,
+      "params": {
+        "time": {
+          "value": 5,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "28013e51-548a-47d4-9a5c-7c1c51e53187",
+          "inputId": "input"
+        }
+      ],
+      "name": "Attente",
+      "note": ""
+    },
+    {
+      "id": "179f1569-87a8-46cf-9b76-2ce59934a667",
+      "feature": "variable",
+      "category": "dev",
+      "featureVersion": "3.1",
+      "x": 84,
+      "y": 720,
+      "params": {
+        "variable": {
+          "value": [
+            {
+              "type": "string",
+              "name": "lang",
+              "value": "fr"
+            },
+            {
+              "type": "string",
+              "name": "name",
+              "value": "toto"
+            }
+          ],
+          "type": "variableMgt"
+        },
+        "comment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "e972aa14-640d-4cd8-b0b4-ea179633edbc",
+          "inputId": "input"
+        }
+      ],
+      "name": "Variable",
+      "note": ""
+    },
+    {
+      "id": "284ff247-e976-44fa-92c7-06bc6f8a735f",
+      "feature": "variable",
+      "category": "dev",
+      "featureVersion": "3.1",
+      "x": 660,
+      "y": 468,
+      "params": {
+        "variable": {
+          "value": [
+            {
+              "type": "string",
+              "name": "lang",
+              "value": "en"
+            }
+          ],
+          "type": "variableMgt"
+        },
+        "comment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "e972aa14-640d-4cd8-b0b4-ea179633edbc",
+          "inputId": "input"
+        }
+      ],
+      "name": "Variable",
+      "note": ""
+    },
+    {
+      "id": "9a9e9bce-03ee-465c-9f62-bfbf11e185fc",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 480,
+      "y": 960,
+      "params": {},
+      "connections": [],
+      "name": "Fin",
+      "note": ""
+    },
+    {
+      "id": "e972aa14-640d-4cd8-b0b4-ea179633edbc",
+      "feature": "join",
+      "category": "dev",
+      "featureVersion": "1.0",
+      "x": 252,
+      "y": 840,
+      "params": {
+        "priorityOrder": {
+          "value": null,
+          "type": "joinPriority"
+        },
+        "priorityOrderNotice": {
+          "value": null,
+          "type": "comment"
+        },
+        "timeout": {
+          "value": 0,
+          "type": "int"
+        },
+        "timeoutNotice": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "f2e34e96-c05d-44f0-8200-773670c530fd",
+          "inputId": "input"
+        },
+        {
+          "outputId": "timeout",
+          "targetNodeId": "9a9e9bce-03ee-465c-9f62-bfbf11e185fc",
+          "inputId": "input"
+        }
+      ],
+      "name": "Join",
+      "note": ""
+    },
+    {
+      "id": "0a158521-122d-442b-b6c9-9e50ea2d9ff5",
+      "feature": "loop",
+      "category": "dev",
+      "featureVersion": "1.2",
+      "x": 96,
+      "y": 168,
+      "params": {
+        "list": {
+          "value": "",
+          "type": "text"
+        },
+        "variable": {
+          "value": [
+            {
+              "type": "",
+              "name": "currentItem"
+            }
+          ],
+          "type": "variableCurrentItem"
+        },
+        "comment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [],
+      "name": "Loop",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false
+}

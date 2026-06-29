@@ -1,0 +1,390 @@
+{
+  "system": "true",
+  "nodes": [
+    {
+      "feature": "makeCallFromPayload",
+      "x": 768,
+      "name": "SYS1 Make Call from payload",
+      "y": 192,
+      "id": "ClementVNA_dd7160d6-1615-4cbb-9751-391aea300dc7",
+      "category": "softcmp",
+      "params": {
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "1.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "makeCallFailed",
+          "targetNodeId": "ClementVNA_3f3c0288-1dd7-4f61-8983-9d204990027a"
+        },
+        {
+          "inputId": "input",
+          "outputId": "makeCallDone",
+          "targetNodeId": "ClementVNA_017ee412-b5ba-4704-b903-1d4632651571"
+        }
+      ]
+    },
+    {
+      "feature": "onHttp",
+      "x": 828,
+      "name": "SYS1 On HTTP",
+      "y": 60,
+      "id": "ClementVNA_ac0b9026-f07c-4a3b-8c88-b910afa127d0",
+      "category": "http",
+      "params": {
+        "response_timeout": {
+          "type": "int",
+          "value": 60
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "clientip",
+              "parameter": "ip",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            }
+          ]
+        },
+        "immediate_response": {
+          "type": "bool",
+          "value": true
+        },
+        "method": {
+          "type": "choice",
+          "value": "POST"
+        },
+        "url": {
+          "type": "string",
+          "value": "/api/flows/ClementVNA/prompt/record"
+        },
+        "token": {
+          "type": "token"
+        },
+        "securityComment": {
+          "type": "comment"
+        }
+      },
+      "featureVersion": "2.8",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "request",
+          "targetNodeId": "ClementVNA_dd7160d6-1615-4cbb-9751-391aea300dc7"
+        }
+      ]
+    },
+    {
+      "feature": "announcement",
+      "x": 264,
+      "name": "SYS1 Recording Saved",
+      "y": 756,
+      "id": "ClementVNA_99c4d0b3-fe76-43c6-b8e5-2b55300639b7",
+      "category": "softcmp",
+      "params": {
+        "file": {
+          "type": "prompt",
+          "value": "a8ee3cd9-fad1-482e-9dad-ec351d54995d"
+        },
+        "bargein": {
+          "type": "bool",
+          "value": true
+        },
+        "timeout": {
+          "type": "int",
+          "value": 0
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "ok",
+          "targetNodeId": "ClementVNA_0f7a7408-8ed3-4adb-bd83-ce9b9d0bbb4d"
+        }
+      ]
+    },
+    {
+      "feature": "menu",
+      "x": 396,
+      "name": "SYS1 Recording save menu",
+      "y": 480,
+      "id": "ClementVNA_f0f4a338-7d4b-43e3-b83c-5869320c75aa",
+      "category": "softcmp",
+      "params": {
+        "repeatDigit": {
+          "type": "menuRepeatDigitParameter",
+          "value": "None"
+        },
+        "promptMenu": {
+          "type": "prompt",
+          "value": "5beda336-3491-4d15-b984-f1b545d2330b"
+        },
+        "digits": {
+          "type": "menuDigitsParameter",
+          "value": "1234"
+        },
+        "numberRetries": {
+          "type": "int",
+          "value": 3
+        },
+        "timeout": {
+          "type": "int",
+          "value": 50
+        },
+        "wrongOptionPrompt": {
+          "type": "prompt",
+          "value": "028292e1-dc1a-4159-9b07-f0c28e8cec09"
+        },
+        "numberMenuRepeats": {
+          "type": "int",
+          "value": 0
+        },
+        "commentNumberRetries": {
+          "type": "comment"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "outputMenu",
+              "parameter": "outputMenu",
+              "displayed": false,
+              "editable": false,
+              "type": "string",
+              "removable": false,
+              "multiple": false
+            }
+          ]
+        }
+      },
+      "featureVersion": "2.4",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "2",
+          "targetNodeId": "ClementVNA_6681ae2a-b04f-4723-8a48-6b2d315db51d"
+        },
+        {
+          "inputId": "input",
+          "outputId": "4",
+          "targetNodeId": "ClementVNA_d9e3060b-aa19-4aa0-815f-4d35df6c626a"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "ClementVNA_d9e3060b-aa19-4aa0-815f-4d35df6c626a"
+        },
+        {
+          "inputId": "input",
+          "outputId": "3",
+          "targetNodeId": "ClementVNA_017ee412-b5ba-4704-b903-1d4632651571"
+        },
+        {
+          "inputId": "input",
+          "outputId": "1",
+          "targetNodeId": "ClementVNA_0e37b1bb-d88f-4289-921c-a6c267e4ff78"
+        }
+      ]
+    },
+    {
+      "feature": "savePrompt",
+      "x": 324,
+      "name": "SYS1 Save Prompt",
+      "y": 612,
+      "id": "ClementVNA_6681ae2a-b04f-4723-8a48-6b2d315db51d",
+      "category": "softcmp",
+      "params": {
+        "fromPayload": {
+          "type": "bool",
+          "value": true
+        },
+        "comment_attachments": {
+          "type": "comment"
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": [
+            "VAR(record)"
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "prompt": {
+          "type": "prompt"
+        }
+      },
+      "featureVersion": "1.5",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "savePromptDone",
+          "targetNodeId": "ClementVNA_99c4d0b3-fe76-43c6-b8e5-2b55300639b7"
+        },
+        {
+          "inputId": "input",
+          "outputId": "savePromptFailed",
+          "targetNodeId": "ClementVNA_d9e3060b-aa19-4aa0-815f-4d35df6c626a"
+        }
+      ]
+    },
+    {
+      "feature": "releaseCall",
+      "x": 468,
+      "name": "SYS1 Release Call",
+      "y": 912,
+      "id": "ClementVNA_0f7a7408-8ed3-4adb-bd83-ce9b9d0bbb4d",
+      "category": "softcmp",
+      "params": {},
+      "featureVersion": "1.1",
+      "connections": []
+    },
+    {
+      "feature": "announcement",
+      "x": 744,
+      "name": "SYS1 Goodbye",
+      "y": 756,
+      "id": "ClementVNA_d9e3060b-aa19-4aa0-815f-4d35df6c626a",
+      "category": "softcmp",
+      "params": {
+        "file": {
+          "type": "prompt",
+          "value": "7f8d1cb2-00c8-47ba-a9fa-9061b2a3e74e"
+        },
+        "bargein": {
+          "type": "bool",
+          "value": true
+        },
+        "timeout": {
+          "type": "int",
+          "value": 0
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "ok",
+          "targetNodeId": "ClementVNA_0f7a7408-8ed3-4adb-bd83-ce9b9d0bbb4d"
+        }
+      ]
+    },
+    {
+      "feature": "end",
+      "x": 936,
+      "name": "SYS1 End",
+      "y": 924,
+      "id": "ClementVNA_3f3c0288-1dd7-4f61-8983-9d204990027a",
+      "category": "dev",
+      "params": {},
+      "featureVersion": "1.1",
+      "connections": []
+    },
+    {
+      "note": "",
+      "feature": "record",
+      "x": 756,
+      "name": "SYS1 Record",
+      "y": 348,
+      "id": "ClementVNA_017ee412-b5ba-4704-b903-1d4632651571",
+      "category": "softcmp",
+      "params": {
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "nameEditable": true,
+              "originEditable": false,
+              "removable": false,
+              "parameter": "record",
+              "typeEditable": false,
+              "name": "record",
+              "multiple": false,
+              "parameterEditable": false,
+              "type": "file"
+            }
+          ]
+        },
+        "timeout": {
+          "type": "int",
+          "value": 150
+        }
+      },
+      "featureVersion": "1.4",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "recordEnded",
+          "targetNodeId": "ClementVNA_f0f4a338-7d4b-43e3-b83c-5869320c75aa"
+        },
+        {
+          "inputId": "input",
+          "outputId": "recordTimeout",
+          "targetNodeId": "ClementVNA_d9e3060b-aa19-4aa0-815f-4d35df6c626a"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "announcement",
+      "x": 36,
+      "name": "Announcement",
+      "y": 396,
+      "id": "ClementVNA_0e37b1bb-d88f-4289-921c-a6c267e4ff78",
+      "category": "softcmp",
+      "params": {
+        "file": {
+          "type": "prompt",
+          "value": "VAR(record)"
+        },
+        "bargein": {
+          "type": "bool",
+          "value": true
+        },
+        "timeout": {
+          "type": "int",
+          "value": 0
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "ok",
+          "targetNodeId": "ClementVNA_f0f4a338-7d4b-43e3-b83c-5869320c75aa"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "ClementVNA_f0f4a338-7d4b-43e3-b83c-5869320c75aa"
+        }
+      ]
+    }
+  ],
+  "name": "SYS1 systemRecordPrompt",
+  "id": "dfde95b4-d595-4211-b38d-2aa33a532202"
+}
