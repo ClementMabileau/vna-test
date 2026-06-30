@@ -1,49 +1,59 @@
 {
-  "id": "8942f07a-ea06-4ad5-b071-c12996d74210",
   "name": "Calendar",
+  "id": "8942f07a-ea06-4ad5-b071-c12996d74210",
   "nodes": [
     {
-      "note": "",
+      "id": "0150453f-604c-47ee-8ea7-ad0d3b630a09",
       "feature": "trace",
-      "x": 576,
-      "name": "Trace",
-      "y": 288,
-      "id": "507ba8d7-976f-48ab-9437-e72420d9f871",
       "category": "dev",
+      "featureVersion": "2.2",
+      "x": 576,
+      "y": 288,
       "params": {
         "msg": {
-          "type": "textareaMentions",
-          "value": "Hello"
+          "value": "Hello",
+          "type": "textareaMentions"
         },
         "level": {
-          "type": "choice",
-          "value": "info"
+          "value": "info",
+          "type": "choice"
         }
       },
-      "featureVersion": "2.2",
       "connections": [
         {
-          "inputId": "input",
           "outputId": "done",
-          "targetNodeId": "bb00b02e-6dc0-4e21-99a2-32b17dbac731"
+          "targetNodeId": "d50437d9-6ac4-4b23-8497-821f1a4f70c1",
+          "inputId": "input"
         }
-      ]
+      ],
+      "name": "Trace",
+      "note": ""
     },
     {
-      "note": "",
+      "id": "b0ffdd77-7b6b-4549-b7a7-4250632385ed",
       "feature": "onHttp",
-      "x": 636,
-      "name": "HTTP Entrant",
-      "y": 120,
-      "id": "626740e0-bf4b-4dae-91a2-d39a59a46177",
       "category": "http",
+      "featureVersion": "2.7",
+      "x": 636,
+      "y": 120,
       "params": {
-        "response_timeout": {
-          "type": "int",
-          "value": 60
+        "url": {
+          "value": "/api/flows/test",
+          "type": "textMentions"
+        },
+        "method": {
+          "value": "GET",
+          "type": "choice"
+        },
+        "token": {
+          "value": null,
+          "type": "token"
+        },
+        "securityComment": {
+          "value": null,
+          "type": "comment"
         },
         "variables": {
-          "type": "VariablesList",
           "value": [
             {
               "name": "body",
@@ -55,201 +65,181 @@
               "parameterEditable": false,
               "removable": false,
               "type": "object"
-            },
-            {
-              "name": "clientip",
-              "parameter": "ip",
-              "displayed": true,
-              "editable": true,
-              "originEditable": false,
-              "nameEditable": true,
-              "parameterEditable": false,
-              "removable": false,
-              "type": "string"
             }
-          ]
+          ],
+          "type": "VariablesList"
         },
         "immediate_response": {
-          "type": "bool",
-          "value": true
+          "value": true,
+          "type": "bool"
         },
-        "method": {
-          "type": "choice",
-          "value": "GET"
-        },
-        "securityComment": {
-          "type": "comment",
-          "value": null
-        },
-        "url": {
-          "type": "textMentions",
-          "value": "/api/flows/test"
-        },
-        "token": {
-          "type": "token",
-          "value": null
+        "response_timeout": {
+          "value": 60,
+          "type": "int"
         }
       },
-      "featureVersion": "2.8",
       "connections": [
         {
-          "inputId": "input",
           "outputId": "request",
-          "targetNodeId": "507ba8d7-976f-48ab-9437-e72420d9f871"
+          "targetNodeId": "0150453f-604c-47ee-8ea7-ad0d3b630a09",
+          "inputId": "input"
         },
         {
-          "inputId": "input",
           "outputId": "err",
-          "targetNodeId": "507ba8d7-976f-48ab-9437-e72420d9f871"
+          "targetNodeId": "0150453f-604c-47ee-8ea7-ad0d3b630a09",
+          "inputId": "input"
         }
-      ]
+      ],
+      "name": "HTTP Entrant",
+      "note": ""
     },
     {
-      "note": "",
+      "id": "72e04df2-7097-4232-9829-677f486127e4",
       "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
       "x": 780,
-      "name": "Trace",
       "y": 552,
-      "id": "8c2831a3-d595-4ce9-9ee6-e2576107081f",
-      "category": "dev",
       "params": {
         "msg": {
-          "type": "textareaMentions",
-          "value": "jour férié"
+          "value": "jour férié",
+          "type": "textareaMentions"
         },
         "level": {
-          "type": "choice",
-          "value": "info"
+          "value": "info",
+          "type": "choice"
         }
       },
-      "featureVersion": "2.2",
-      "connections": []
+      "connections": [],
+      "name": "Trace",
+      "note": ""
     },
     {
-      "note": "",
+      "id": "97620454-7adb-442e-8df0-b2aee3f2fa63",
       "feature": "trace",
-      "x": 276,
-      "name": "Trace",
-      "y": 528,
-      "id": "8e6e3a29-0a60-40dd-b8c1-6c736b696ffe",
       "category": "dev",
+      "featureVersion": "2.2",
+      "x": 276,
+      "y": 528,
       "params": {
         "msg": {
-          "type": "textareaMentions",
-          "value": "jour ouvré"
+          "value": "jour ouvré",
+          "type": "textareaMentions"
         },
         "level": {
-          "type": "choice",
-          "value": "info"
+          "value": "info",
+          "type": "choice"
         }
       },
-      "featureVersion": "2.2",
       "connections": [
         {
-          "inputId": "input",
           "outputId": "done",
-          "targetNodeId": "8d24bb4f-f5f2-48fb-9192-391f649bd073"
+          "targetNodeId": "01a50267-1ee0-403e-8f19-0264f4015986",
+          "inputId": "input"
         }
-      ]
+      ],
+      "name": "Trace",
+      "note": ""
     },
     {
-      "note": "",
+      "id": "ff0796c9-5ab3-405a-95ec-e5ec3ae2d72b",
       "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
       "x": 72,
-      "name": "Trace",
       "y": 804,
-      "id": "ee6fd207-fb49-4c50-b074-8ef50f6f34df",
-      "category": "dev",
       "params": {
         "msg": {
-          "type": "textareaMentions",
-          "value": "nous sommes ouverts "
+          "value": "nous sommes ouverts ",
+          "type": "textareaMentions"
         },
         "level": {
-          "type": "choice",
-          "value": "info"
+          "value": "info",
+          "type": "choice"
         }
       },
-      "featureVersion": "2.2",
-      "connections": []
+      "connections": [],
+      "name": "Trace",
+      "note": ""
     },
     {
-      "note": "",
+      "id": "4ad96b2e-9c61-443c-8d12-bcd06cd669be",
       "feature": "trace",
-      "x": 312,
-      "name": "Trace",
-      "y": 804,
-      "id": "861e2fa9-010a-4d5b-9566-b29ab7ea9565",
       "category": "dev",
+      "featureVersion": "2.2",
+      "x": 312,
+      "y": 804,
       "params": {
         "msg": {
-          "type": "textareaMentions",
-          "value": "nous somme fermer"
+          "value": "nous somme fermer",
+          "type": "textareaMentions"
         },
         "level": {
-          "type": "choice",
-          "value": "info"
+          "value": "info",
+          "type": "choice"
         }
       },
-      "featureVersion": "2.2",
-      "connections": []
+      "connections": [],
+      "name": "Trace",
+      "note": ""
     },
     {
-      "note": "",
+      "id": "d50437d9-6ac4-4b23-8497-821f1a4f70c1",
       "feature": "calendar",
-      "x": 516,
-      "name": "Calendrier",
-      "y": 408,
-      "id": "bb00b02e-6dc0-4e21-99a2-32b17dbac731",
       "category": "planning",
+      "featureVersion": "1.0",
+      "x": 516,
+      "y": 408,
       "params": {
         "calendarId": {
-          "type": "tenantCalendar",
-          "value": ""
+          "value": "",
+          "type": "tenantCalendar"
         }
       },
-      "featureVersion": "1.0",
       "connections": [
         {
-          "inputId": "input",
           "outputId": "open",
-          "targetNodeId": "8e6e3a29-0a60-40dd-b8c1-6c736b696ffe"
+          "targetNodeId": "97620454-7adb-442e-8df0-b2aee3f2fa63",
+          "inputId": "input"
         },
         {
-          "inputId": "input",
           "outputId": "closed",
-          "targetNodeId": "8c2831a3-d595-4ce9-9ee6-e2576107081f"
+          "targetNodeId": "72e04df2-7097-4232-9829-677f486127e4",
+          "inputId": "input"
         }
-      ]
+      ],
+      "name": "Calendrier",
+      "note": ""
     },
     {
-      "note": "",
+      "id": "01a50267-1ee0-403e-8f19-0264f4015986",
       "feature": "businesshours",
-      "x": 252,
-      "name": "Heures d'ouverture",
-      "y": 660,
-      "id": "8d24bb4f-f5f2-48fb-9192-391f649bd073",
       "category": "planning",
+      "featureVersion": "1.0",
+      "x": 252,
+      "y": 660,
       "params": {
         "businessHoursId": {
-          "type": "tenantBusinessHours",
-          "value": ""
+          "value": "",
+          "type": "tenantBusinessHours"
         }
       },
-      "featureVersion": "1.0",
       "connections": [
         {
-          "inputId": "input",
           "outputId": "open",
-          "targetNodeId": "ee6fd207-fb49-4c50-b074-8ef50f6f34df"
+          "targetNodeId": "ff0796c9-5ab3-405a-95ec-e5ec3ae2d72b",
+          "inputId": "input"
         },
         {
-          "inputId": "input",
           "outputId": "closed",
-          "targetNodeId": "861e2fa9-010a-4d5b-9566-b29ab7ea9565"
+          "targetNodeId": "4ad96b2e-9c61-443c-8d12-bcd06cd669be",
+          "inputId": "input"
         }
-      ]
+      ],
+      "name": "Heures d'ouverture",
+      "note": ""
     }
   ],
-  "globalVariables": []
+  "globalVariables": [],
+  "test": false
 }
