@@ -1,0 +1,255 @@
+{
+  "id": "8942f07a-ea06-4ad5-b071-c12996d74210",
+  "name": "Calendar",
+  "nodes": [
+    {
+      "note": "",
+      "feature": "trace",
+      "x": 576,
+      "name": "Trace",
+      "y": 288,
+      "id": "507ba8d7-976f-48ab-9437-e72420d9f871",
+      "category": "dev",
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "Hello"
+        },
+        "level": {
+          "type": "choice",
+          "value": "info"
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "bb00b02e-6dc0-4e21-99a2-32b17dbac731"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "onHttp",
+      "x": 636,
+      "name": "HTTP Entrant",
+      "y": 120,
+      "id": "626740e0-bf4b-4dae-91a2-d39a59a46177",
+      "category": "http",
+      "params": {
+        "response_timeout": {
+          "type": "int",
+          "value": 60
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "clientip",
+              "parameter": "ip",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            }
+          ]
+        },
+        "immediate_response": {
+          "type": "bool",
+          "value": true
+        },
+        "method": {
+          "type": "choice",
+          "value": "GET"
+        },
+        "securityComment": {
+          "type": "comment",
+          "value": null
+        },
+        "url": {
+          "type": "textMentions",
+          "value": "/api/flows/test"
+        },
+        "token": {
+          "type": "token",
+          "value": null
+        }
+      },
+      "featureVersion": "2.8",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "request",
+          "targetNodeId": "507ba8d7-976f-48ab-9437-e72420d9f871"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "507ba8d7-976f-48ab-9437-e72420d9f871"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "trace",
+      "x": 780,
+      "name": "Trace",
+      "y": 552,
+      "id": "8c2831a3-d595-4ce9-9ee6-e2576107081f",
+      "category": "dev",
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "jour férié"
+        },
+        "level": {
+          "type": "choice",
+          "value": "info"
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": []
+    },
+    {
+      "note": "",
+      "feature": "trace",
+      "x": 276,
+      "name": "Trace",
+      "y": 528,
+      "id": "8e6e3a29-0a60-40dd-b8c1-6c736b696ffe",
+      "category": "dev",
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "jour ouvré"
+        },
+        "level": {
+          "type": "choice",
+          "value": "info"
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "8d24bb4f-f5f2-48fb-9192-391f649bd073"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "trace",
+      "x": 72,
+      "name": "Trace",
+      "y": 804,
+      "id": "ee6fd207-fb49-4c50-b074-8ef50f6f34df",
+      "category": "dev",
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "nous sommes ouverts "
+        },
+        "level": {
+          "type": "choice",
+          "value": "info"
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": []
+    },
+    {
+      "note": "",
+      "feature": "trace",
+      "x": 312,
+      "name": "Trace",
+      "y": 804,
+      "id": "861e2fa9-010a-4d5b-9566-b29ab7ea9565",
+      "category": "dev",
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "nous somme fermer"
+        },
+        "level": {
+          "type": "choice",
+          "value": "info"
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": []
+    },
+    {
+      "note": "",
+      "feature": "calendar",
+      "x": 516,
+      "name": "Calendrier",
+      "y": 408,
+      "id": "bb00b02e-6dc0-4e21-99a2-32b17dbac731",
+      "category": "planning",
+      "params": {
+        "calendarId": {
+          "type": "tenantCalendar",
+          "value": ""
+        }
+      },
+      "featureVersion": "1.0",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "open",
+          "targetNodeId": "8e6e3a29-0a60-40dd-b8c1-6c736b696ffe"
+        },
+        {
+          "inputId": "input",
+          "outputId": "closed",
+          "targetNodeId": "8c2831a3-d595-4ce9-9ee6-e2576107081f"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "businesshours",
+      "x": 252,
+      "name": "Heures d'ouverture",
+      "y": 660,
+      "id": "8d24bb4f-f5f2-48fb-9192-391f649bd073",
+      "category": "planning",
+      "params": {
+        "businessHoursId": {
+          "type": "tenantBusinessHours",
+          "value": ""
+        }
+      },
+      "featureVersion": "1.0",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "open",
+          "targetNodeId": "ee6fd207-fb49-4c50-b074-8ef50f6f34df"
+        },
+        {
+          "inputId": "input",
+          "outputId": "closed",
+          "targetNodeId": "861e2fa9-010a-4d5b-9566-b29ab7ea9565"
+        }
+      ]
+    }
+  ],
+  "globalVariables": []
+}
