@@ -45,7 +45,7 @@
       "id": "bc3937e6-d1ba-4f0a-81d2-f6dcc5705229",
       "feature": "onHttp",
       "category": "http",
-      "featureVersion": "2.7",
+      "featureVersion": "2.8",
       "x": 636,
       "y": 36,
       "params": {
@@ -77,6 +77,17 @@
               "parameterEditable": false,
               "removable": false,
               "type": "object"
+            },
+            {
+              "name": "clientip",
+              "parameter": "ip",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
             }
           ],
           "type": "VariablesList"
@@ -226,7 +237,7 @@
       "id": "620e459c-6af8-495f-a736-b7578cf668c5",
       "feature": "announcement",
       "category": "softcmp",
-      "featureVersion": "2.6",
+      "featureVersion": "2.7",
       "x": 372,
       "y": 816,
       "params": {
