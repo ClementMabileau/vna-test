@@ -98,8 +98,8 @@
       "feature": "trace",
       "category": "dev",
       "featureVersion": "2.2",
-      "x": 780,
-      "y": 552,
+      "x": 972,
+      "y": 576,
       "params": {
         "msg": {
           "value": "jour férié",
