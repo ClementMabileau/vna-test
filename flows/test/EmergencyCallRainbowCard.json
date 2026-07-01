@@ -1,0 +1,1271 @@
+{
+  "name": "EmergencyCallRainbowCard",
+  "id": "5277ea27-5569-45cc-a6a2-9bc1d8cbd8a7",
+  "nodes": [
+    {
+      "note": "",
+      "feature": "incomingCall",
+      "x": 432,
+      "name": "Incoming Call",
+      "y": 84,
+      "id": "949d6bb4-6684-427c-89e4-10a5fd358c63",
+      "category": "softcmp",
+      "params": {
+        "phoneDisplay": {
+          "type": "phoneDisplay",
+          "value": null
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "callingNumber",
+              "name": "callingNumber",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "calledNumber",
+              "name": "calledNumber",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "callingName",
+              "name": "callingName",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "callingNumberType",
+              "name": "callingNumberType",
+              "type": "object"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "calledNumberType",
+              "name": "calledNumberType",
+              "type": "object"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "chargingNumber",
+              "name": "chargingNumber",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "initialCalledNumber",
+              "name": "initialCalledNumber",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "diversionReason",
+              "name": "diversionReason",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "redirectingNumber",
+              "name": "redirectingNumber",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "redirectingName",
+              "name": "redirectingName",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "abcfMessageRef",
+              "name": "abcfMessageRef",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "partyCategory",
+              "name": "partyCategory",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "correlatorData",
+              "name": "correlatorData",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "globalCallId",
+              "name": "globalCallId",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "callRef",
+              "name": "callReference",
+              "type": "string"
+            }
+          ]
+        },
+        "callednumber": {
+          "type": "callednumber",
+          "value": "24011"
+        },
+        "auto_answer": {
+          "type": "bool",
+          "value": true
+        },
+        "sipHeader": {
+          "type": "sipHeader",
+          "value": {
+            "sipHeadersNames": [],
+            "checked": false
+          }
+        },
+        "activateDtmf": {
+          "type": "bool",
+          "value": true
+        }
+      },
+      "featureVersion": "2.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "msg",
+          "targetNodeId": "b5d968f4-1e6b-4342-b890-39e2c3b0a8b9"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "identification",
+      "x": 432,
+      "name": "Position Lookup",
+      "y": 204,
+      "id": "b5d968f4-1e6b-4342-b890-39e2c3b0a8b9",
+      "category": "dev",
+      "params": {
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "userName",
+              "name": "userName",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "userDID",
+              "name": "userDID",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "identifier",
+              "name": "identifier",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "urlLocation",
+              "name": "urlLocation",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "siteName",
+              "name": "siteName",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "siteDID",
+              "name": "siteDID",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "sitePSAP",
+              "name": "sitePSAP",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "streetName",
+              "name": "streetName",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "streetNumber",
+              "name": "streetNumber",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "siteAddress",
+              "name": "siteAddress",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "siteAddress2",
+              "name": "siteAddress2",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "siteCity",
+              "name": "siteCity",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "siteState",
+              "name": "siteState",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "siteZipCode",
+              "name": "siteZipCode",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "siteCountry",
+              "name": "siteCountry",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "siteGPSCoordinates",
+              "name": "siteGPSCoordinates",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "siteImage",
+              "name": "siteImage",
+              "type": "file"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "type1",
+              "name": "type1",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "type1Value",
+              "name": "type1Value",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "type2",
+              "name": "type2",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "type2Value",
+              "name": "type2Value",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "type3",
+              "name": "type3",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "type3Value",
+              "name": "type3Value",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "nomadic",
+              "name": "nomadic",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "useSiteDIDForEmergencyCalls",
+              "name": "useSiteDIDForEmergencyCalls",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "siteResponder1",
+              "name": "siteResponder1",
+              "type": "group"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "siteResponder2",
+              "name": "siteResponder2",
+              "type": "group"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "siteResponder3",
+              "name": "siteResponder3",
+              "type": "group"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "siteResponder4",
+              "name": "siteResponder4",
+              "type": "group"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "siteResponder5",
+              "name": "siteResponder5",
+              "type": "group"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "2.8",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "a67ac9a7-ebfc-46b4-a7e3-037fcd2e7698"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "a67ac9a7-ebfc-46b4-a7e3-037fcd2e7698"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "tts",
+      "x": 432,
+      "name": "Text to speech",
+      "y": 324,
+      "id": "a67ac9a7-ebfc-46b4-a7e3-037fcd2e7698",
+      "category": "dev",
+      "params": {
+        "tts": {
+          "type": "tts-enabled",
+          "value": {
+            "ttsText": "Emegency call from VAR(callingNumber) VAR(callingName)",
+            "ttsConfigurationId": "a321e148-4aaa-470a-80ca-e9969d89c2a6",
+            "ttstext": ""
+          }
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": true,
+              "originEditable": false,
+              "mandatoryEditable": false,
+              "removable": false,
+              "parameter": "prompt",
+              "name": "Caller911",
+              "typeEditable": false,
+              "multiple": false,
+              "parameterEditable": false,
+              "type": "file",
+              "mandatory": true
+            }
+          ]
+        }
+      },
+      "featureVersion": "1.0",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "ok",
+          "targetNodeId": "7bf97569-9544-48ae-99e3-001df8cc56d6"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "7bf97569-9544-48ae-99e3-001df8cc56d6"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "statistics",
+      "x": 432,
+      "name": "Statistics",
+      "y": 444,
+      "id": "7bf97569-9544-48ae-99e3-001df8cc56d6",
+      "category": "dev",
+      "params": {
+        "startStop": {
+          "type": "bool",
+          "value": true
+        },
+        "mainCause": {
+          "type": "textMentions",
+          "value": "Emegency call from VAR(callingNumber) VAR(callingName)"
+        },
+        "secondCause": {
+          "type": "textMentions",
+          "value": "from location VAR(siteName)"
+        }
+      },
+      "featureVersion": "1.0",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "fed95444-585e-4478-941b-ed8c4df55638"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "fed95444-585e-4478-941b-ed8c4df55638"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "conference",
+      "x": 192,
+      "name": "Conference",
+      "y": 732,
+      "id": "5b0162aa-f0f3-4d28-a532-4efe968b0850",
+      "category": "softcmp",
+      "params": {
+        "fallback_groups": {
+          "type": "fallbackGroups",
+          "value": []
+        },
+        "otherusers": {
+          "type": "otherusers",
+          "value": [
+            {
+              "number": "VAR(sitePSAP)",
+              "errorClass": false
+            }
+          ]
+        },
+        "phoneDisplay": {
+          "type": "phoneDisplay",
+          "value": "Emergency VAR(callingName)"
+        },
+        "ringing_timeout": {
+          "type": "int",
+          "value": 30
+        },
+        "callingNumberComment": {
+          "type": "comment",
+          "value": null
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "nameEditable": true,
+              "originEditable": false,
+              "mandatoryEditable": false,
+              "removable": false,
+              "parameter": "nbAckedCalls",
+              "name": "nbAckedCalls",
+              "typeEditable": false,
+              "parameterEditable": false,
+              "type": "int"
+            },
+            {
+              "displayed": false,
+              "nameEditable": true,
+              "originEditable": false,
+              "mandatoryEditable": false,
+              "removable": false,
+              "parameter": "nbUsersToCall",
+              "name": "nbUsersToCall",
+              "typeEditable": false,
+              "parameterEditable": false,
+              "type": "int"
+            },
+            {
+              "displayed": false,
+              "nameEditable": true,
+              "originEditable": false,
+              "mandatoryEditable": false,
+              "removable": false,
+              "parameter": "conferenceRecords",
+              "name": "conferenceRecords",
+              "typeEditable": false,
+              "parameterEditable": false,
+              "type": "files"
+            },
+            {
+              "displayed": false,
+              "nameEditable": true,
+              "originEditable": false,
+              "mandatoryEditable": false,
+              "removable": false,
+              "parameter": "reason",
+              "name": "reason",
+              "typeEditable": false,
+              "parameterEditable": false,
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "nameEditable": true,
+              "originEditable": false,
+              "mandatoryEditable": false,
+              "removable": false,
+              "parameter": "summaryTicket",
+              "name": "summaryTicket",
+              "typeEditable": false,
+              "parameterEditable": false,
+              "type": "object"
+            },
+            {
+              "displayed": false,
+              "nameEditable": true,
+              "originEditable": false,
+              "mandatoryEditable": false,
+              "removable": false,
+              "parameter": "connectedCalls",
+              "name": "connectedCalls",
+              "typeEditable": false,
+              "parameterEditable": false,
+              "type": "array"
+            },
+            {
+              "displayed": false,
+              "nameEditable": true,
+              "originEditable": false,
+              "mandatoryEditable": false,
+              "removable": false,
+              "parameter": "notConnectedCalls",
+              "name": "notConnectedCalls",
+              "typeEditable": false,
+              "parameterEditable": false,
+              "type": "array"
+            },
+            {
+              "displayed": false,
+              "nameEditable": true,
+              "originEditable": false,
+              "mandatoryEditable": false,
+              "removable": false,
+              "parameter": "busyCalls",
+              "name": "busyCalls",
+              "typeEditable": false,
+              "parameterEditable": false,
+              "type": "array"
+            },
+            {
+              "displayed": false,
+              "nameEditable": true,
+              "originEditable": false,
+              "mandatoryEditable": false,
+              "removable": false,
+              "parameter": "outOfServiceCalls",
+              "name": "outOfServiceCalls",
+              "typeEditable": false,
+              "parameterEditable": false,
+              "type": "array"
+            }
+          ]
+        },
+        "caller_callBack": {
+          "type": "bool",
+          "value": true
+        },
+        "ending_conf": {
+          "type": "bool",
+          "value": true
+        },
+        "groups": {
+          "type": "groups",
+          "value": [
+            {
+              "callMobile": false,
+              "errorClass": false,
+              "name": "VAR(siteResponder1)",
+              "id": null,
+              "tooLong": false
+            }
+          ]
+        },
+        "callingNumber": {
+          "type": "phoneNumber",
+          "value": ""
+        },
+        "mute_participants": {
+          "type": "bool",
+          "value": true
+        },
+        "ringBackTone": {
+          "type": "prompt",
+          "value": "a59eea7b-8543-4ce6-966c-fb328d11d4e0"
+        },
+        "users": {
+          "type": "users",
+          "value": []
+        },
+        "timeout": {
+          "type": "int",
+          "value": 0
+        },
+        "ack_to_connect": {
+          "type": "bool",
+          "value": false
+        },
+        "meet_me": {
+          "type": "meetMe",
+          "value": {
+            "prompt_single_participant": "SingleParticipantInConference",
+            "pin": null,
+            "retriesNb": 3,
+            "prompt": "7411e1eb-f4ac-491d-a958-bf57df2d6f21",
+            "enabled": false,
+            "timeout": 0
+          }
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "record_conference": {
+          "type": "record",
+          "value": {
+            "silence_duration": 30,
+            "cyclical_bip": false,
+            "enabled": true
+          }
+        },
+        "beepOnConnectToConference": {
+          "type": "bool",
+          "value": null
+        },
+        "prompt": {
+          "type": "prompt",
+          "value": "VAR(Caller911)"
+        }
+      },
+      "featureVersion": "2.18",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "conferenceEnded",
+          "targetNodeId": "1d694b56-a2e5-4f8a-8d31-96d459841481"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "c68767d7-e084-4330-bfcf-26bcc32a6ad0"
+        },
+        {
+          "inputId": "input",
+          "outputId": "callReleased",
+          "targetNodeId": "dd6f8334-fbcc-4a9c-9591-1902732232eb"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "statistics",
+      "x": 12,
+      "name": "Statistics",
+      "y": 876,
+      "id": "1d694b56-a2e5-4f8a-8d31-96d459841481",
+      "category": "dev",
+      "params": {
+        "startStop": {
+          "type": "bool",
+          "value": false
+        },
+        "mainCause": {
+          "type": "textMentions",
+          "value": "conference Ended normally"
+        },
+        "secondCause": {
+          "type": "textMentions",
+          "value": "VAR(summaryTicket)"
+        }
+      },
+      "featureVersion": "1.0",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "352f3c43-c46f-4f46-aa0a-6077091e5245"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "352f3c43-c46f-4f46-aa0a-6077091e5245"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "statistics",
+      "x": 264,
+      "name": "Statistics",
+      "y": 876,
+      "id": "c68767d7-e084-4330-bfcf-26bcc32a6ad0",
+      "category": "dev",
+      "params": {
+        "startStop": {
+          "type": "bool",
+          "value": false
+        },
+        "mainCause": {
+          "type": "textMentions",
+          "value": "conference Error"
+        },
+        "secondCause": {
+          "type": "textMentions",
+          "value": "VAR(summaryTicket)"
+        }
+      },
+      "featureVersion": "1.0",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "352f3c43-c46f-4f46-aa0a-6077091e5245"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "352f3c43-c46f-4f46-aa0a-6077091e5245"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "statistics",
+      "x": 516,
+      "name": "Statistics",
+      "y": 876,
+      "id": "dd6f8334-fbcc-4a9c-9591-1902732232eb",
+      "category": "dev",
+      "params": {
+        "startStop": {
+          "type": "bool",
+          "value": false
+        },
+        "mainCause": {
+          "type": "textMentions",
+          "value": "Caller released before conference starts"
+        },
+        "secondCause": {
+          "type": "textMentions",
+          "value": ""
+        }
+      },
+      "featureVersion": "1.0",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "f58e034b-4d3e-47c0-baa6-17e8b998cf6d"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "f58e034b-4d3e-47c0-baa6-17e8b998cf6d"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "end",
+      "x": 528,
+      "name": "End",
+      "y": 1380,
+      "id": "f58e034b-4d3e-47c0-baa6-17e8b998cf6d",
+      "category": "dev",
+      "params": {},
+      "featureVersion": "1.1",
+      "connections": []
+    },
+    {
+      "note": "",
+      "feature": "split",
+      "x": 468,
+      "name": "Split",
+      "y": 588,
+      "id": "fed95444-585e-4478-941b-ed8c4df55638",
+      "category": "dev",
+      "params": {
+        "output": {
+          "type": "outputsNumber",
+          "value": null
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "1.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "split0",
+          "targetNodeId": "5b0162aa-f0f3-4d28-a532-4efe968b0850"
+        },
+        {
+          "inputId": "input",
+          "outputId": "split1",
+          "targetNodeId": "8385f465-8eb0-4322-985e-e2a6b8686ee0"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "sendRainbowMessage",
+      "x": 792,
+      "name": "Rainbow IM",
+      "y": 732,
+      "id": "8385f465-8eb0-4322-985e-e2a6b8686ee0",
+      "category": "rainbow",
+      "params": {
+        "bubbleList": {
+          "type": "bubble",
+          "value": null
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "status",
+              "name": "status",
+              "type": "object"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": [
+            "VAR(siteImage)"
+          ]
+        },
+        "messageType": {
+          "type": "choice",
+          "value": "Important"
+        },
+        "jid": {
+          "type": "textMentions",
+          "value": ""
+        },
+        "format": {
+          "type": "choice",
+          "value": "text"
+        },
+        "groups": {
+          "type": "groups",
+          "value": []
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "receiptTimeout": {
+          "type": "int",
+          "value": 5
+        },
+        "message": {
+          "type": "textareaMentions",
+          "value": "Emergency call from: VAR(callingName) extension: VAR(callingNumber) -\nlocated in VAR(siteName) - VAR(siteAddress)"
+        },
+        "users": {
+          "type": "users",
+          "value": null
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "sent",
+          "targetNodeId": "79fa682e-31dd-4957-9d99-9f7d984c6de8"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "79fa682e-31dd-4957-9d99-9f7d984c6de8"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "wait",
+      "x": 816,
+      "name": "Wait",
+      "y": 876,
+      "id": "79fa682e-31dd-4957-9d99-9f7d984c6de8",
+      "category": "dev",
+      "params": {
+        "time": {
+          "type": "int",
+          "value": 10
+        }
+      },
+      "featureVersion": "1.2",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "next",
+          "targetNodeId": "bb9ce322-3c92-4eed-b4a5-77d1df20cabe"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "end",
+      "x": 816,
+      "name": "End Send IM",
+      "y": 1008,
+      "id": "bb9ce322-3c92-4eed-b4a5-77d1df20cabe",
+      "category": "dev",
+      "params": {},
+      "featureVersion": "1.1",
+      "connections": []
+    },
+    {
+      "note": "",
+      "feature": "sendRainbowMessage",
+      "x": 168,
+      "name": "Rainbow IM",
+      "y": 1128,
+      "id": "44bda0cf-d810-4e75-b472-bf0c59303a0a",
+      "category": "rainbow",
+      "params": {
+        "bubbleList": {
+          "type": "bubble",
+          "value": null
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "status",
+              "name": "status",
+              "type": "object"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": []
+        },
+        "messageType": {
+          "type": "choice",
+          "value": "Important"
+        },
+        "jid": {
+          "type": "textMentions",
+          "value": ""
+        },
+        "format": {
+          "type": "choice",
+          "value": "text"
+        },
+        "groups": {
+          "type": "groups",
+          "value": []
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "receiptTimeout": {
+          "type": "int",
+          "value": 5
+        },
+        "message": {
+          "type": "textareaMentions",
+          "value": "/code\nconference summary for Emergency call from: \"VAR(callingName)\" extension: \"VAR(callingNumber)\" -\nlocated in \"VAR(siteName) - VAR(siteAddress)\"\n\nVAR(summaryTicketString))\n\nconference duration: VAR(conferenceDuration)\nnumber of participants: VAR(conferenceNumberOfParticipants)\n- connected call 0 number: VAR(connectedCalls0Number)\n- connected call 0 call state: VAR(connectedCalls0callState)\n- connected call 0 duration: VAR(connectedCalls0duration) seconds\n"
+        },
+        "users": {
+          "type": "users",
+          "value": null
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "sent",
+          "targetNodeId": "c2bf7512-2328-4fad-aaf5-ab8dd7687e2f"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "c2bf7512-2328-4fad-aaf5-ab8dd7687e2f"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 180,
+      "name": "stringify conference summary",
+      "y": 1008,
+      "id": "352f3c43-c46f-4f46-aa0a-6077091e5245",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "summaryTicketString",
+              "type": "string",
+              "value": "JSON.stringify(VAR(summaryTicket), null, 2);"
+            },
+            {
+              "name": "conferenceDuration",
+              "type": "string",
+              "value": "VAR(summaryTicket).duration"
+            },
+            {
+              "name": "connectedCalls0Number",
+              "type": "string",
+              "value": "VAR(summaryTicket).connectedCalls[0].number"
+            },
+            {
+              "name": "connectedCalls0callState",
+              "type": "string",
+              "value": "VAR(summaryTicket).connectedCalls[0].callState"
+            },
+            {
+              "name": "conferenceNumberOfParticipants",
+              "type": "int",
+              "value": "VAR(summaryTicket).connectedCalls.length"
+            },
+            {
+              "name": "connectedCalls0duration",
+              "type": "string",
+              "value": "(VAR(summaryTicket).connectedCalls[0].releaseDate - VAR(summaryTicket).connectedCalls[0].connectDate)/1000"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "44bda0cf-d810-4e75-b472-bf0c59303a0a"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "44bda0cf-d810-4e75-b472-bf0c59303a0a"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "rainbowCardMessage",
+      "x": 168,
+      "name": "Rainbow Card",
+      "y": 1248,
+      "id": "c2bf7512-2328-4fad-aaf5-ab8dd7687e2f",
+      "category": "rainbow",
+      "params": {
+        "cardData": {
+          "type": "json",
+          "value": "{\"data\":\"VAR(summaryTicket)\"}"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.fromJid",
+              "name": "rainbowReceivedFromJid",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.content",
+              "name": "rainbowReceivedContent",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.alternativeContent",
+              "name": "alternativeContent",
+              "type": "object"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.fromUser",
+              "name": "rainbowReceivedFromUser",
+              "type": "object"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "card",
+              "name": "cardJson",
+              "type": "object"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "status",
+              "name": "status",
+              "type": "object"
+            },
+            {
+              "displayed": "true",
+              "editable": false,
+              "parameter": "lastCardSentId",
+              "name": "lastCardSentId",
+              "type": "string"
+            }
+          ]
+        },
+        "jid": {
+          "type": "textMentions",
+          "value": "VAR(rainbowReceivedFromJid)"
+        },
+        "receiptTimeout": {
+          "type": "int",
+          "value": 5
+        },
+        "title": {
+          "type": "textMentions",
+          "value": null
+        },
+        "users": {
+          "type": "users",
+          "value": []
+        },
+        "timeout": {
+          "type": "int",
+          "value": 30
+        },
+        "bubbleList": {
+          "type": "bubble",
+          "value": null
+        },
+        "messageType": {
+          "type": "choice",
+          "value": null
+        },
+        "updateCardJidComment": {
+          "type": "comment",
+          "value": null
+        },
+        "updateCardJid": {
+          "type": "textMentions",
+          "value": ""
+        },
+        "cardPayload": {
+          "type": "adaptiveCard",
+          "value": "{\"$schema\":\"http://adaptivecards.io/schemas/adaptive-card.json\",\"type\":\"AdaptiveCard\",\"version\":\"1.6\",\"body\":[{\"type\":\"TextBlock\",\"text\":\"📞 Conférence :${confRef}\",\"weight\":\"Bolder\",\"size\":\"Large\"},{\"type\":\"TextBlock\",\"text\":\"Durée : ${duration}\",\"spacing\":\"None\"},{\"type\":\"TextBlock\",\"text\":\"---\",\"separator\":true},{\"type\":\"TextBlock\",\"text\":\"📊 Résumé\",\"weight\":\"Bolder\",\"spacing\":\"Medium\"},{\"type\":\"ColumnSet\",\"spacing\":\"Medium\",\"columns\":[{\"type\":\"Column\",\"width\":\"stretch\",\"items\":[{\"type\":\"TextBlock\",\"text\":\"✅ Connectés: ${count(${connectedCalls})}\"}]},{\"type\":\"Column\",\"width\":\"stretch\",\"items\":[{\"type\":\"TextBlock\",\"text\":\"❌ Non connectés: ${count(${notConnectedCalls})}\"}]},{\"type\":\"Column\",\"width\":\"stretch\",\"items\":[{\"type\":\"TextBlock\",\"text\":\"🚫 Occupés: ${count(${busyCalls})}\"}]},{\"type\":\"Column\",\"width\":\"stretch\",\"items\":[{\"type\":\"TextBlock\",\"text\":\"⚠️ HS: ${count(${outOfServiceCalls})}\"}]},{\"type\":\"Column\",\"width\":\"stretch\",\"items\":[{\"type\":\"TextBlock\",\"text\":\"🙋 Non appelés: ${count(${usersNotCalled})}\"}]}]},{\"type\":\"TextBlock\",\"text\":\"---\",\"separator\":true},{\"type\":\"TextBlock\",\"text\":\"🔔 Appel déclencheur\",\"weight\":\"Bolder\",\"spacing\":\"Medium\"},{\"type\":\"FactSet\",\"facts\":[{\"title\":\"Réf appel:\",\"value\":\"${triggercallRefingCall.callRef}\"},{\"title\":\"Numéro appelant:\",\"value\":\"${triggercallRefingCall.callingNumber}\"}]}]}"
+        },
+        "value": {
+          "type": "variableValues",
+          "value": [
+            {
+              "color": "#004a6b",
+              "removable": false,
+              "id": "sent",
+              "label": "Sent",
+              "value": "sent",
+              "sendInstance": true
+            }
+          ]
+        }
+      },
+      "featureVersion": "3.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "sent",
+          "targetNodeId": "f58e034b-4d3e-47c0-baa6-17e8b998cf6d"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "f58e034b-4d3e-47c0-baa6-17e8b998cf6d"
+        }
+      ]
+    }
+  ],
+  "globalVariables": [],
+  "folder": "test"
+}

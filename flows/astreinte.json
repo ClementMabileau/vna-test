@@ -1,0 +1,141 @@
+{
+  "name": "astreinte",
+  "id": "7624462d-f325-43fb-ab18-d86074fda182",
+  "nodes": [
+    {
+      "id": "bc51385b-0557-4261-883a-23289dfee20d",
+      "feature": "onHttp",
+      "category": "http",
+      "featureVersion": "2.8",
+      "x": 132,
+      "y": 84,
+      "params": {
+        "url": {
+          "value": "/api/flows/test",
+          "type": "textMentions"
+        },
+        "method": {
+          "value": "GET",
+          "type": "choice"
+        },
+        "token": {
+          "value": null,
+          "type": "token"
+        },
+        "securityComment": {
+          "value": null,
+          "type": "comment"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ],
+          "type": "VariablesList"
+        },
+        "immediate_response": {
+          "value": true,
+          "type": "bool"
+        },
+        "response_timeout": {
+          "value": 60,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "e27dac8e-96e6-4e8e-99a5-fb87392d8bda",
+          "inputId": "input"
+        }
+      ],
+      "name": "HTTP Entrant",
+      "note": ""
+    },
+    {
+      "id": "a9c000f3-384a-447d-b370-82807579ebac",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 132,
+      "y": 528,
+      "params": {},
+      "connections": [],
+      "name": "Fin",
+      "note": ""
+    },
+    {
+      "id": "e830c9a4-4d05-4cff-abcb-5e48363ce4e9",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 552,
+      "y": 492,
+      "params": {},
+      "connections": [],
+      "name": "Fin",
+      "note": ""
+    },
+    {
+      "id": "e27dac8e-96e6-4e8e-99a5-fb87392d8bda",
+      "feature": "astreinte",
+      "category": "planning",
+      "featureVersion": "1.0",
+      "x": 432,
+      "y": 276,
+      "params": {
+        "configId": {
+          "value": "",
+          "type": "tenantAstreinteConfig"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "onCallPersons",
+              "parameter": "onCallPersons",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ],
+          "type": "VariablesList"
+        },
+        "_waypoints": {
+          "found::a9c000f3-384a-447d-b370-82807579ebac::input": [
+            {
+              "x": 472.5,
+              "y": 520.05
+            }
+          ]
+        }
+      },
+      "connections": [
+        {
+          "outputId": "noOnCall",
+          "targetNodeId": "e830c9a4-4d05-4cff-abcb-5e48363ce4e9",
+          "inputId": "input"
+        },
+        {
+          "outputId": "found",
+          "targetNodeId": "a9c000f3-384a-447d-b370-82807579ebac",
+          "inputId": "input"
+        }
+      ],
+      "name": "Astreinte",
+      "note": ""
+    }
+  ],
+  "globalVariables": []
+}

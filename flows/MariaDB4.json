@@ -1,0 +1,281 @@
+{
+  "name": "MariaDB4",
+  "id": "ff41b0ac-f64d-4622-821b-b90e008d8caf",
+  "nodes": [
+    {
+      "id": "1ff6ac69-2074-4bea-bc19-007258fe943c",
+      "feature": "onHttp",
+      "category": "http",
+      "featureVersion": "2.8",
+      "x": 624,
+      "y": 60,
+      "params": {
+        "url": {
+          "value": "/api/flows/test",
+          "type": "textMentions"
+        },
+        "method": {
+          "value": "GET",
+          "type": "choice"
+        },
+        "token": {
+          "value": null,
+          "type": "token"
+        },
+        "securityComment": {
+          "value": null,
+          "type": "comment"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "origin": "query",
+              "type": "int",
+              "name": "active",
+              "parameter": "active",
+              "mandatory": false
+            }
+          ],
+          "type": "VariablesList"
+        },
+        "immediate_response": {
+          "value": true,
+          "type": "bool"
+        },
+        "response_timeout": {
+          "value": 60,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "e0bb5702-71db-4865-9953-23048ac1b523",
+          "inputId": "input"
+        },
+        {
+          "outputId": "err",
+          "targetNodeId": "ed7a72cd-9b00-4449-ae05-8210ed67094b",
+          "inputId": "input"
+        }
+      ],
+      "name": "Start Test",
+      "note": ""
+    },
+    {
+      "id": "e0bb5702-71db-4865-9953-23048ac1b523",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 432,
+      "y": 288,
+      "params": {
+        "msg": {
+          "value": "Hello",
+          "type": "textareaMentions"
+        },
+        "level": {
+          "value": "INFO",
+          "type": "choice"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "41602913-9365-4c6f-9e5d-58af0da43ca6",
+          "inputId": "input"
+        }
+      ],
+      "name": "Trace",
+      "note": ""
+    },
+    {
+      "id": "843cd10b-9383-40be-a73e-b2c95d529e38",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 108,
+      "y": 684,
+      "params": {},
+      "connections": [],
+      "name": "Fin",
+      "note": ""
+    },
+    {
+      "id": "c15c73bf-d682-4126-9a89-f3aed1b6d6d2",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 504,
+      "y": 684,
+      "params": {},
+      "connections": [],
+      "name": "Fin error",
+      "note": ""
+    },
+    {
+      "id": "ed7a72cd-9b00-4449-ae05-8210ed67094b",
+      "feature": "condition",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 900,
+      "y": 228,
+      "params": {
+        "name": {
+          "value": "VAR(active)",
+          "type": "variableName"
+        },
+        "condition": {
+          "value": "=",
+          "type": "choiceWithTranslation"
+        },
+        "value": {
+          "value": [
+            {
+              "value": "0",
+              "id": "0"
+            }
+          ],
+          "type": "variableValues"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "else",
+          "targetNodeId": "ee304872-ec79-4fe6-8191-73700cfc9ad0",
+          "inputId": "input"
+        },
+        {
+          "outputId": "0",
+          "targetNodeId": "ee304872-ec79-4fe6-8191-73700cfc9ad0",
+          "inputId": "input"
+        }
+      ],
+      "name": "Condition",
+      "note": ""
+    },
+    {
+      "id": "ee304872-ec79-4fe6-8191-73700cfc9ad0",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 948,
+      "y": 636,
+      "params": {},
+      "connections": [],
+      "name": "Fin autre",
+      "note": ""
+    },
+    {
+      "id": "41602913-9365-4c6f-9e5d-58af0da43ca6",
+      "feature": "mariaDB",
+      "category": "database",
+      "featureVersion": "1.0",
+      "x": 372,
+      "y": 456,
+      "params": {
+        "server": {
+          "value": "10.69.81.177",
+          "type": "textMentions"
+        },
+        "port": {
+          "value": "3306",
+          "type": "textMentions"
+        },
+        "database": {
+          "value": "mariaDb_server",
+          "type": "textMentions"
+        },
+        "user": {
+          "value": "root",
+          "type": "textMentions"
+        },
+        "password": {
+          "value": "root123456/*",
+          "type": "textMentions"
+        },
+        "query": {
+          "value": "SELECT * FROM exemple_types;",
+          "type": "textareaMentions"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "result",
+              "parameter": "result.recordset",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "rowsAffected",
+              "parameter": "result.rowsAffected",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "int"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            }
+          ],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "843cd10b-9383-40be-a73e-b2c95d529e38",
+          "inputId": "input"
+        },
+        {
+          "outputId": "err",
+          "targetNodeId": "c15c73bf-d682-4126-9a89-f3aed1b6d6d2",
+          "inputId": "input"
+        }
+      ],
+      "name": "Requête MariaDB"
+    },
+    {
+      "id": "29fa175a-010e-4a9b-bd6b-57e65c851108",
+      "feature": "language",
+      "category": "dev",
+      "featureVersion": "1.0",
+      "x": 1308,
+      "y": 360,
+      "params": {
+        "language": {
+          "value": "fr_FR",
+          "type": "choice"
+        }
+      },
+      "connections": [],
+      "name": "Langue",
+      "note": ""
+    }
+  ],
+  "globalVariables": []
+}

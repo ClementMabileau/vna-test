@@ -1,0 +1,1676 @@
+{
+  "name": "Examples",
+  "id": "4410b30b-1745-4736-8657-14161f457404",
+  "nodes": [
+    {
+      "note": "",
+      "feature": "incomingRainbow",
+      "x": 960,
+      "name": "Message Rainbow",
+      "y": 60,
+      "id": "18a92bd2-002b-4e8a-96a0-c964a16d239f",
+      "category": "rainbow",
+      "params": {
+        "bubbleList": {
+          "type": "bubble",
+          "value": null
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.fromJid",
+              "name": "rainbowReceivedFromJid",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.toJid",
+              "name": "rainbowReceivedToJid",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.content",
+              "name": "rainbowReceivedContent",
+              "type": "string"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.file",
+              "name": "rainbowReceivedFile",
+              "type": "file"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.fromUser",
+              "name": "rainbowReceivedFromUser",
+              "type": "object"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowBubblePublicUrl",
+              "name": "rainbowBubblePublicUrl",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.conversation",
+              "name": "rainbowConversation",
+              "type": "object"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.alternativeContent",
+              "name": "alternativeContent",
+              "type": "object"
+            }
+          ]
+        },
+        "keywords": {
+          "type": "keywords",
+          "value": [
+            {
+              "id": "#test",
+              "value": "#test"
+            }
+          ]
+        },
+        "jid": {
+          "type": "textMentions",
+          "value": "a615bfdfe606411a9544089ca35cbe7f@openrainbow.com"
+        },
+        "useTenantAccountJid": {
+          "type": "bool",
+          "value": false
+        },
+        "createUrl": {
+          "type": "bool",
+          "value": false
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "retrieveContactAdditionalInfos": {
+          "type": "bool",
+          "value": false
+        }
+      },
+      "featureVersion": "2.6",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "msg",
+          "targetNodeId": "81ae834e-427e-4bb0-b710-0aadb0f08080"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "end",
+      "x": 1500,
+      "name": "Fin",
+      "y": 1944,
+      "id": "ba96e8f2-9ccb-4a0d-9713-e4810d8a3dc7",
+      "category": "dev",
+      "params": {},
+      "featureVersion": "1.1",
+      "connections": []
+    },
+    {
+      "note": "",
+      "feature": "sendRainbowMessage",
+      "x": 1500,
+      "name": "IM Rainbow",
+      "y": 460,
+      "id": "136a801f-6070-4ccd-97dd-67b9c3cbba5c",
+      "category": "rainbow",
+      "params": {
+        "bubbleList": {
+          "type": "bubble",
+          "value": null
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "status",
+              "name": "status",
+              "type": "object"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "messageType": {
+          "type": "choice",
+          "value": "Standard"
+        },
+        "jid": {
+          "type": "textMentions",
+          "value": "VAR(rainbowReceivedFromJid)"
+        },
+        "format": {
+          "type": "choice",
+          "value": "text"
+        },
+        "groups": {
+          "type": "groups",
+          "value": null
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "receiptTimeout": {
+          "type": "int",
+          "value": 5
+        },
+        "message": {
+          "type": "textareaMentions",
+          "value": "VAR(rainbowReceivedContent)\nVAR(Nom)\nVAR(Heure)\nVAR(Date)"
+        },
+        "users": {
+          "type": "users",
+          "value": null
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "sent",
+          "targetNodeId": "ba96e8f2-9ccb-4a0d-9713-e4810d8a3dc7"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "a9f9f421-ca2c-4ff7-af2a-56727d21bd7e"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "sendRainbowMessage",
+      "x": 1308,
+      "name": "IM Rainbow Erreur",
+      "y": 660,
+      "id": "a9f9f421-ca2c-4ff7-af2a-56727d21bd7e",
+      "category": "rainbow",
+      "params": {
+        "bubbleList": {
+          "type": "bubble",
+          "value": null
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "status",
+              "name": "status",
+              "type": "object"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "messageType": {
+          "type": "choice",
+          "value": "Standard"
+        },
+        "jid": {
+          "type": "textMentions",
+          "value": "VAR(rainbowReceivedFromJid)"
+        },
+        "format": {
+          "type": "choice",
+          "value": "text"
+        },
+        "groups": {
+          "type": "groups",
+          "value": null
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "receiptTimeout": {
+          "type": "int",
+          "value": 5
+        },
+        "message": {
+          "type": "textareaMentions",
+          "value": "Erreur !"
+        },
+        "users": {
+          "type": "users",
+          "value": null
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "sent",
+          "targetNodeId": "ba96e8f2-9ccb-4a0d-9713-e4810d8a3dc7"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "rainbowChoiceMessage",
+      "x": 960,
+      "name": "Choix Rainbow",
+      "y": 260,
+      "id": "81ae834e-427e-4bb0-b710-0aadb0f08080",
+      "category": "rainbow",
+      "params": {
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.fromJid",
+              "name": "rainbowReceivedFromJid",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.content",
+              "name": "rainbowReceivedContent",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "status",
+              "name": "status",
+              "type": "object"
+            }
+          ]
+        },
+        "jid": {
+          "type": "textMentions",
+          "value": "VAR(rainbowReceivedFromJid)"
+        },
+        "message": {
+          "type": "textareaMentions",
+          "value": "Bonjour, comment puis-je vous aider ?"
+        },
+        "value": {
+          "type": "variableValues",
+          "value": [
+            {
+              "id": "1",
+              "value": "1"
+            },
+            {
+              "id": "2",
+              "value": "2"
+            },
+            {
+              "id": "3",
+              "value": "3"
+            },
+            {
+              "id": "4",
+              "value": "4"
+            },
+            {
+              "id": "5",
+              "value": "5"
+            }
+          ]
+        },
+        "timeout": {
+          "type": "int",
+          "value": 30
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "3",
+          "targetNodeId": "136a801f-6070-4ccd-97dd-67b9c3cbba5c"
+        },
+        {
+          "inputId": "input",
+          "outputId": "1",
+          "targetNodeId": "cf7db473-305f-4c7c-9a09-f20d68ffeeac"
+        },
+        {
+          "inputId": "input",
+          "outputId": "2",
+          "targetNodeId": "792778f4-7a57-403f-9074-1df61da66aa3"
+        },
+        {
+          "inputId": "input",
+          "outputId": "4",
+          "targetNodeId": "2f184a76-5cce-4b7b-8f78-f917b9e3cc4c"
+        },
+        {
+          "inputId": "input",
+          "outputId": "5",
+          "targetNodeId": "2346d5bf-9b60-410a-b33e-d5776907ddd2"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "rainbowQuestionMessage",
+      "x": 1880,
+      "name": "Question Rainbow",
+      "y": 460,
+      "id": "cf7db473-305f-4c7c-9a09-f20d68ffeeac",
+      "category": "rainbow",
+      "params": {
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.fromJid",
+              "name": "rainbowReceivedFromJid",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.content",
+              "name": "rainbowReceivedContent",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "status",
+              "name": "status",
+              "type": "object"
+            },
+            {
+              "parameter": "rainbowMessageReceived.fromUser",
+              "name": "nom",
+              "type": "string",
+              "mandatory": false
+            }
+          ]
+        },
+        "bubbleList": {
+          "type": "bubble"
+        },
+        "jid": {
+          "type": "textMentions",
+          "value": "VAR(rainbowReceivedFromJid)"
+        },
+        "message": {
+          "type": "textareaMentions",
+          "value": "What is the question?"
+        },
+        "timeout": {
+          "type": "int",
+          "value": 30
+        },
+        "users": {
+          "type": "users"
+        }
+      },
+      "featureVersion": "2.5",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "a9f9f421-ca2c-4ff7-af2a-56727d21bd7e"
+        },
+        {
+          "inputId": "input",
+          "outputId": "answer",
+          "targetNodeId": "eee50502-7043-4631-bbb6-09a03e94a04d"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "createBubbleRainbow",
+      "x": 740,
+      "name": "Créer bulle Rainbow",
+      "y": 460,
+      "id": "792778f4-7a57-403f-9074-1df61da66aa3",
+      "category": "rainbow",
+      "params": {
+        "emails": {
+          "type": "otheremailusers",
+          "value": []
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "rainbowBubbleCreatedJid",
+              "parameter": "rainbowBubbleCreatedJid",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "rainbowBubblePublicUrl",
+              "parameter": "rainbowBubblePublicUrl",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            }
+          ]
+        },
+        "groups": {
+          "type": "groups",
+          "value": null
+        },
+        "createUrl": {
+          "type": "bool",
+          "value": true
+        },
+        "users": {
+          "type": "users",
+          "value": null
+        },
+        "bubblename": {
+          "type": "string",
+          "value": "PremièreBulle"
+        }
+      },
+      "featureVersion": "2.3",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "created",
+          "targetNodeId": "4da1ed7f-f2fc-4938-9f49-b6d47366c20c"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "a9f9f421-ca2c-4ff7-af2a-56727d21bd7e"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "addMembersBubbleRainbow",
+      "x": 324,
+      "name": "Ajouter membres",
+      "y": 660,
+      "id": "4da1ed7f-f2fc-4938-9f49-b6d47366c20c",
+      "category": "rainbow",
+      "params": {
+        "bubbleList": {
+          "type": "bubble",
+          "value": null
+        },
+        "bubbleJid": {
+          "type": "textMentions",
+          "value": "VAR(rainbowBubbleCreatedJid)"
+        },
+        "members": {
+          "type": "bubbleMembers",
+          "value": [
+            {
+              "withInvitation": false,
+              "moderator": true,
+              "id": "Thierry.peyrebesse@al-enterprise.com"
+            },
+            {
+              "withInvitation": false,
+              "moderator": true,
+              "id": "matteo.leroy@al-enterprise.com"
+            }
+          ]
+        },
+        "users": {
+          "type": "users-rainbow",
+          "value": []
+        },
+        "groups": {
+          "type": "groups-rainbow",
+          "value": []
+        }
+      },
+      "featureVersion": "2.3",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "b5e217fd-9ee3-4efc-b223-c2067761565f"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "a9f9f421-ca2c-4ff7-af2a-56727d21bd7e"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "sendRainbowMessage",
+      "x": 968,
+      "name": "IM Rainbow",
+      "y": 860,
+      "id": "b5e217fd-9ee3-4efc-b223-c2067761565f",
+      "category": "rainbow",
+      "params": {
+        "bubbleList": {
+          "type": "bubble",
+          "value": null
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "status",
+              "name": "status",
+              "type": "object"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "messageType": {
+          "type": "choice",
+          "value": "Standard"
+        },
+        "jid": {
+          "type": "textMentions",
+          "value": "VAR(rainbowBubbleCreatedJid)"
+        },
+        "format": {
+          "type": "choice",
+          "value": "text"
+        },
+        "groups": {
+          "type": "groups",
+          "value": null
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "receiptTimeout": {
+          "type": "int",
+          "value": 5
+        },
+        "message": {
+          "type": "textareaMentions",
+          "value": "Bienvenue !"
+        },
+        "users": {
+          "type": "users",
+          "value": null
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "sent",
+          "targetNodeId": "ba96e8f2-9ccb-4a0d-9713-e4810d8a3dc7"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "a9f9f421-ca2c-4ff7-af2a-56727d21bd7e"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "httpRequest",
+      "x": 1120,
+      "name": "Requête http",
+      "y": 460,
+      "id": "2f184a76-5cce-4b7b-8f78-f917b9e3cc4c",
+      "category": "http",
+      "params": {
+        "headers": {
+          "type": "keyValueList",
+          "value": {
+            "Content-type": "application/json"
+          }
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": false,
+              "originEditable": false,
+              "editable": true,
+              "removable": false,
+              "parameter": "body",
+              "name": "body",
+              "parameterEditable": false,
+              "type": "object"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "statusCode",
+              "name": "statusCode",
+              "type": "int"
+            },
+            {
+              "origin": "body",
+              "parameter": "body",
+              "name": "Toto",
+              "type": "object",
+              "mandatory": false
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "httpRequestResult.error",
+              "name": "error",
+              "type": "string"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "method": {
+          "type": "choice",
+          "value": "GET"
+        },
+        "noProxy": {
+          "type": "bool",
+          "value": false
+        },
+        "body": {
+          "type": "textareaMentions",
+          "value": null
+        },
+        "sslVerification": {
+          "type": "bool",
+          "value": false
+        },
+        "url": {
+          "type": "string",
+          "value": "https://tpe.al-mydemo.com/server11/matteo"
+        },
+        "timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "featureVersion": "6.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "c0cf5bd8-8ff1-48b5-a95b-ef818b97d88f"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 934,
+      "name": "Variable",
+      "y": 660,
+      "id": "c0cf5bd8-8ff1-48b5-a95b-ef818b97d88f",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "Titi",
+              "type": "string",
+              "value": "VAR(body)[0].nom"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "e72c4222-d092-4832-8e6e-47f384e36877"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "sendRainbowMessage",
+      "x": 1356,
+      "name": "IM Rainbow",
+      "y": 840,
+      "id": "e72c4222-d092-4832-8e6e-47f384e36877",
+      "category": "rainbow",
+      "params": {
+        "bubbleList": {
+          "type": "bubble",
+          "value": null
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "status",
+              "name": "status",
+              "type": "object"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "messageType": {
+          "type": "choice",
+          "value": "Standard"
+        },
+        "jid": {
+          "type": "textMentions",
+          "value": "VAR(rainbowReceivedFromJid)"
+        },
+        "format": {
+          "type": "choice",
+          "value": "text"
+        },
+        "groups": {
+          "type": "groups",
+          "value": null
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "receiptTimeout": {
+          "type": "int",
+          "value": 5
+        },
+        "message": {
+          "type": "textareaMentions",
+          "value": "VAR(Titi)\nVAR(body)"
+        },
+        "users": {
+          "type": "users",
+          "value": null
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "sent",
+          "targetNodeId": "ba96e8f2-9ccb-4a0d-9713-e4810d8a3dc7"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 1898,
+      "name": "Variable",
+      "y": 660,
+      "id": "eee50502-7043-4631-bbb6-09a03e94a04d",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "Nom",
+              "type": "string",
+              "value": "VAR(rainbowReceivedFromUser).name.value"
+            },
+            {
+              "name": "Date",
+              "type": "string",
+              "value": "VAR(rainbowReceivedFromUser)._lastContactCacheUpdate.split('T')[0]"
+            },
+            {
+              "name": "Heure",
+              "type": "string",
+              "value": "VAR(rainbowReceivedFromUser)._lastContactCacheUpdate.slice(11,18)"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "136a801f-6070-4ccd-97dd-67b9c3cbba5c"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "httpRequest",
+      "x": 360,
+      "name": "Requête http",
+      "y": 460,
+      "id": "2346d5bf-9b60-410a-b33e-d5776907ddd2",
+      "category": "http",
+      "params": {
+        "headers": {
+          "type": "keyValueList",
+          "value": {
+            "Content-type": "application/json"
+          }
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": false,
+              "originEditable": false,
+              "editable": true,
+              "removable": false,
+              "parameter": "body",
+              "name": "body",
+              "parameterEditable": false,
+              "type": "object"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "statusCode",
+              "name": "statusCode",
+              "type": "int"
+            },
+            {
+              "origin": "body",
+              "parameter": "body",
+              "name": "FullData",
+              "type": "object",
+              "mandatory": false
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "httpRequestResult.error",
+              "name": "error",
+              "type": "string"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "method": {
+          "type": "choice",
+          "value": "GET"
+        },
+        "noProxy": {
+          "type": "bool",
+          "value": false
+        },
+        "body": {
+          "type": "textareaMentions",
+          "value": null
+        },
+        "sslVerification": {
+          "type": "bool",
+          "value": false
+        },
+        "url": {
+          "type": "string",
+          "value": "https://api.openweathermap.org/data/2.5/weather?id=3030300&units=metric&lang=fr&appid=524fe0843d29dc87f1d2b6d84d74849c"
+        },
+        "timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "featureVersion": "6.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "1d0f365c-35a3-4bb0-855c-5c45fa13141f"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 108,
+      "name": "Variables météo",
+      "y": 636,
+      "id": "1d0f365c-35a3-4bb0-855c-5c45fa13141f",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "temps",
+              "type": "string",
+              "value": "VAR(body).weather[0].description"
+            },
+            {
+              "name": "icône",
+              "type": "string",
+              "value": "VAR(body).weather[0].icon"
+            },
+            {
+              "name": "temp",
+              "type": "string",
+              "value": "VAR(body).main.temp"
+            },
+            {
+              "name": "tempMax",
+              "type": "string",
+              "value": "VAR(body).main.temp_max"
+            },
+            {
+              "name": "tempMin",
+              "type": "string",
+              "value": "VAR(body).main.temp_min"
+            },
+            {
+              "name": "humidité",
+              "type": "string",
+              "value": "VAR(body).main.humidity"
+            },
+            {
+              "name": "vent",
+              "type": "string",
+              "value": "VAR(body).wind.speed"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "value": "VAR(body).name"
+            },
+            {
+              "name": "heure",
+              "type": "string",
+              "value": "VAR(rainbowReceivedFromUser)._lastContactCacheUpdate.slice(11,16)"
+            },
+            {
+              "name": "date",
+              "type": "string",
+              "value": "VAR(rainbowReceivedFromUser)._lastContactCacheUpdate.split('T')[0]"
+            },
+            {
+              "name": "mybody",
+              "type": "object",
+              "value": "VAR(body)"
+            },
+            {
+              "name": "icone",
+              "type": "string",
+              "value": "http://openweathermap.org/img/wn/02d@2x.png"
+            },
+            {
+              "name": "choixicone",
+              "type": "string",
+              "value": "VAR(body).weather[0].main"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "899fdd43-836f-446f-9815-cb45accca894"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "sendRainbowMessage",
+      "x": 960,
+      "name": "IM Rainbow",
+      "y": 1460,
+      "id": "88ecac33-76ce-43c5-b11e-83129def8a98",
+      "category": "rainbow",
+      "params": {
+        "bubbleList": {
+          "type": "bubble",
+          "value": null
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "status",
+              "name": "status",
+              "type": "object"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "messageType": {
+          "type": "choice",
+          "value": "Standard"
+        },
+        "jid": {
+          "type": "textMentions",
+          "value": "VAR(rainbowReceivedFromJid)"
+        },
+        "format": {
+          "type": "choice",
+          "value": "text"
+        },
+        "groups": {
+          "type": "groups",
+          "value": null
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "receiptTimeout": {
+          "type": "int",
+          "value": 5
+        },
+        "message": {
+          "type": "textareaMentions",
+          "value": "VAR(mybody)\n\nVAR(test)\n\nVAR(url)"
+        },
+        "users": {
+          "type": "users",
+          "value": null
+        }
+      },
+      "featureVersion": "2.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "sent",
+          "targetNodeId": "575bc727-21a2-4134-a807-c701da79a4c9"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "rainbowCardMessage",
+      "x": 972,
+      "name": "Carte Rainbow",
+      "y": 1668,
+      "id": "575bc727-21a2-4134-a807-c701da79a4c9",
+      "category": "rainbow",
+      "params": {
+        "cardData": {
+          "type": "json",
+          "value": "\"VAR(body)\""
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.fromJid",
+              "name": "rainbowReceivedFromJid",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.content",
+              "name": "rainbowReceivedContent",
+              "type": "string"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.alternativeContent",
+              "name": "alternativeContent",
+              "type": "object"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "rainbowMessageReceived.fromUser",
+              "name": "rainbowReceivedFromUser",
+              "type": "object"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "status",
+              "name": "status",
+              "type": "object"
+            },
+            {
+              "displayed": false,
+              "editable": false,
+              "parameter": "card",
+              "name": "cardJson",
+              "type": "object"
+            },
+            {
+              "displayed": "true",
+              "editable": false,
+              "parameter": "lastCardSentId",
+              "name": "lastCardSentId",
+              "type": "string"
+            }
+          ]
+        },
+        "jid": {
+          "type": "textMentions",
+          "value": "VAR(rainbowReceivedFromJid)"
+        },
+        "receiptTimeout": {
+          "type": "int",
+          "value": 5
+        },
+        "title": {
+          "type": "textMentions"
+        },
+        "timeout": {
+          "type": "int",
+          "value": 30
+        },
+        "users": {
+          "type": "users"
+        },
+        "bubbleList": {
+          "type": "bubble",
+          "value": null
+        },
+        "messageType": {
+          "type": "choice"
+        },
+        "updateCardJidComment": {
+          "type": "comment"
+        },
+        "updateCardJid": {
+          "type": "textMentions",
+          "value": "VAR(lastCardSentId)"
+        },
+        "cardPayload": {
+          "type": "adaptiveCard",
+          "value": "{\"$schema\":\"http://adaptivecards.io/schemas/adaptive-card.json\",\"type\":\"AdaptiveCard\",\"version\":\"1.2\",\"body\":[{\"type\":\"TextBlock\",\"text\":\"${name}, FR\",\"size\":\"Large\",\"wrap\":true,\"color\":\"Default\"},{\"type\":\"TextBlock\",\"text\":\"${formatEpoch(dt, 'dd MM yyyy')}\",\"spacing\":\"None\",\"wrap\":true},{\"type\":\"ColumnSet\",\"columns\":[{\"type\":\"Column\",\"width\":\"auto\",\"items\":[{\"type\":\"Image\",\"url\":\"VAR(url)\",\"size\":\"Medium\"}]},{\"type\":\"Column\",\"width\":\"stretch\",\"items\":[{\"type\":\"TextBlock\",\"text\":\"${(main.temp)}  °C actuellement, ${weather[0].description}\",\"size\":\"Default\",\"wrap\":true,\"horizontalAlignment\":\"Left\",\"spacing\":\"Large\",\"weight\":\"Default\"}]}]},{\"type\":\"ColumnSet\",\"columns\":[{\"type\":\"Column\",\"width\":50,\"items\":[{\"type\":\"TextBlock\",\"wrap\":true,\"text\":\"Min : ${(main.temp_min )} °C\"}]},{\"type\":\"Column\",\"width\":50,\"items\":[{\"type\":\"TextBlock\",\"wrap\":true,\"text\":\"Max : ${main.temp_max} °C\"}]}]},{\"type\":\"TextBlock\",\"wrap\":true,\"text\":\"Vent de ${wind.speed} km/h \"}]}"
+        },
+        "value": {
+          "type": "variableValues",
+          "value": [
+            {
+              "color": "#004a6b",
+              "removable": false,
+              "id": "sent",
+              "label": "Envoyé",
+              "value": "sent"
+            }
+          ]
+        }
+      },
+      "featureVersion": "3.7",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "sent",
+          "targetNodeId": "ba96e8f2-9ccb-4a0d-9713-e4810d8a3dc7"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "split",
+      "x": 660,
+      "name": "Split",
+      "y": 860,
+      "id": "899fdd43-836f-446f-9815-cb45accca894",
+      "category": "dev",
+      "params": {
+        "output": {
+          "type": "outputsNumber",
+          "value": null
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "1.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "split0",
+          "targetNodeId": "31e2793f-25d0-4322-979f-f5436b2622e7"
+        },
+        {
+          "outputId": "split1",
+          "targetNodeId": "7cd0900e-1a1b-43b3-a4e8-c6d1ab49b447",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "condition",
+      "x": 1622,
+      "name": "Condition",
+      "y": 1060,
+      "id": "31e2793f-25d0-4322-979f-f5436b2622e7",
+      "category": "dev",
+      "params": {
+        "condition": {
+          "type": "choiceWithTranslation",
+          "value": "equals"
+        },
+        "name": {
+          "type": "variableName",
+          "value": "VAR(choixicone)"
+        },
+        "value": {
+          "type": "variableValues",
+          "value": [
+            {
+              "id": "Snow",
+              "value": "Snow"
+            },
+            {
+              "id": "Drizzle",
+              "value": "Drizzle"
+            },
+            {
+              "id": "Haze",
+              "value": "Haze"
+            },
+            {
+              "id": "Mist",
+              "value": "Mist"
+            },
+            {
+              "id": "Fog",
+              "value": "Fog"
+            }
+          ]
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "Haze",
+          "targetNodeId": "c9d4cee7-4668-4859-9185-dcdd411f72ec"
+        },
+        {
+          "inputId": "input",
+          "outputId": "Drizzle",
+          "targetNodeId": "543de1f3-7b79-4755-a53b-163a3d23f1c1"
+        },
+        {
+          "inputId": "input",
+          "outputId": "Snow",
+          "targetNodeId": "0d62fd41-bf8b-4ac0-8eab-224c49d41c8c"
+        },
+        {
+          "inputId": "input",
+          "outputId": "Mist",
+          "targetNodeId": "c9d4cee7-4668-4859-9185-dcdd411f72ec"
+        },
+        {
+          "inputId": "input",
+          "outputId": "Fog",
+          "targetNodeId": "c9d4cee7-4668-4859-9185-dcdd411f72ec"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "condition",
+      "x": 810,
+      "name": "Condition",
+      "y": 1060,
+      "id": "7cd0900e-1a1b-43b3-a4e8-c6d1ab49b447",
+      "category": "dev",
+      "params": {
+        "condition": {
+          "type": "choiceWithTranslation",
+          "value": "equals"
+        },
+        "name": {
+          "type": "variableName",
+          "value": "VAR(choixicone)"
+        },
+        "value": {
+          "type": "variableValues",
+          "value": [
+            {
+              "id": "Squall",
+              "value": "Squall"
+            },
+            {
+              "id": "Thunderstorm",
+              "value": "Thunderstorm"
+            },
+            {
+              "id": "Rain",
+              "value": "Rain"
+            },
+            {
+              "id": "Clear",
+              "value": "Clear"
+            },
+            {
+              "id": "Clouds",
+              "value": "Clouds"
+            }
+          ]
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": [
+        {
+          "outputId": "Thunderstorm",
+          "targetNodeId": "5bacaf24-2ba1-4838-a541-ccf2a90da947",
+          "inputId": "input"
+        },
+        {
+          "outputId": "Rain",
+          "targetNodeId": "6de83c23-dc98-4a42-b8a4-3d5669342e51",
+          "inputId": "input"
+        },
+        {
+          "outputId": "Clear",
+          "targetNodeId": "0cd1bf52-ea01-4af1-9572-ec72debff0dd",
+          "inputId": "input"
+        },
+        {
+          "outputId": "Clouds",
+          "targetNodeId": "ce8a839c-cb71-480b-a3fd-96236941ffa9",
+          "inputId": "input"
+        },
+        {
+          "outputId": "Squall",
+          "targetNodeId": "c9d4cee7-4668-4859-9185-dcdd411f72ec",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 1908,
+      "name": "Variable",
+      "y": 1260,
+      "id": "0d62fd41-bf8b-4ac0-8eab-224c49d41c8c",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "url",
+              "type": "string",
+              "value": "http://openweathermap.org/img/wn/13d@2x.png"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "88ecac33-76ce-43c5-b11e-83129def8a98"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 1600,
+      "name": "Variable",
+      "y": 1260,
+      "id": "543de1f3-7b79-4755-a53b-163a3d23f1c1",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "url",
+              "type": "string",
+              "value": "http://openweathermap.org/img/wn/09d@2x.png"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "88ecac33-76ce-43c5-b11e-83129def8a98"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 1292,
+      "name": "Variable",
+      "y": 1260,
+      "id": "c9d4cee7-4668-4859-9185-dcdd411f72ec",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "url",
+              "type": "string",
+              "value": "http://openweathermap.org/img/wn/50d@2x.png"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "88ecac33-76ce-43c5-b11e-83129def8a98"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 60,
+      "name": "Variable",
+      "y": 1260,
+      "id": "5bacaf24-2ba1-4838-a541-ccf2a90da947",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "url",
+              "type": "string",
+              "value": "http://openweathermap.org/img/wn/11d@2x.png"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "88ecac33-76ce-43c5-b11e-83129def8a98"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 368,
+      "name": "Variable",
+      "y": 1260,
+      "id": "6de83c23-dc98-4a42-b8a4-3d5669342e51",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "url",
+              "type": "string",
+              "value": "http://openweathermap.org/img/wn/09d@2x.png"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "88ecac33-76ce-43c5-b11e-83129def8a98"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 676,
+      "name": "Variable",
+      "y": 1260,
+      "id": "0cd1bf52-ea01-4af1-9572-ec72debff0dd",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "url",
+              "type": "string",
+              "value": "http://openweathermap.org/img/wn/01d@2x.png"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "88ecac33-76ce-43c5-b11e-83129def8a98"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 984,
+      "name": "Variable",
+      "y": 1260,
+      "id": "ce8a839c-cb71-480b-a3fd-96236941ffa9",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "url",
+              "type": "string",
+              "value": "http://openweathermap.org/img/wn/02d@2x.png"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "88ecac33-76ce-43c5-b11e-83129def8a98"
+        }
+      ]
+    }
+  ],
+  "globalVariables": []
+}
