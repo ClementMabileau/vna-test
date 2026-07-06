@@ -66,7 +66,7 @@
       "feature": "trace",
       "category": "dev",
       "featureVersion": "2.2",
-      "x": 972,
+      "x": 1008,
       "y": 576,
       "params": {
         "msg": {
@@ -160,7 +160,7 @@
       "y": 336,
       "params": {
         "calendarId": {
-          "value": "",
+          "value": "default calendar",
           "type": "tenantCalendar"
         }
       },
@@ -188,7 +188,7 @@
       "y": 672,
       "params": {
         "businessHoursId": {
-          "value": "",
+          "value": "default",
           "type": "tenantBusinessHours"
         }
       },
