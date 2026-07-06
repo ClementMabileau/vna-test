@@ -122,14 +122,6 @@
             }
           ],
           "type": "VariablesList"
-        },
-        "_waypoints": {
-          "found::a9c000f3-384a-447d-b370-82807579ebac::input": [
-            {
-              "x": 472.5,
-              "y": 520.05
-            }
-          ]
         }
       },
       "connections": [
