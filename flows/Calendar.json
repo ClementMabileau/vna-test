@@ -1,41 +1,14 @@
 {
   "name": "Calendar",
-  "id": "8942f07a-ea06-4ad5-b071-c12996d74210",
+  "id": "27006de8-4d32-4751-821c-6dd6b819a826",
   "nodes": [
-    {
-      "id": "0150453f-604c-47ee-8ea7-ad0d3b630a09",
-      "feature": "trace",
-      "category": "dev",
-      "featureVersion": "2.2",
-      "x": 576,
-      "y": 288,
-      "params": {
-        "msg": {
-          "value": "Hello",
-          "type": "textareaMentions"
-        },
-        "level": {
-          "value": "info",
-          "type": "choice"
-        }
-      },
-      "connections": [
-        {
-          "outputId": "done",
-          "targetNodeId": "d50437d9-6ac4-4b23-8497-821f1a4f70c1",
-          "inputId": "input"
-        }
-      ],
-      "name": "Trace",
-      "note": ""
-    },
     {
       "id": "b0ffdd77-7b6b-4549-b7a7-4250632385ed",
       "feature": "onHttp",
       "category": "http",
       "featureVersion": "2.8",
-      "x": 636,
-      "y": 120,
+      "x": 528,
+      "y": 132,
       "params": {
         "url": {
           "value": "/api/flows/test",
@@ -65,17 +38,6 @@
               "parameterEditable": false,
               "removable": false,
               "type": "object"
-            },
-            {
-              "name": "clientip",
-              "parameter": "ip",
-              "displayed": true,
-              "editable": true,
-              "originEditable": false,
-              "nameEditable": true,
-              "parameterEditable": false,
-              "removable": false,
-              "type": "string"
             }
           ],
           "type": "VariablesList"
@@ -92,12 +54,7 @@
       "connections": [
         {
           "outputId": "request",
-          "targetNodeId": "0150453f-604c-47ee-8ea7-ad0d3b630a09",
-          "inputId": "input"
-        },
-        {
-          "outputId": "err",
-          "targetNodeId": "0150453f-604c-47ee-8ea7-ad0d3b630a09",
+          "targetNodeId": "b3fe920e-03fa-47a0-889b-9da93c87e8d8",
           "inputId": "input"
         }
       ],
@@ -113,7 +70,7 @@
       "y": 576,
       "params": {
         "msg": {
-          "value": "jour férié",
+          "value": "public holiday\n",
           "type": "textareaMentions"
         },
         "level": {
@@ -134,7 +91,7 @@
       "y": 528,
       "params": {
         "msg": {
-          "value": "jour ouvré",
+          "value": "business day\n",
           "type": "textareaMentions"
         },
         "level": {
@@ -145,7 +102,7 @@
       "connections": [
         {
           "outputId": "done",
-          "targetNodeId": "01a50267-1ee0-403e-8f19-0264f4015986",
+          "targetNodeId": "d04074ef-4519-406a-a282-776e39b319c0",
           "inputId": "input"
         }
       ],
@@ -161,7 +118,7 @@
       "y": 804,
       "params": {
         "msg": {
-          "value": "nous sommes ouverts ",
+          "value": "We are open\n",
           "type": "textareaMentions"
         },
         "level": {
@@ -182,7 +139,7 @@
       "y": 804,
       "params": {
         "msg": {
-          "value": "nous somme fermer",
+          "value": "We are closed\n",
           "type": "textareaMentions"
         },
         "level": {
@@ -195,12 +152,12 @@
       "note": ""
     },
     {
-      "id": "d50437d9-6ac4-4b23-8497-821f1a4f70c1",
+      "id": "b3fe920e-03fa-47a0-889b-9da93c87e8d8",
       "feature": "calendar",
       "category": "planning",
       "featureVersion": "1.0",
-      "x": 516,
-      "y": 408,
+      "x": 528,
+      "y": 336,
       "params": {
         "calendarId": {
           "value": "",
@@ -219,16 +176,16 @@
           "inputId": "input"
         }
       ],
-      "name": "Calendrier",
+      "name": "Calendar",
       "note": ""
     },
     {
-      "id": "01a50267-1ee0-403e-8f19-0264f4015986",
+      "id": "d04074ef-4519-406a-a282-776e39b319c0",
       "feature": "businesshours",
       "category": "planning",
       "featureVersion": "1.0",
-      "x": 252,
-      "y": 660,
+      "x": 216,
+      "y": 672,
       "params": {
         "businessHoursId": {
           "value": "",
@@ -247,7 +204,7 @@
           "inputId": "input"
         }
       ],
-      "name": "Heures d'ouverture",
+      "name": "Business Hours",
       "note": ""
     }
   ],
