@@ -1,0 +1,343 @@
+{
+  "name": "TwoRaces",
+  "id": "26dc4e8c-864a-4dd2-a23c-3fae394a5730",
+  "nodes": [
+    {
+      "feature": "onHttp",
+      "id": "trig1",
+      "x": 288,
+      "y": 60,
+      "category": "http",
+      "name": "On HTTP",
+      "featureVersion": "2.8",
+      "params": {
+        "variables": {
+          "value": [],
+          "type": "VariablesList"
+        },
+        "response_timeout": {
+          "value": 60,
+          "type": "int"
+        },
+        "method": {
+          "value": "GET",
+          "type": "choice"
+        },
+        "immediate_response": {
+          "value": true,
+          "type": "bool"
+        },
+        "token": {
+          "value": null,
+          "type": "token"
+        },
+        "url": {
+          "value": "/api/flows/tworaces",
+          "type": "textMentions"
+        },
+        "securityComment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "split1",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "split",
+      "id": "split1",
+      "x": 312,
+      "y": 180,
+      "category": "dev",
+      "name": "Split",
+      "featureVersion": "1.1",
+      "params": {
+        "output": {
+          "value": 3,
+          "type": "outputsNumber"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "split0",
+          "targetNodeId": "waitA",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split1",
+          "targetNodeId": "waitB",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split2",
+          "targetNodeId": "waitC",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "wait",
+      "id": "waitA",
+      "x": 96,
+      "y": 300,
+      "category": "dev",
+      "name": "Wait A 2s",
+      "featureVersion": "1.2",
+      "params": {
+        "time": {
+          "value": 2,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "race1",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "wait",
+      "id": "waitB",
+      "x": 300,
+      "y": 300,
+      "category": "dev",
+      "name": "Wait B 20s",
+      "featureVersion": "1.2",
+      "params": {
+        "time": {
+          "value": 20,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "var1",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "wait",
+      "id": "waitC",
+      "x": 504,
+      "y": 312,
+      "category": "dev",
+      "name": "Wait C 45s",
+      "featureVersion": "1.2",
+      "params": {
+        "time": {
+          "value": 45,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "race2",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "variable",
+      "id": "var1",
+      "x": 288,
+      "y": 420,
+      "category": "dev",
+      "featureVersion": "3.1",
+      "name": "Variable",
+      "note": "",
+      "params": {
+        "variable": {
+          "value": [
+            {
+              "type": "int",
+              "name": "toto",
+              "value": "1"
+            }
+          ],
+          "type": "variableMgt"
+        },
+        "comment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "cond1",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "condition",
+      "id": "cond1",
+      "x": 276,
+      "y": 540,
+      "category": "dev",
+      "featureVersion": "2.2",
+      "name": "Condition",
+      "note": "",
+      "params": {
+        "name": {
+          "value": "toto",
+          "type": "variableName"
+        },
+        "condition": {
+          "value": "=",
+          "type": "choiceWithTranslation"
+        },
+        "value": {
+          "value": [
+            {
+              "id": "closed",
+              "value": "1"
+            }
+          ],
+          "type": "variableValues"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "closed",
+          "targetNodeId": "race2",
+          "inputId": "input"
+        },
+        {
+          "outputId": "else",
+          "targetNodeId": "race1",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "race",
+      "id": "race1",
+      "x": 96,
+      "y": 672,
+      "category": "dev",
+      "featureVersion": "1.0",
+      "name": "Race gauche",
+      "note": "",
+      "params": {},
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "trace1",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "race",
+      "id": "race2",
+      "x": 480,
+      "y": 672,
+      "category": "dev",
+      "featureVersion": "1.0",
+      "name": "Race droite",
+      "note": "",
+      "params": {},
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "trace2",
+          "inputId": "input"
+        },
+        {
+          "outputId": "next",
+          "targetNodeId": "trace2",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "trace",
+      "id": "trace1",
+      "x": 96,
+      "y": 780,
+      "category": "dev",
+      "name": "Trace",
+      "featureVersion": "2.2",
+      "params": {
+        "level": {
+          "value": "INFO",
+          "type": "choice"
+        },
+        "msg": {
+          "value": "RACE1 GAUCHE WON",
+          "type": "textareaMentions"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "end1",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "trace",
+      "id": "trace2",
+      "x": 504,
+      "y": 780,
+      "category": "dev",
+      "name": "Trace",
+      "featureVersion": "2.2",
+      "params": {
+        "level": {
+          "value": "INFO",
+          "type": "choice"
+        },
+        "msg": {
+          "value": "RACE2 DROITE WON",
+          "type": "textareaMentions"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "end2",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "end",
+      "id": "end1",
+      "x": 84,
+      "y": 900,
+      "category": "dev",
+      "name": "End",
+      "featureVersion": "1.1",
+      "params": {},
+      "connections": []
+    },
+    {
+      "feature": "end",
+      "id": "end2",
+      "x": 504,
+      "y": 912,
+      "category": "dev",
+      "name": "End",
+      "featureVersion": "1.1",
+      "params": {},
+      "connections": []
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": [],
+  "folder": "Race"
+}

@@ -1,0 +1,302 @@
+{
+  "name": "LoopRaceTest",
+  "id": "92c5df32-ada8-4831-958c-58e488904e06",
+  "nodes": [
+    {
+      "feature": "onHttp",
+      "id": "trig3",
+      "x": 504,
+      "y": 36,
+      "category": "http",
+      "name": "On HTTP",
+      "featureVersion": "2.8",
+      "params": {
+        "variables": {
+          "value": [],
+          "type": "VariablesList"
+        },
+        "response_timeout": {
+          "value": 60,
+          "type": "int"
+        },
+        "method": {
+          "value": "GET",
+          "type": "choice"
+        },
+        "immediate_response": {
+          "value": true,
+          "type": "bool"
+        },
+        "token": {
+          "value": null,
+          "type": "token"
+        },
+        "url": {
+          "value": "/api/flows/loopracetest",
+          "type": "textMentions"
+        },
+        "securityComment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "loop1",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "loop",
+      "id": "loop1",
+      "x": 396,
+      "y": 168,
+      "category": "dev",
+      "name": "Loop 2 tours",
+      "featureVersion": "1.2",
+      "params": {
+        "list": {
+          "value": "[1,2]",
+          "type": "text"
+        },
+        "variable": {
+          "value": [
+            {
+              "type": "int",
+              "name": "currentItem"
+            }
+          ],
+          "type": "variableCurrentItem"
+        },
+        "comment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "step",
+          "targetNodeId": "splitLoop",
+          "inputId": "input"
+        },
+        {
+          "outputId": "end",
+          "targetNodeId": "traceEnd",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "split",
+      "id": "splitLoop",
+      "x": 336,
+      "y": 312,
+      "category": "dev",
+      "name": "Split",
+      "featureVersion": "1.1",
+      "params": {
+        "output": {
+          "value": 2,
+          "type": "outputsNumber"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "split0",
+          "targetNodeId": "waitShortL",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split1",
+          "targetNodeId": "waitLongL",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "wait",
+      "id": "waitShortL",
+      "x": 276,
+      "y": 504,
+      "category": "dev",
+      "name": "Wait short (lap)",
+      "featureVersion": "1.2",
+      "params": {
+        "time": {
+          "value": 2,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "cab491b3-3e3c-42bb-b327-ccbfece637c0",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "wait",
+      "id": "waitLongL",
+      "x": 480,
+      "y": 504,
+      "category": "dev",
+      "name": "Wait long (lap)",
+      "featureVersion": "1.2",
+      "params": {
+        "time": {
+          "value": 5,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "a728419e-2942-4202-9e67-af820c504384",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "race",
+      "id": "raceLoop",
+      "x": 372,
+      "y": 768,
+      "category": "dev",
+      "featureVersion": "1.0",
+      "name": "Race (relancée à chaque tour)",
+      "note": "",
+      "params": {},
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "traceLap",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "trace",
+      "id": "traceLap",
+      "x": 24,
+      "y": 360,
+      "category": "dev",
+      "name": "Trace",
+      "featureVersion": "2.2",
+      "params": {
+        "level": {
+          "value": "INFO",
+          "type": "choice"
+        },
+        "msg": {
+          "value": "LAP WON",
+          "type": "textareaMentions"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "loop1",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "trace",
+      "id": "traceEnd",
+      "x": 576,
+      "y": 312,
+      "category": "dev",
+      "name": "Trace",
+      "featureVersion": "2.2",
+      "params": {
+        "level": {
+          "value": "INFO",
+          "type": "choice"
+        },
+        "msg": {
+          "value": "LOOP DONE",
+          "type": "textareaMentions"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "endLoop",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "end",
+      "id": "endLoop",
+      "x": 888,
+      "y": 456,
+      "category": "dev",
+      "name": "End",
+      "featureVersion": "1.1",
+      "params": {},
+      "connections": []
+    },
+    {
+      "id": "cab491b3-3e3c-42bb-b327-ccbfece637c0",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 276,
+      "y": 636,
+      "params": {
+        "level": {
+          "value": "INFO",
+          "type": "choice"
+        },
+        "msg": {
+          "value": "Wait short done",
+          "type": "textareaMentions"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "raceLoop",
+          "inputId": "input"
+        }
+      ],
+      "name": "Trace",
+      "note": ""
+    },
+    {
+      "id": "a728419e-2942-4202-9e67-af820c504384",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 480,
+      "y": 636,
+      "params": {
+        "level": {
+          "value": "INFO",
+          "type": "choice"
+        },
+        "msg": {
+          "value": "Wait long done",
+          "type": "textareaMentions"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "raceLoop",
+          "inputId": "input"
+        }
+      ],
+      "name": "Trace",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": [],
+  "folder": "Race"
+}

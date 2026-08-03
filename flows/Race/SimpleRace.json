@@ -1,0 +1,280 @@
+{
+  "name": "SimpleRace",
+  "id": "ead31d53-53db-4753-b8dd-3cdc1cdf6930",
+  "nodes": [
+    {
+      "feature": "onHttp",
+      "id": "fd0c58d7-6d50-452d-a75e-52d4fa57ef58",
+      "x": 288,
+      "params": {
+        "variables": {
+          "value": [
+            {
+              "originEditable": false,
+              "parameter": "body",
+              "type": "object",
+              "nameEditable": true,
+              "removable": false,
+              "editable": true,
+              "name": "body",
+              "parameterEditable": false,
+              "displayed": true
+            }
+          ],
+          "type": "VariablesList"
+        },
+        "response_timeout": {
+          "value": 60,
+          "type": "int"
+        },
+        "method": {
+          "value": "GET",
+          "type": "choice"
+        },
+        "immediate_response": {
+          "value": true,
+          "type": "bool"
+        },
+        "token": {
+          "value": null,
+          "type": "token"
+        },
+        "url": {
+          "value": "/api/flows/racetest",
+          "type": "textMentions"
+        },
+        "securityComment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "05c18981-8e4c-4a66-85f5-cd11d0be2285",
+          "inputId": "input"
+        },
+        {
+          "outputId": "request",
+          "targetNodeId": "05c18981-8e4c-4a66-85f5-cd11d0be2285",
+          "inputId": "input"
+        }
+      ],
+      "category": "http",
+      "y": 60,
+      "name": "On HTTP",
+      "featureVersion": "2.8"
+    },
+    {
+      "feature": "split",
+      "id": "05c18981-8e4c-4a66-85f5-cd11d0be2285",
+      "x": 312,
+      "params": {
+        "output": {
+          "value": 2,
+          "type": "outputsNumber"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "split0",
+          "targetNodeId": "057229b8-828a-414e-9e2c-2d21ac7e28b4",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split1",
+          "targetNodeId": "186a795b-c767-4f50-98a7-d37e50d69cab",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split0",
+          "targetNodeId": "057229b8-828a-414e-9e2c-2d21ac7e28b4",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split1",
+          "targetNodeId": "186a795b-c767-4f50-98a7-d37e50d69cab",
+          "inputId": "input"
+        }
+      ],
+      "category": "dev",
+      "y": 192,
+      "name": "Split",
+      "featureVersion": "1.1"
+    },
+    {
+      "feature": "wait",
+      "id": "057229b8-828a-414e-9e2c-2d21ac7e28b4",
+      "x": 180,
+      "params": {
+        "time": {
+          "value": 2,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "b2e3072c-c9fc-4e8f-91df-085041f013f8",
+          "inputId": "input"
+        }
+      ],
+      "category": "dev",
+      "y": 324,
+      "name": "Wait short",
+      "featureVersion": "1.2"
+    },
+    {
+      "feature": "wait",
+      "id": "186a795b-c767-4f50-98a7-d37e50d69cab",
+      "x": 420,
+      "params": {
+        "time": {
+          "value": 20,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "0ac11c02-d250-4e52-bddd-7d6ab4c4a7d4",
+          "inputId": "input"
+        }
+      ],
+      "category": "dev",
+      "y": 324,
+      "name": "Wait long",
+      "featureVersion": "1.2"
+    },
+    {
+      "feature": "trace",
+      "id": "ffe166b1-c322-4479-b913-0cf6e3f7706d",
+      "x": 300,
+      "params": {
+        "level": {
+          "value": "INFO",
+          "type": "choice"
+        },
+        "msg": {
+          "value": "RACE WON",
+          "type": "textareaMentions"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "e942025c-fefa-4771-858f-418e9d39a64b",
+          "inputId": "input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "e942025c-fefa-4771-858f-418e9d39a64b",
+          "inputId": "input"
+        }
+      ],
+      "category": "dev",
+      "y": 732,
+      "name": "Trace",
+      "featureVersion": "2.2"
+    },
+    {
+      "feature": "end",
+      "id": "e942025c-fefa-4771-858f-418e9d39a64b",
+      "x": 312,
+      "params": {},
+      "connections": [],
+      "category": "dev",
+      "y": 876,
+      "name": "End",
+      "featureVersion": "1.1"
+    },
+    {
+      "id": "b2e3072c-c9fc-4e8f-91df-085041f013f8",
+      "feature": "variable",
+      "category": "dev",
+      "featureVersion": "3.1",
+      "x": 156,
+      "y": 468,
+      "params": {
+        "variable": {
+          "value": [
+            {
+              "type": "int",
+              "name": "toto",
+              "value": "1"
+            }
+          ],
+          "type": "variableMgt"
+        },
+        "comment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "61bd2381-7e69-45c3-9966-093ead109216",
+          "inputId": "input"
+        }
+      ],
+      "name": "Variable",
+      "note": ""
+    },
+    {
+      "id": "0ac11c02-d250-4e52-bddd-7d6ab4c4a7d4",
+      "feature": "variable",
+      "category": "dev",
+      "featureVersion": "3.1",
+      "x": 420,
+      "y": 456,
+      "params": {
+        "variable": {
+          "value": [
+            {
+              "type": "int",
+              "name": "toto",
+              "value": "toto"
+            }
+          ],
+          "type": "variableMgt"
+        },
+        "comment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "61bd2381-7e69-45c3-9966-093ead109216",
+          "inputId": "input"
+        }
+      ],
+      "name": "Variable",
+      "note": ""
+    },
+    {
+      "id": "61bd2381-7e69-45c3-9966-093ead109216",
+      "feature": "race",
+      "category": "dev",
+      "featureVersion": "1.0",
+      "x": 300,
+      "y": 612,
+      "params": {},
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "ffe166b1-c322-4479-b913-0cf6e3f7706d",
+          "inputId": "input"
+        }
+      ],
+      "name": "Race",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": [],
+  "folder": "Race"
+}

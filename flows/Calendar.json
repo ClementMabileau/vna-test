@@ -1,0 +1,339 @@
+{
+  "name": "Calendar",
+  "id": "27006de8-4d32-4751-821c-6dd6b819a826",
+  "nodes": [
+    {
+      "id": "b0ffdd77-7b6b-4549-b7a7-4250632385ed",
+      "feature": "onHttp",
+      "category": "http",
+      "featureVersion": "2.8",
+      "x": 528,
+      "y": 24,
+      "params": {
+        "url": {
+          "value": "/api/flows/test",
+          "type": "textMentions"
+        },
+        "method": {
+          "value": "GET",
+          "type": "choice"
+        },
+        "token": {
+          "value": null,
+          "type": "token"
+        },
+        "securityComment": {
+          "value": null,
+          "type": "comment"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ],
+          "type": "VariablesList"
+        },
+        "immediate_response": {
+          "value": true,
+          "type": "bool"
+        },
+        "response_timeout": {
+          "value": 60,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "bfb9efc1-df11-4d7e-b362-a93233a3f330",
+          "inputId": "input"
+        }
+      ],
+      "name": "HTTP Entrant",
+      "note": ""
+    },
+    {
+      "id": "72e04df2-7097-4232-9829-677f486127e4",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 1044,
+      "y": 480,
+      "params": {
+        "msg": {
+          "value": "public holiday\n",
+          "type": "textareaMentions"
+        },
+        "level": {
+          "value": "info",
+          "type": "choice"
+        }
+      },
+      "connections": [],
+      "name": "Trace",
+      "note": ""
+    },
+    {
+      "id": "97620454-7adb-442e-8df0-b2aee3f2fa63",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 324,
+      "y": 552,
+      "params": {
+        "msg": {
+          "value": "business day\n",
+          "type": "textareaMentions"
+        },
+        "level": {
+          "value": "info",
+          "type": "choice"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "d04074ef-4519-406a-a282-776e39b319c0",
+          "inputId": "input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "d04074ef-4519-406a-a282-776e39b319c0",
+          "inputId": "input"
+        }
+      ],
+      "name": "Trace",
+      "note": ""
+    },
+    {
+      "id": "ff0796c9-5ab3-405a-95ec-e5ec3ae2d72b",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 204,
+      "y": 804,
+      "params": {
+        "msg": {
+          "value": "We are open\n",
+          "type": "textareaMentions"
+        },
+        "level": {
+          "value": "info",
+          "type": "choice"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "24ca1521-5510-45e9-873f-033d1d837f52",
+          "inputId": "input"
+        }
+      ],
+      "name": "Trace",
+      "note": ""
+    },
+    {
+      "id": "4ad96b2e-9c61-443c-8d12-bcd06cd669be",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 480,
+      "y": 804,
+      "params": {
+        "msg": {
+          "value": "We are closed\n",
+          "type": "textareaMentions"
+        },
+        "level": {
+          "value": "info",
+          "type": "choice"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "ee7ab63d-91c1-482e-b7b9-8755d82c5f06",
+          "inputId": "input"
+        }
+      ],
+      "name": "Trace",
+      "note": ""
+    },
+    {
+      "id": "d04074ef-4519-406a-a282-776e39b319c0",
+      "feature": "businesshours",
+      "category": "planning",
+      "featureVersion": "1.0",
+      "x": 336,
+      "y": 684,
+      "params": {
+        "businessHoursId": {
+          "value": "default",
+          "type": "tenantBusinessHours"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "open",
+          "targetNodeId": "ff0796c9-5ab3-405a-95ec-e5ec3ae2d72b",
+          "inputId": "input"
+        },
+        {
+          "outputId": "closed",
+          "targetNodeId": "4ad96b2e-9c61-443c-8d12-bcd06cd669be",
+          "inputId": "input"
+        }
+      ],
+      "name": "Business Hours",
+      "note": ""
+    },
+    {
+      "id": "bfb9efc1-df11-4d7e-b362-a93233a3f330",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 600,
+      "y": 168,
+      "params": {
+        "msg": {
+          "value": "toto\n",
+          "type": "textareaMentions"
+        },
+        "level": {
+          "value": "info",
+          "type": "choice"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "a7485c17-a1b3-4817-909f-df30725c8d17",
+          "inputId": "input"
+        }
+      ],
+      "name": "Trace",
+      "note": ""
+    },
+    {
+      "id": "a7485c17-a1b3-4817-909f-df30725c8d17",
+      "feature": "calendar",
+      "category": "planning",
+      "featureVersion": "1.0",
+      "x": 588,
+      "y": 288,
+      "params": {
+        "calendarId": {
+          "value": "French public holidays 2026 (modifié)",
+          "type": "tenantCalendar"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "closed",
+          "targetNodeId": "72e04df2-7097-4232-9829-677f486127e4",
+          "inputId": "input"
+        },
+        {
+          "outputId": "open",
+          "targetNodeId": "97bdf7c6-13b8-46a4-9d7e-51f403e2eb1d",
+          "inputId": "input"
+        }
+      ],
+      "name": "Calendar",
+      "note": ""
+    },
+    {
+      "id": "24ca1521-5510-45e9-873f-033d1d837f52",
+      "feature": "statistics",
+      "category": "dev",
+      "featureVersion": "1.0",
+      "x": 132,
+      "y": 924,
+      "params": {
+        "startStop": {
+          "value": false,
+          "type": "bool"
+        },
+        "mainCause": {
+          "value": "open",
+          "type": "textMentions"
+        },
+        "secondCause": {
+          "value": "",
+          "type": "textMentions"
+        }
+      },
+      "connections": [],
+      "name": "Statistics",
+      "note": ""
+    },
+    {
+      "id": "ee7ab63d-91c1-482e-b7b9-8755d82c5f06",
+      "feature": "statistics",
+      "category": "dev",
+      "featureVersion": "1.0",
+      "x": 456,
+      "y": 924,
+      "params": {
+        "startStop": {
+          "value": false,
+          "type": "bool"
+        },
+        "mainCause": {
+          "value": "close",
+          "type": "textMentions"
+        },
+        "secondCause": {
+          "value": "",
+          "type": "textMentions"
+        }
+      },
+      "connections": [],
+      "name": "Statistics",
+      "note": ""
+    },
+    {
+      "id": "97bdf7c6-13b8-46a4-9d7e-51f403e2eb1d",
+      "feature": "statistics",
+      "category": "dev",
+      "featureVersion": "1.0",
+      "x": 348,
+      "y": 396,
+      "params": {
+        "startStop": {
+          "value": true,
+          "type": "bool"
+        },
+        "mainCause": {
+          "value": "French calandar",
+          "type": "textMentions"
+        },
+        "secondCause": {
+          "value": "",
+          "type": "textMentions"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "97620454-7adb-442e-8df0-b2aee3f2fa63",
+          "inputId": "input"
+        }
+      ],
+      "name": "Statistics",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": []
+}

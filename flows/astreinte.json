@@ -1,0 +1,186 @@
+{
+  "name": "astreinte",
+  "id": "55199c9d-22a1-4af9-84b5-c829ab3ca1e5",
+  "nodes": [
+    {
+      "id": "bc51385b-0557-4261-883a-23289dfee20d",
+      "feature": "onHttp",
+      "category": "http",
+      "featureVersion": "2.8",
+      "x": 228,
+      "y": 96,
+      "params": {
+        "url": {
+          "value": "/api/flows/test",
+          "type": "textMentions"
+        },
+        "method": {
+          "value": "GET",
+          "type": "choice"
+        },
+        "token": {
+          "value": null,
+          "type": "token"
+        },
+        "securityComment": {
+          "value": null,
+          "type": "comment"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ],
+          "type": "VariablesList"
+        },
+        "immediate_response": {
+          "value": true,
+          "type": "bool"
+        },
+        "response_timeout": {
+          "value": 60,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "0d9ef774-e389-44bd-9510-2acfb1f266c9",
+          "inputId": "input"
+        }
+      ],
+      "name": "HTTP Entrant",
+      "note": ""
+    },
+    {
+      "id": "a9c000f3-384a-447d-b370-82807579ebac",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 132,
+      "y": 528,
+      "params": {},
+      "connections": [],
+      "name": "Fin",
+      "note": ""
+    },
+    {
+      "id": "e830c9a4-4d05-4cff-abcb-5e48363ce4e9",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 348,
+      "y": 528,
+      "params": {},
+      "connections": [],
+      "name": "Fin",
+      "note": ""
+    },
+    {
+      "id": "0d9ef774-e389-44bd-9510-2acfb1f266c9",
+      "feature": "variable",
+      "category": "dev",
+      "featureVersion": "3.1",
+      "x": 324,
+      "y": 240,
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "nextFriday",
+              "type": "string",
+              "value": "(function(){var moment=require('moment-timezone');var m=moment.tz('Europe/Paris');var day=m.day();var diff=(5-day+7)%7;if(diff===0){diff=7;}return m.add(diff,'days').set({hour:8,minute:0,second:0,millisecond:0}).toISOString();})()"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "5101baeb-1375-4983-a168-7cb1cbad838b",
+          "inputId": "input"
+        }
+      ],
+      "name": "Variable",
+      "note": ""
+    },
+    {
+      "id": "5101baeb-1375-4983-a168-7cb1cbad838b",
+      "feature": "astreinte",
+      "category": "planning",
+      "featureVersion": "1.0",
+      "x": 276,
+      "y": 360,
+      "params": {
+        "configId": {
+          "value": "",
+          "type": "tenantAstreinteConfig"
+        },
+        "checkDateTime": {
+          "value": null,
+          "type": "dateTimeOrVarFormat"
+        },
+        "wholeDay": {
+          "value": false,
+          "type": "bool"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "onCallPersons",
+              "parameter": "onCallPersons",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "firstOnCallPerson",
+              "parameter": "firstOnCallPerson",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "found",
+          "targetNodeId": "a9c000f3-384a-447d-b370-82807579ebac",
+          "inputId": "input"
+        },
+        {
+          "outputId": "noOnCall",
+          "targetNodeId": "e830c9a4-4d05-4cff-abcb-5e48363ce4e9",
+          "inputId": "input"
+        }
+      ],
+      "name": "On-Call",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": []
+}

@@ -1,0 +1,208 @@
+{
+  "name": "Test Speech To Text",
+  "id": "2c7864ab-d602-4887-a8ce-1d04e1141d8d",
+  "nodes": [
+    {
+      "note": "",
+      "feature": "onHttp",
+      "x": 300,
+      "name": "On HTTP test-stt",
+      "y": 120,
+      "id": "ff2c849d-74c9-49d4-8fb0-0f182bf7cdc5",
+      "category": "http",
+      "params": {
+        "response_timeout": {
+          "type": "int",
+          "value": 30
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "parameter": "body",
+              "name": "body",
+              "type": "object"
+            }
+          ]
+        },
+        "immediate_response": {
+          "type": "bool",
+          "value": false
+        },
+        "method": {
+          "type": "choice",
+          "value": "GET"
+        },
+        "url": {
+          "type": "textMentions",
+          "value": "/api/flows/ClementVNA/test-stt"
+        }
+      },
+      "featureVersion": "2.8",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "request",
+          "targetNodeId": "068cd307-f6cd-49ab-90e4-15147c31f25e"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 300,
+      "name": "Set testAudio",
+      "y": 300,
+      "id": "068cd307-f6cd-49ab-90e4-15147c31f25e",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "testAudio",
+              "type": "object",
+              "value": "{\"filePath\":\"/etc/ale/dump/test.wav\",\"contentType\":\"audio/wav\"}"
+            }
+          ]
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "ce91d6ce-41e7-44a1-b692-04e86d5e3be1"
+        }
+      ]
+    },
+    {
+      "note": "Remplir la vraie clé API avant de tester",
+      "feature": "speechToText",
+      "x": 300,
+      "name": "Speech to text",
+      "y": 480,
+      "id": "ce91d6ce-41e7-44a1-b692-04e86d5e3be1",
+      "category": "dev",
+      "params": {
+        "apiKey": {
+          "type": "password",
+          "value": ""
+        },
+        "audioVariable": {
+          "type": "string",
+          "value": "testAudio"
+        },
+        "engine": {
+          "type": "choice",
+          "value": "whisper"
+        },
+        "azureRegion": {
+          "type": "string",
+          "value": ""
+        },
+        "outputVariable": {
+          "type": "variableName",
+          "value": "transcribedText"
+        },
+        "language": {
+          "type": "choice",
+          "value": "auto"
+        }
+      },
+      "featureVersion": "1.0",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "7e458064-54c6-4697-9ce9-61baf419123e"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "e4c6aeaf-6e07-48de-8165-15e9bab5c671"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "trace",
+      "x": 300,
+      "name": "Trace résultat",
+      "y": 660,
+      "id": "7e458064-54c6-4697-9ce9-61baf419123e",
+      "category": "dev",
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "Speech-to-text terminé - voir transcribedText dans le payload de cette activité"
+        },
+        "level": {
+          "type": "choice",
+          "value": "INFO"
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "3fe1c256-f09d-476f-9418-c31f3a879ddc"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "httpResponse",
+      "x": 300,
+      "name": "HTTP Response OK",
+      "y": 840,
+      "id": "3fe1c256-f09d-476f-9418-c31f3a879ddc",
+      "category": "http",
+      "params": {
+        "headers": {
+          "type": "keyValueList",
+          "value": {}
+        },
+        "response": {
+          "type": "textareaMentions",
+          "value": "Test terminé - regarde le payload de l'activité 'Speech to text' dans la Console du flow pour voir transcribedText"
+        },
+        "statusCode": {
+          "type": "int",
+          "value": 200
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": []
+    },
+    {
+      "note": "",
+      "feature": "httpResponse",
+      "x": 620,
+      "name": "HTTP Response Error",
+      "y": 480,
+      "id": "e4c6aeaf-6e07-48de-8165-15e9bab5c671",
+      "category": "http",
+      "params": {
+        "headers": {
+          "type": "keyValueList",
+          "value": {}
+        },
+        "response": {
+          "type": "textareaMentions",
+          "value": "Speech-to-text a échoué - regarde les logs de la Console du flow"
+        },
+        "statusCode": {
+          "type": "int",
+          "value": 500
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": []
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": []
+}
