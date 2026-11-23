@@ -421,9 +421,16 @@
         "correlatorData": {
           "type": "phoneDisplay",
           "value": "VAR(correlatorData)"
+        },
+        "callRef": {
+          "type": "textMentions",
+          "value": ""
+        },
+        "cfuNotAllowed": {
+          "type": "bool"
         }
       },
-      "featureVersion": "1.4",
+      "featureVersion": "1.5",
       "connections": [
         {
           "inputId": "input",
@@ -567,9 +574,16 @@
         "correlatorData": {
           "type": "phoneDisplay",
           "value": "VAR(correlatorData)"
+        },
+        "callRef": {
+          "type": "textMentions",
+          "value": ""
+        },
+        "cfuNotAllowed": {
+          "type": "bool"
         }
       },
-      "featureVersion": "1.4",
+      "featureVersion": "1.5",
       "connections": [
         {
           "inputId": "input",
@@ -646,8 +660,13 @@
       "y": 4400,
       "id": "ea5144cc-907b-4f04-85e3-4818702bcd20",
       "category": "softcmp",
-      "params": {},
-      "featureVersion": "1.1",
+      "params": {
+        "callRef": {
+          "type": "textMentions",
+          "value": "VAR(callReference)"
+        }
+      },
+      "featureVersion": "1.2",
       "connections": [
         {
           "inputId": "input",
@@ -771,7 +790,7 @@
           "value": 0
         }
       },
-      "featureVersion": "2.7",
+      "featureVersion": "2.8",
       "connections": [
         {
           "inputId": "input",
@@ -889,9 +908,13 @@
               "value": "fr"
             }
           ]
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
         }
       },
-      "featureVersion": "2.2",
+      "featureVersion": "2.3",
       "connections": [
         {
           "inputId": "input",
@@ -937,7 +960,7 @@
           "value": 0
         }
       },
-      "featureVersion": "2.7",
+      "featureVersion": "2.8",
       "connections": [
         {
           "inputId": "input",
@@ -978,7 +1001,7 @@
           "value": 0
         }
       },
-      "featureVersion": "2.7",
+      "featureVersion": "2.8",
       "connections": [
         {
           "inputId": "input",
@@ -1030,9 +1053,13 @@
               "value": "222"
             }
           ]
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
         }
       },
-      "featureVersion": "2.2",
+      "featureVersion": "2.3",
       "connections": [
         {
           "inputId": "input",
@@ -1496,9 +1523,13 @@
               "value": "fr"
             }
           ]
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
         }
       },
-      "featureVersion": "2.2",
+      "featureVersion": "2.3",
       "connections": [
         {
           "inputId": "input",
@@ -1544,7 +1575,7 @@
           "value": 0
         }
       },
-      "featureVersion": "2.7",
+      "featureVersion": "2.8",
       "connections": [
         {
           "inputId": "input",
@@ -1652,9 +1683,13 @@
               "value": "fr"
             }
           ]
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
         }
       },
-      "featureVersion": "2.2",
+      "featureVersion": "2.3",
       "connections": [
         {
           "inputId": "input",
@@ -1700,7 +1735,7 @@
           "value": 0
         }
       },
-      "featureVersion": "2.7",
+      "featureVersion": "2.8",
       "connections": [
         {
           "inputId": "input",
@@ -1736,7 +1771,7 @@
           "value": 0
         }
       },
-      "featureVersion": "2.7",
+      "featureVersion": "2.8",
       "connections": [
         {
           "inputId": "input",
@@ -1758,8 +1793,13 @@
       "y": 1592,
       "id": "75b1d023-e3ea-48fe-bf3f-5145e6e66691",
       "category": "softcmp",
-      "params": {},
-      "featureVersion": "1.1",
+      "params": {
+        "callRef": {
+          "type": "textMentions",
+          "value": "VAR(callReference)"
+        }
+      },
+      "featureVersion": "1.2",
       "connections": [
         {
           "inputId": "input",

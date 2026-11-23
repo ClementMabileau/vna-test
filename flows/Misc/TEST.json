@@ -1,6 +1,7 @@
 {
   "name": "TEST",
   "id": "8edfb1b4-8e4c-41af-8423-733bd3316633",
+  "folder": "Misc",
   "nodes": [
     {
       "id": "dc4c765b-8cd8-439f-b0c8-e3650e416bad",
@@ -71,7 +72,7 @@
       "id": "2b3ad951-6a9d-40fa-9a71-03c79a68a3be",
       "feature": "condition",
       "category": "dev",
-      "featureVersion": "2.2",
+      "featureVersion": "2.3",
       "x": 192,
       "y": 564,
       "params": {
@@ -91,6 +92,10 @@
             }
           ],
           "type": "variableValues"
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
         }
       },
       "connections": [

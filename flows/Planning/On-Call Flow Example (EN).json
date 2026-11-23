@@ -1,0 +1,241 @@
+{
+  "name": "On-Call Flow Example (EN)",
+  "folder": "Planning",
+  "nodes": [
+    {
+      "id": "http_trigger",
+      "feature": "onHttp",
+      "category": "http",
+      "name": "Incoming Request",
+      "x": 300,
+      "y": 60,
+      "params": {
+        "url": {
+          "type": "textMentions",
+          "value": "/api/flows/oncall-node-example"
+        },
+        "method": {
+          "type": "choice",
+          "value": "GET"
+        },
+        "token": {
+          "type": "token"
+        },
+        "securityComment": {
+          "type": "comment"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ]
+        },
+        "immediate_response": {
+          "type": "bool",
+          "value": true
+        },
+        "response_timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "oncall_check",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "2.8"
+    },
+    {
+      "id": "oncall_check",
+      "feature": "astreinte",
+      "category": "planning",
+      "name": "Check On-Call",
+      "x": 300,
+      "y": 180,
+      "params": {
+        "configId": {
+          "type": "tenantAstreinteConfig",
+          "value": "e814e7b9-64ab-4d0a-872d-e226927d37a1"
+        },
+        "wholeDay": {
+          "type": "bool",
+          "value": false
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "onCallPersons",
+              "parameter": "onCallPersons",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "firstOnCallPerson",
+              "parameter": "firstOnCallPerson",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ]
+        },
+        "checkDateTime": {
+          "type": "dateTimeOrVarFormat"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "found",
+          "targetNodeId": "trace_found",
+          "inputId": "input"
+        },
+        {
+          "outputId": "noOnCall",
+          "targetNodeId": "trace_none",
+          "inputId": "input"
+        },
+        {
+          "outputId": "err",
+          "targetNodeId": "trace_err",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "1.0"
+    },
+    {
+      "id": "trace_found",
+      "feature": "trace",
+      "category": "dev",
+      "name": "Trace - Found",
+      "x": 100,
+      "y": 300,
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "On-call person found: VAR(firstOnCallPerson)\n"
+        },
+        "level": {
+          "type": "choice",
+          "value": "info"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "end_found",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "2.2"
+    },
+    {
+      "id": "trace_none",
+      "feature": "trace",
+      "category": "dev",
+      "name": "Trace - No On-Call",
+      "x": 300,
+      "y": 300,
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "No one is currently on call.\n"
+        },
+        "level": {
+          "type": "choice",
+          "value": "warn"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "end_none",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "2.2"
+    },
+    {
+      "id": "trace_err",
+      "feature": "trace",
+      "category": "dev",
+      "name": "Trace - Error",
+      "x": 500,
+      "y": 300,
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "Error while checking the on-call configuration.\n"
+        },
+        "level": {
+          "type": "choice",
+          "value": "error"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "end_err",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "2.2"
+    },
+    {
+      "id": "end_found",
+      "feature": "end",
+      "category": "dev",
+      "name": "End",
+      "x": 100,
+      "y": 420,
+      "params": {},
+      "connections": [],
+      "featureVersion": "1.1"
+    },
+    {
+      "id": "end_none",
+      "feature": "end",
+      "category": "dev",
+      "name": "End",
+      "x": 300,
+      "y": 420,
+      "params": {},
+      "connections": [],
+      "featureVersion": "1.1"
+    },
+    {
+      "id": "end_err",
+      "feature": "end",
+      "category": "dev",
+      "name": "End",
+      "x": 500,
+      "y": 420,
+      "params": {},
+      "connections": [],
+      "featureVersion": "1.1"
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": [],
+  "id": "9d1cd197-c504-46b2-8cbd-11d50651d1fe"
+}

@@ -1,0 +1,85 @@
+{
+  "name": "SubflowDemo-Child",
+  "id": "79cd8d69-1b26-412a-806b-9c3d07f61c54",
+  "nodes": [
+    {
+      "feature": "input",
+      "id": "c876ce41-f736-4cc8-b99c-26dcbd49d022",
+      "x": 60,
+      "params": {
+        "variables_comment": {
+          "value": null,
+          "type": "comment"
+        },
+        "variables": {
+          "value": [],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "5873f2a7-75d0-4070-82e6-8484e776053a",
+          "inputId": "input"
+        }
+      ],
+      "category": "subflow",
+      "y": 60,
+      "name": "Input",
+      "featureVersion": "1.1",
+      "note": ""
+    },
+    {
+      "feature": "output",
+      "id": "d6ae28de-27f2-4a73-bade-a846bde1aa26",
+      "x": 120,
+      "params": {
+        "outputcomment": {
+          "value": null,
+          "type": "comment"
+        },
+        "output": {
+          "value": 1,
+          "type": "int"
+        }
+      },
+      "connections": [],
+      "category": "subflow",
+      "y": 576,
+      "name": "Output",
+      "featureVersion": "1.1",
+      "note": ""
+    },
+    {
+      "id": "5873f2a7-75d0-4070-82e6-8484e776053a",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 132,
+      "y": 252,
+      "params": {
+        "msg": {
+          "value": "je suis dans le sous flow",
+          "type": "textareaMentions"
+        },
+        "level": {
+          "value": "info",
+          "type": "choice"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "d6ae28de-27f2-4a73-bade-a846bde1aa26",
+          "inputId": "input"
+        }
+      ],
+      "name": "je suis dans le sous flow",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": [],
+  "folder": "SubFlow"
+}

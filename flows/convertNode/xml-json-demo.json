@@ -1,0 +1,217 @@
+{
+  "name": "xml-json-demo",
+  "test": true,
+  "globalVariables": [],
+  "nodes": [
+    {
+      "id": "demo_http",
+      "feature": "onHttp",
+      "category": "http",
+      "name": "Trigger",
+      "x": 100,
+      "y": 100,
+      "params": {
+        "url": {
+          "type": "textMentions",
+          "value": "/api/flows/xml-json-demo"
+        },
+        "method": {
+          "type": "choice",
+          "value": "GET"
+        },
+        "token": {
+          "type": "token"
+        },
+        "securityComment": {
+          "type": "comment"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ]
+        },
+        "immediate_response": {
+          "type": "bool",
+          "value": true
+        },
+        "response_timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "request",
+          "targetNodeId": "demo_var1"
+        }
+      ],
+      "featureVersion": "2.8"
+    },
+    {
+      "id": "demo_var1",
+      "feature": "variable",
+      "category": "dev",
+      "name": "Build demo XML file",
+      "x": 100,
+      "y": 220,
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "xmlFile",
+              "type": "file",
+              "value": "({data:'data:application/xml;base64,PG9yZGVyPjxjdXN0b21lcj5BbGljZTwvY3VzdG9tZXI+PGl0ZW0gcXR5PSIyIj5XaWRnZXQ8L2l0ZW0+PC9vcmRlcj4=',contentType:'application/xml',fileName:'order.xml'})"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "demo_x2j"
+        }
+      ],
+      "featureVersion": "3.1"
+    },
+    {
+      "id": "demo_x2j",
+      "feature": "xmlToJson",
+      "category": "dev",
+      "name": "XML to JSON",
+      "x": 100,
+      "y": 340,
+      "params": {
+        "attachments": {
+          "type": "attachments",
+          "value": [
+            "VAR(xmlFile)"
+          ]
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "result",
+              "parameter": "result",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "demo_j2x"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "demo_end"
+        }
+      ],
+      "featureVersion": "1.0"
+    },
+    {
+      "id": "demo_j2x",
+      "feature": "jsonToXml",
+      "category": "dev",
+      "name": "JSON to XML",
+      "x": 100,
+      "y": 460,
+      "params": {
+        "json": {
+          "type": "textareaMentions",
+          "value": "VAR(result)"
+        },
+        "rootTag": {
+          "type": "textMentions",
+          "value": "order"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "result",
+              "parameter": "result",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "demo_end"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "demo_end"
+        }
+      ],
+      "featureVersion": "1.0"
+    },
+    {
+      "id": "demo_end",
+      "feature": "end",
+      "category": "dev",
+      "name": "End",
+      "x": 100,
+      "y": 580,
+      "params": {},
+      "connections": [],
+      "featureVersion": "1.1"
+    }
+  ],
+  "id": "edc2edcb-e786-4526-bfe0-06a7c8b78252",
+  "folder": "convertNode"
+}

@@ -1,0 +1,1493 @@
+{
+  "name": "O2GonTelevent_Repliq",
+  "id": "1ce2c518-5760-43fa-b578-92ac22e6d5d8",
+  "folder": "Integration",
+  "nodes": [
+    {
+      "feature": "onHttp",
+      "x": 624,
+      "name": "From O2G",
+      "y": 72,
+      "id": "681dba10-d0a7-42f1-9009-34fa4f0a0150",
+      "category": "http",
+      "params": {
+        "response_timeout": {
+          "type": "int",
+          "value": 60
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": true,
+              "originEditable": false,
+              "editable": true,
+              "removable": false,
+              "parameter": "body",
+              "name": "body",
+              "parameterEditable": false,
+              "type": "object"
+            },
+            {
+              "origin": "body",
+              "parameter": "eventName",
+              "name": "event",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "loginName",
+              "name": "loginName",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "callRef",
+              "name": "callRef",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "rsiPoint",
+              "name": "rsiPoint",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "request.routeCrid",
+              "name": "routeCrid",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "request.routedCallRef",
+              "name": "routedCallRef",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "routeCrid",
+              "name": "routeCridRE",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "routedCallRef",
+              "name": "routedCallRefRE",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "state",
+              "name": "state",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "request.caller",
+              "name": "caller",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "request.called",
+              "name": "called",
+              "type": "string",
+              "mandatory": false
+            }
+          ]
+        },
+        "immediate_response": {
+          "type": "bool",
+          "value": true
+        },
+        "method": {
+          "type": "choice",
+          "value": "POST"
+        },
+        "securityComment": {
+          "type": "comment"
+        },
+        "url": {
+          "type": "string",
+          "value": "/api/flows/webhookDC"
+        },
+        "token": {
+          "type": "token"
+        }
+      },
+      "featureVersion": "2.8",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "request",
+          "targetNodeId": "f425ed48-562d-4361-850e-52b58468b12a"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "statistics",
+      "x": 624,
+      "name": "Statistics",
+      "y": 216,
+      "id": "f425ed48-562d-4361-850e-52b58468b12a",
+      "category": "dev",
+      "params": {
+        "startStop": {
+          "type": "bool",
+          "value": true
+        },
+        "mainCause": {
+          "type": "textMentions",
+          "value": "VAR(event)"
+        },
+        "secondCause": {
+          "type": "textMentions",
+          "value": ""
+        }
+      },
+      "featureVersion": "1.0",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "9d8bfe9f-cde5-47ed-accc-070d1d8e4d91"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "9d8bfe9f-cde5-47ed-accc-070d1d8e4d91"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "statistics",
+      "x": 216,
+      "name": "Statistics",
+      "y": 828,
+      "id": "8caee719-c90a-4dad-8d5b-5a85e4783a53",
+      "category": "dev",
+      "params": {
+        "startStop": {
+          "type": "bool",
+          "value": false
+        },
+        "mainCause": {
+          "type": "textMentions",
+          "value": "VAR(event)"
+        },
+        "secondCause": {
+          "type": "textMentions",
+          "value": "VAR(loginName)"
+        }
+      },
+      "featureVersion": "1.0",
+      "connections": []
+    },
+    {
+      "note": "",
+      "feature": "condition",
+      "x": 492,
+      "name": "Condition",
+      "y": 360,
+      "id": "9d8bfe9f-cde5-47ed-accc-070d1d8e4d91",
+      "category": "dev",
+      "params": {
+        "condition": {
+          "type": "choiceWithTranslation",
+          "value": "equals"
+        },
+        "name": {
+          "type": "variableName",
+          "value": "VAR(event)"
+        },
+        "value": {
+          "type": "variableValues",
+          "value": [
+            {
+              "id": "OnRouteRequest",
+              "value": "OnRouteRequest"
+            },
+            {
+              "id": "OnRouteEnd",
+              "value": "OnRouteEnd"
+            },
+            {
+              "id": "OnUserStateModified",
+              "value": "OnUserStateModified"
+            }
+          ]
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
+        }
+      },
+      "featureVersion": "2.3",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "OnRouteRequest",
+          "targetNodeId": "f5713e89-a0c0-4569-8648-f54877ccb7a4"
+        },
+        {
+          "inputId": "input",
+          "outputId": "OnRouteEnd",
+          "targetNodeId": "b6b3f20a-7a8a-4645-a3eb-73a90968f21a"
+        },
+        {
+          "inputId": "input",
+          "outputId": "OnUserStateModified",
+          "targetNodeId": "887eccbc-4bf6-4c4c-8671-4f4b5c3fe30f"
+        },
+        {
+          "inputId": "input",
+          "outputId": "else",
+          "targetNodeId": "b4468d8e-7a87-413e-bf89-37a0ddc650ae"
+        },
+        {
+          "inputId": "input",
+          "outputId": "else",
+          "targetNodeId": "b4468d8e-7a87-413e-bf89-37a0ddc650ae"
+        }
+      ]
+    },
+    {
+      "feature": "onHttp",
+      "x": 960,
+      "name": "From O2G",
+      "y": 72,
+      "id": "86115ddc-f4a0-4378-9730-ce518680921b",
+      "category": "http",
+      "params": {
+        "response_timeout": {
+          "type": "int",
+          "value": 60
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": true,
+              "originEditable": false,
+              "editable": true,
+              "removable": false,
+              "parameter": "body",
+              "name": "body",
+              "parameterEditable": false,
+              "type": "object"
+            },
+            {
+              "origin": "body",
+              "parameter": "eventName",
+              "name": "event",
+              "type": "string",
+              "mandatory": false
+            },
+            {
+              "origin": "body",
+              "parameter": "loginName",
+              "name": "loginName",
+              "type": "string",
+              "mandatory": false
+            }
+          ]
+        },
+        "immediate_response": {
+          "type": "bool",
+          "value": true
+        },
+        "method": {
+          "type": "choice",
+          "value": "POST"
+        },
+        "securityComment": {
+          "type": "comment"
+        },
+        "url": {
+          "type": "string",
+          "value": "/api/flows/webhookDC2"
+        },
+        "token": {
+          "type": "token"
+        }
+      },
+      "featureVersion": "2.8",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "request",
+          "targetNodeId": "f425ed48-562d-4361-850e-52b58468b12a"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "httpRequest",
+      "x": 264,
+      "name": "Queued",
+      "y": 504,
+      "id": "f5713e89-a0c0-4569-8648-f54877ccb7a4",
+      "category": "http",
+      "params": {
+        "headers": {
+          "type": "keyValueList",
+          "value": {
+            "User-Agent": "VNA"
+          }
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": false,
+              "originEditable": false,
+              "editable": true,
+              "removable": false,
+              "parameter": "body",
+              "name": "body",
+              "parameterEditable": false,
+              "type": "object"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "statusCode",
+              "name": "statusCode",
+              "type": "int"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "httpRequestResult.error",
+              "name": "error",
+              "type": "string"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "method": {
+          "type": "choice",
+          "value": "POST"
+        },
+        "noProxy": {
+          "type": "bool",
+          "value": false
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "body": {
+          "type": "textareaMentions",
+          "value": "{\n  \"type\": \"CALL_ENQUEUED\",\n  \"globalCallId\": \"VAR(routedCallRef):VAR(routeCrid)\",\n  \"queueId\": \"VAR(rsiPoint)\",\n  \"caller\" : \"VAR(caller)\",\n  \"called\": \"VAR(called)\" \n}"
+        },
+        "sslVerification": {
+          "type": "bool",
+          "value": false
+        },
+        "url": {
+          "type": "textMentions",
+          "value": "VAR(router)/webhook"
+        },
+        "timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "featureVersion": "6.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "8caee719-c90a-4dad-8d5b-5a85e4783a53"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "cd903e24-8abd-40a2-8b0c-c52b0c87ae41"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "httpRequest",
+      "x": 540,
+      "name": "Dequeued",
+      "y": 504,
+      "id": "b6b3f20a-7a8a-4645-a3eb-73a90968f21a",
+      "category": "http",
+      "params": {
+        "headers": {
+          "type": "keyValueList",
+          "value": {
+            "User-Agent": "VNA",
+            "content-type": "application/json"
+          }
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": false,
+              "originEditable": false,
+              "editable": true,
+              "removable": false,
+              "parameter": "body",
+              "name": "body",
+              "parameterEditable": false,
+              "type": "object"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "statusCode",
+              "name": "statusCode",
+              "type": "int"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "httpRequestResult.error",
+              "name": "error",
+              "type": "string"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "method": {
+          "type": "choice",
+          "value": "POST"
+        },
+        "noProxy": {
+          "type": "bool",
+          "value": false
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "body": {
+          "type": "textareaMentions",
+          "value": "{\n  \"type\": \"CALL_DEQUEUED\",\n  \"globalCallId\": \"VAR(routedCallRefRE):VAR(routeCridRE)\"\n}"
+        },
+        "sslVerification": {
+          "type": "bool",
+          "value": false
+        },
+        "url": {
+          "type": "textMentions",
+          "value": "VAR(router)/webhook"
+        },
+        "timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "featureVersion": "6.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "8caee719-c90a-4dad-8d5b-5a85e4783a53"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "cd903e24-8abd-40a2-8b0c-c52b0c87ae41"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "cd903e24-8abd-40a2-8b0c-c52b0c87ae41"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "httpRequest",
+      "x": 984,
+      "name": "Set status",
+      "y": 660,
+      "id": "f4c91656-2f36-4d49-a963-993d541c18d9",
+      "category": "http",
+      "params": {
+        "headers": {
+          "type": "keyValueList",
+          "value": {
+            "User-Agent": "VNA"
+          }
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": false,
+              "originEditable": false,
+              "editable": true,
+              "removable": false,
+              "parameter": "body",
+              "name": "body",
+              "parameterEditable": false,
+              "type": "object"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "statusCode",
+              "name": "statusCode",
+              "type": "int"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "httpRequestResult.error",
+              "name": "error",
+              "type": "string"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "method": {
+          "type": "choice",
+          "value": "POST"
+        },
+        "noProxy": {
+          "type": "bool",
+          "value": false
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "body": {
+          "type": "textareaMentions",
+          "value": "{\n  \"type\": \"VAR(userState)\",\n  \"extension\": \"VAR(extension)\"\n}"
+        },
+        "sslVerification": {
+          "type": "bool",
+          "value": false
+        },
+        "url": {
+          "type": "textMentions",
+          "value": "VAR(router)/webhook"
+        },
+        "timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "featureVersion": "6.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "8caee719-c90a-4dad-8d5b-5a85e4783a53"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "cd903e24-8abd-40a2-8b0c-c52b0c87ae41"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 984,
+      "name": "Get state and extension",
+      "y": 504,
+      "id": "887eccbc-4bf6-4c4c-8671-4f4b5c3fe30f",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "userState",
+              "type": "string",
+              "value": "VAR(state) == 'FREE' ? 'AGENT_FREE' : 'AGENT_BUSY'"
+            },
+            {
+              "name": "extension",
+              "type": "string",
+              "value": "VAR(loginName).split('oxe')[1]"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "f4c91656-2f36-4d49-a963-993d541c18d9"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "cd903e24-8abd-40a2-8b0c-c52b0c87ae41"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "statistics",
+      "x": 588,
+      "name": "Statistics",
+      "y": 804,
+      "id": "cd903e24-8abd-40a2-8b0c-c52b0c87ae41",
+      "category": "dev",
+      "params": {
+        "startStop": {
+          "type": "bool",
+          "value": false
+        },
+        "mainCause": {
+          "type": "textMentions",
+          "value": "ERROR"
+        },
+        "secondCause": {
+          "type": "textMentions",
+          "value": "VAR(event) VAR(loginName)"
+        }
+      },
+      "featureVersion": "1.0",
+      "connections": []
+    },
+    {
+      "note": "",
+      "feature": "condition",
+      "x": 1884,
+      "name": "Condition",
+      "y": 828,
+      "id": "b6ac4629-ecc7-4565-a289-9a61685186e1",
+      "category": "dev",
+      "params": {
+        "condition": {
+          "type": "choiceWithTranslation",
+          "value": "equals"
+        },
+        "name": {
+          "type": "variableName",
+          "value": "VAR(state)"
+        },
+        "value": {
+          "type": "variableValues",
+          "value": [
+            {
+              "id": "login",
+              "value": "login"
+            },
+            {
+              "id": "logout",
+              "value": "logout"
+            },
+            {
+              "id": "AGENT_NOT_READY",
+              "value": "AGENT_NOT_READY"
+            },
+            {
+              "id": "AGENT_READY",
+              "value": "AGENT_READY"
+            }
+          ]
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
+        }
+      },
+      "featureVersion": "2.3",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "logout",
+          "targetNodeId": "ba5a1b81-bdc8-4712-877e-7f9f6b895f98"
+        },
+        {
+          "inputId": "input",
+          "outputId": "AGENT_NOT_READY",
+          "targetNodeId": "38fe2add-c6c9-45f8-b227-fe942996d58e"
+        },
+        {
+          "inputId": "input",
+          "outputId": "AGENT_READY",
+          "targetNodeId": "38fe2add-c6c9-45f8-b227-fe942996d58e"
+        },
+        {
+          "inputId": "input",
+          "outputId": "login",
+          "targetNodeId": "bb082824-78b4-4fc9-9b7b-f6800707e1cf"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "httpRequest",
+      "x": 1296,
+      "name": "Get RSI list",
+      "y": 900,
+      "id": "dc963a56-347c-4758-baa5-6b048865e0ef",
+      "category": "http",
+      "params": {
+        "headers": {
+          "type": "keyValueList",
+          "value": {
+            "Authorization": "VAR(token)",
+            "X-CUSTO-USER": "vaa",
+            "User-Agent": "VNA",
+            "content-type": "application/json",
+            "Phonenumber": "VNA"
+          }
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": false,
+              "originEditable": false,
+              "editable": true,
+              "removable": false,
+              "parameter": "body",
+              "name": "body",
+              "parameterEditable": false,
+              "type": "object"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "statusCode",
+              "name": "statusCode",
+              "type": "int"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "httpRequestResult.error",
+              "name": "error",
+              "type": "string"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "method": {
+          "type": "choice",
+          "value": "GET"
+        },
+        "noProxy": {
+          "type": "bool",
+          "value": false
+        },
+        "body": {
+          "type": "textareaMentions",
+          "value": ""
+        },
+        "sslVerification": {
+          "type": "bool",
+          "value": false
+        },
+        "url": {
+          "type": "textMentions",
+          "value": "VAR(DC)/server/restopencti/util/getCurrentUserList"
+        },
+        "timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "featureVersion": "6.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "8afcca04-ff72-4b4a-b4a3-a38e00b8af1a"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "httpRequest",
+      "x": 1272,
+      "name": "Login DC",
+      "y": 504,
+      "id": "bb082824-78b4-4fc9-9b7b-f6800707e1cf",
+      "category": "http",
+      "params": {
+        "headers": {
+          "type": "keyValueList",
+          "value": {
+            "User-Agent": "VNA",
+            "content-type": "application/json"
+          }
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": false,
+              "originEditable": false,
+              "editable": true,
+              "removable": false,
+              "parameter": "body",
+              "name": "body",
+              "parameterEditable": false,
+              "type": "object"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "statusCode",
+              "name": "statusCode",
+              "type": "int"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "httpRequestResult.error",
+              "name": "error",
+              "type": "string"
+            },
+            {
+              "origin": "body",
+              "parameter": "accessToken",
+              "name": "accessToken",
+              "type": "string",
+              "mandatory": false
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "method": {
+          "type": "choice",
+          "value": "POST"
+        },
+        "noProxy": {
+          "type": "bool",
+          "value": false
+        },
+        "body": {
+          "type": "textareaMentions",
+          "value": "{\n    \"username\": \"vaa\",\n    \"password\": \"dzaer478sqde!d\"\n}"
+        },
+        "sslVerification": {
+          "type": "bool",
+          "value": false
+        },
+        "url": {
+          "type": "textMentions",
+          "value": "VAR(DC)/sessions/login?type=vaa"
+        },
+        "timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "featureVersion": "6.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "d09e955c-3bdd-4b3f-a891-e7d54b3ed875"
+        },
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "d09e955c-3bdd-4b3f-a891-e7d54b3ed875"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 1296,
+      "name": "Set Token",
+      "y": 648,
+      "id": "d09e955c-3bdd-4b3f-a891-e7d54b3ed875",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "token",
+              "type": "string",
+              "value": "'Bearer '+VAR(accessToken)"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "da3fe7ad-76a3-4f13-9b49-1cd7afe98463"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 1620,
+      "name": "Get queues",
+      "y": 504,
+      "id": "01d90b03-bf53-4623-9bc5-a006cc35741c",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "queues",
+              "type": "string",
+              "value": "JSON.stringify(VAR(body).filter(x => x.user == VAR(extension))[0].monitoring.map(queue => ({queueId: queue,priority: 100 })))"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "15b05376-dcb3-4444-a3cf-fc1103cff29e"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 1632,
+      "name": "Get state and extension",
+      "y": 360,
+      "id": "8afcca04-ff72-4b4a-b4a3-a38e00b8af1a",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "userState",
+              "type": "string",
+              "value": "'FREE'"
+            },
+            {
+              "name": "extension",
+              "type": "string",
+              "value": "VAR(loginName).split('oxe')[1]"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "01d90b03-bf53-4623-9bc5-a006cc35741c"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 1608,
+      "name": "create subscription",
+      "y": 672,
+      "id": "15b05376-dcb3-4444-a3cf-fc1103cff29e",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "subscription",
+              "type": "object",
+              "value": "JSON.parse('{\"extension\":\"'+VAR(extension)+'\",\"state\": \"FREE\",\"subscriptions\":'+VAR(queues)+'}')"
+            },
+            {
+              "name": "unsubscription",
+              "type": "object",
+              "value": "JSON.parse('{\"extension\":\"'+VAR(extension)+'\",\"state\": \"BUSY\",\"subscriptions\":[]}')"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "0616f2f1-1255-4d5a-bdf8-a69ce7d8e07c"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "httpRequest",
+      "x": 1500,
+      "name": "Set status Login",
+      "y": 984,
+      "id": "0616f2f1-1255-4d5a-bdf8-a69ce7d8e07c",
+      "category": "http",
+      "params": {
+        "headers": {
+          "type": "keyValueList",
+          "value": {
+            "User-Agent": "VNA",
+            "content-type": "application/json"
+          }
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": false,
+              "originEditable": false,
+              "editable": true,
+              "removable": false,
+              "parameter": "body",
+              "name": "body",
+              "parameterEditable": false,
+              "type": "object"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "statusCode",
+              "name": "statusCode",
+              "type": "int"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "httpRequestResult.error",
+              "name": "error",
+              "type": "string"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "method": {
+          "type": "choice",
+          "value": "POST"
+        },
+        "noProxy": {
+          "type": "bool",
+          "value": false
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "body": {
+          "type": "textareaMentions",
+          "value": "VAR(subscription)"
+        },
+        "sslVerification": {
+          "type": "bool",
+          "value": false
+        },
+        "url": {
+          "type": "textMentions",
+          "value": "VAR(router)/agent"
+        },
+        "timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "featureVersion": "6.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "8caee719-c90a-4dad-8d5b-5a85e4783a53"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "cd903e24-8abd-40a2-8b0c-c52b0c87ae41"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "httpRequest",
+      "x": 1800,
+      "name": "Set status Logout",
+      "y": 984,
+      "id": "ba5a1b81-bdc8-4712-877e-7f9f6b895f98",
+      "category": "http",
+      "params": {
+        "headers": {
+          "type": "keyValueList",
+          "value": {
+            "User-Agent": "VNA",
+            "content-type": "application/json"
+          }
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": false,
+              "originEditable": false,
+              "editable": true,
+              "removable": false,
+              "parameter": "body",
+              "name": "body",
+              "parameterEditable": false,
+              "type": "object"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "statusCode",
+              "name": "statusCode",
+              "type": "int"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "httpRequestResult.error",
+              "name": "error",
+              "type": "string"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "method": {
+          "type": "choice",
+          "value": "POST"
+        },
+        "noProxy": {
+          "type": "bool",
+          "value": false
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "body": {
+          "type": "textareaMentions",
+          "value": "[]"
+        },
+        "sslVerification": {
+          "type": "bool",
+          "value": false
+        },
+        "url": {
+          "type": "textMentions",
+          "value": "VAR(router)/agent"
+        },
+        "timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "featureVersion": "6.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "8caee719-c90a-4dad-8d5b-5a85e4783a53"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "cd903e24-8abd-40a2-8b0c-c52b0c87ae41"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "httpRequest",
+      "x": 2088,
+      "name": "Set status Ready",
+      "y": 1020,
+      "id": "38fe2add-c6c9-45f8-b227-fe942996d58e",
+      "category": "http",
+      "params": {
+        "headers": {
+          "type": "keyValueList",
+          "value": {
+            "User-Agent": "VNA"
+          }
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": false,
+              "originEditable": false,
+              "editable": true,
+              "removable": false,
+              "parameter": "body",
+              "name": "body",
+              "parameterEditable": false,
+              "type": "object"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "statusCode",
+              "name": "statusCode",
+              "type": "int"
+            },
+            {
+              "displayed": true,
+              "editable": false,
+              "removable": false,
+              "parameter": "httpRequestResult.error",
+              "name": "error",
+              "type": "string"
+            }
+          ]
+        },
+        "attachments": {
+          "type": "attachments",
+          "value": null
+        },
+        "method": {
+          "type": "choice",
+          "value": "POST"
+        },
+        "noProxy": {
+          "type": "bool",
+          "value": false
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        },
+        "body": {
+          "type": "textareaMentions",
+          "value": "{\n  \"type\": \"VAR(state)\",\n  \"extension\": \"VAR(extension)\"\n}"
+        },
+        "sslVerification": {
+          "type": "bool",
+          "value": false
+        },
+        "url": {
+          "type": "textMentions",
+          "value": "VAR(router)/webhook"
+        },
+        "timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "featureVersion": "6.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "8caee719-c90a-4dad-8d5b-5a85e4783a53"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "cd903e24-8abd-40a2-8b0c-c52b0c87ae41"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "wait",
+      "x": 1296,
+      "name": "Wait",
+      "y": 780,
+      "id": "da3fe7ad-76a3-4f13-9b49-1cd7afe98463",
+      "category": "dev",
+      "params": {
+        "time": {
+          "type": "int",
+          "value": 3
+        }
+      },
+      "featureVersion": "1.2",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "next",
+          "targetNodeId": "dc963a56-347c-4758-baa5-6b048865e0ef"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "variable",
+      "x": 2028,
+      "name": "Get state and extension",
+      "y": 684,
+      "id": "b4468d8e-7a87-413e-bf89-37a0ddc650ae",
+      "category": "dev",
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "userState",
+              "type": "string",
+              "value": "'FREE'"
+            },
+            {
+              "name": "extension",
+              "type": "string",
+              "value": "VAR(loginName).split('oxe')[1]"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "featureVersion": "3.1",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "b6ac4629-ecc7-4565-a289-9a61685186e1"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "b6ac4629-ecc7-4565-a289-9a61685186e1"
+        }
+      ]
+    }
+  ],
+  "globalVariables": [
+    {
+      "name": "router",
+      "type": "string",
+      "value": "http://172.27.134.197:3010",
+      "commentary": ""
+    },
+    {
+      "name": "router",
+      "type": "string",
+      "value": "http://172.27.134.197:3010",
+      "commentary": ""
+    },
+    {
+      "name": "router",
+      "type": "string",
+      "value": "http://172.27.134.197:3010",
+      "commentary": ""
+    },
+    {
+      "name": "DC",
+      "type": "string",
+      "value": "https://dispatchtpe.bre.voice.ale-international.com:444",
+      "commentary": ""
+    },
+    {
+      "name": "DC",
+      "type": "string",
+      "value": "https://dispatchtpe.bre.voice.ale-international.com:444",
+      "commentary": ""
+    },
+    {
+      "name": "router",
+      "type": "string",
+      "value": "http://172.27.134.197:3010",
+      "commentary": ""
+    },
+    {
+      "name": "router",
+      "type": "string",
+      "value": "http://172.27.134.197:3010",
+      "commentary": ""
+    },
+    {
+      "name": "router",
+      "type": "string",
+      "value": "http://172.27.134.197:3010",
+      "commentary": ""
+    }
+  ],
+  "test": false,
+  "frames": []
+}

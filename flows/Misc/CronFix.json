@@ -1,0 +1,54 @@
+{
+  "name": "CronFix",
+  "id": "82fd7ebe-b82e-4b51-bd12-52c95b924c73",
+  "folder": "Misc",
+  "nodes": [
+    {
+      "id": "d96c7702-e3f2-4a9c-bc83-3076a0420df4",
+      "feature": "cron",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 528,
+      "y": 96,
+      "params": {
+        "cron_expression": {
+          "value": "* * * * *",
+          "type": "cron"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "trigger",
+          "targetNodeId": "713aa794-2a2b-4577-8cfb-8449a87b1f22",
+          "inputId": "input"
+        }
+      ],
+      "name": "Cron",
+      "note": ""
+    },
+    {
+      "id": "713aa794-2a2b-4577-8cfb-8449a87b1f22",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 540,
+      "y": 228,
+      "params": {
+        "msg": {
+          "value": "Salut",
+          "type": "textareaMentions"
+        },
+        "level": {
+          "value": "info",
+          "type": "choice"
+        }
+      },
+      "connections": [],
+      "name": "Trace",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": []
+}

@@ -1,0 +1,314 @@
+{
+  "name": "Join Example (EN)",
+  "folder": "Misc",
+  "nodes": [
+    {
+      "id": "http_trigger",
+      "feature": "onHttp",
+      "category": "http",
+      "name": "Incoming Request",
+      "x": 300,
+      "y": 60,
+      "params": {
+        "url": {
+          "type": "textMentions",
+          "value": "/api/flows/join-example"
+        },
+        "method": {
+          "type": "choice",
+          "value": "GET"
+        },
+        "token": {
+          "type": "token"
+        },
+        "securityComment": {
+          "type": "comment"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ]
+        },
+        "immediate_response": {
+          "type": "bool",
+          "value": true
+        },
+        "response_timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "splitter",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "2.8"
+    },
+    {
+      "id": "splitter",
+      "feature": "split",
+      "category": "dev",
+      "name": "Split",
+      "x": 300,
+      "y": 180,
+      "params": {
+        "output": {
+          "type": "outputsNumber",
+          "value": 2
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "connections": [
+        {
+          "outputId": "split0",
+          "targetNodeId": "wait_a",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split1",
+          "targetNodeId": "wait_b",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "1.1"
+    },
+    {
+      "id": "wait_a",
+      "feature": "wait",
+      "category": "dev",
+      "name": "Wait - Branch A (2s)",
+      "x": 150,
+      "y": 300,
+      "params": {
+        "time": {
+          "type": "int",
+          "value": 2
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "var_a",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "1.2"
+    },
+    {
+      "id": "var_a",
+      "feature": "variable",
+      "category": "dev",
+      "name": "Set Branch A Data",
+      "x": 150,
+      "y": 420,
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "branchA",
+              "type": "string",
+              "value": "'done'"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "join_node",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "3.1"
+    },
+    {
+      "id": "wait_b",
+      "feature": "wait",
+      "category": "dev",
+      "name": "Wait - Branch B (5s)",
+      "x": 450,
+      "y": 300,
+      "params": {
+        "time": {
+          "type": "int",
+          "value": 5
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "var_b",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "1.2"
+    },
+    {
+      "id": "var_b",
+      "feature": "variable",
+      "category": "dev",
+      "name": "Set Branch B Data",
+      "x": 450,
+      "y": 420,
+      "params": {
+        "variable": {
+          "type": "variableMgt",
+          "value": [
+            {
+              "name": "branchB",
+              "type": "string",
+              "value": "'done'"
+            }
+          ]
+        },
+        "comment": {
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "join_node",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "3.1"
+    },
+    {
+      "id": "join_node",
+      "feature": "join",
+      "category": "dev",
+      "name": "Join Branches",
+      "x": 300,
+      "y": 540,
+      "params": {
+        "priorityOrder": {
+          "type": "joinPriority",
+          "value": null
+        },
+        "timeout": {
+          "type": "int",
+          "value": 10
+        },
+        "priorityOrderNotice": {
+          "type": "comment"
+        },
+        "timeoutNotice": {
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "trace_next",
+          "inputId": "input"
+        },
+        {
+          "outputId": "timeout",
+          "targetNodeId": "trace_timeout",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "1.0"
+    },
+    {
+      "id": "trace_next",
+      "feature": "trace",
+      "category": "dev",
+      "name": "Trace - Joined",
+      "x": 200,
+      "y": 660,
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "Both branches joined: VAR(branchA) / VAR(branchB)\n"
+        },
+        "level": {
+          "type": "choice",
+          "value": "info"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "end_next",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "2.2"
+    },
+    {
+      "id": "trace_timeout",
+      "feature": "trace",
+      "category": "dev",
+      "name": "Trace - Timeout",
+      "x": 400,
+      "y": 660,
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "Timed out waiting for both branches.\n"
+        },
+        "level": {
+          "type": "choice",
+          "value": "warn"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "end_timeout",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "2.2"
+    },
+    {
+      "id": "end_next",
+      "feature": "end",
+      "category": "dev",
+      "name": "End",
+      "x": 200,
+      "y": 780,
+      "params": {},
+      "connections": [],
+      "featureVersion": "1.1"
+    },
+    {
+      "id": "end_timeout",
+      "feature": "end",
+      "category": "dev",
+      "name": "End",
+      "x": 400,
+      "y": 780,
+      "params": {},
+      "connections": [],
+      "featureVersion": "1.1"
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": [],
+  "id": "49470a69-4aaa-4370-9a77-842207be3423"
+}

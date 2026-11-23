@@ -1,6 +1,7 @@
 {
   "name": "language",
   "id": "33bc48f8-2051-4166-a80e-a69c2187c552",
+  "folder": "Telephony",
   "nodes": [
     {
       "id": "b3bff7f2-db11-4b1f-a7e8-d3389aea3120",
@@ -34,8 +35,8 @@
       "feature": "end",
       "category": "dev",
       "featureVersion": "1.1",
-      "x": 1068,
-      "y": 1128,
+      "x": 492,
+      "y": 1092,
       "params": {},
       "connections": [],
       "name": "Fin",
@@ -109,7 +110,7 @@
       "id": "ba8536a9-9845-46f5-b726-11ffc0d583e9",
       "feature": "makeCall",
       "category": "softcmp",
-      "featureVersion": "1.8",
+      "featureVersion": "1.9",
       "x": 780,
       "y": 324,
       "params": {
@@ -167,6 +168,12 @@
               "displayed": false,
               "editable": false,
               "type": "string"
+            },
+            {
+              "name": "originalCalledNumber",
+              "parameter": "originalCalledNumber",
+              "displayed": false,
+              "type": "string"
             }
           ],
           "type": "VariablesList"
@@ -197,65 +204,6 @@
       "params": {},
       "connections": [],
       "name": "Fin error",
-      "note": ""
-    },
-    {
-      "id": "f806a8cd-8591-48a5-9414-75d910d70ad1",
-      "feature": "releaseCall",
-      "category": "softcmp",
-      "featureVersion": "1.1",
-      "x": 144,
-      "y": 1140,
-      "params": {},
-      "connections": [
-        {
-          "outputId": "releaseEnded",
-          "targetNodeId": "3fafec2e-9057-45a2-ac13-4ad0f91a495a",
-          "inputId": "input"
-        },
-        {
-          "outputId": "releaseEnded",
-          "targetNodeId": "3fafec2e-9057-45a2-ac13-4ad0f91a495a",
-          "inputId": "input"
-        }
-      ],
-      "name": "Libération",
-      "note": ""
-    },
-    {
-      "id": "620e459c-6af8-495f-a736-b7578cf668c5",
-      "feature": "announcement",
-      "category": "softcmp",
-      "featureVersion": "2.7",
-      "x": 372,
-      "y": 816,
-      "params": {
-        "file": {
-          "value": "a8ee3cd9-fad1-482e-9dad-ec351d54995d",
-          "type": "prompt"
-        },
-        "bargein": {
-          "value": true,
-          "type": "bool"
-        },
-        "timeout": {
-          "value": 0,
-          "type": "int"
-        }
-      },
-      "connections": [
-        {
-          "outputId": "callReleased",
-          "targetNodeId": "3fafec2e-9057-45a2-ac13-4ad0f91a495a",
-          "inputId": "input"
-        },
-        {
-          "outputId": "ok",
-          "targetNodeId": "f806a8cd-8591-48a5-9414-75d910d70ad1",
-          "inputId": "input"
-        }
-      ],
-      "name": "Annonce",
       "note": ""
     },
     {
@@ -294,13 +242,7 @@
           "type": "VariablesList"
         }
       },
-      "connections": [
-        {
-          "outputId": "ok",
-          "targetNodeId": "620e459c-6af8-495f-a736-b7578cf668c5",
-          "inputId": "input"
-        }
-      ],
+      "connections": [],
       "name": "Synthèse vocale",
       "note": ""
     },
@@ -320,11 +262,47 @@
       "connections": [
         {
           "outputId": "next",
-          "targetNodeId": "620e459c-6af8-495f-a736-b7578cf668c5",
+          "targetNodeId": "13be39c5-c058-4f26-bf3a-e8e3c480bd9d",
           "inputId": "input"
         }
       ],
       "name": "Langue",
+      "note": ""
+    },
+    {
+      "id": "13be39c5-c058-4f26-bf3a-e8e3c480bd9d",
+      "feature": "announcement",
+      "category": "softcmp",
+      "featureVersion": "2.8",
+      "x": 480,
+      "y": 864,
+      "params": {
+        "file": {
+          "value": "4f5ad0e6-28e9-4e91-8a41-4fa18f5bb096",
+          "type": "prompt"
+        },
+        "bargein": {
+          "value": true,
+          "type": "bool"
+        },
+        "timeout": {
+          "value": 0,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "callReleased",
+          "targetNodeId": "3fafec2e-9057-45a2-ac13-4ad0f91a495a",
+          "inputId": "input"
+        },
+        {
+          "outputId": "ok",
+          "targetNodeId": "3fafec2e-9057-45a2-ac13-4ad0f91a495a",
+          "inputId": "input"
+        }
+      ],
+      "name": "Annonce",
       "note": ""
     }
   ],

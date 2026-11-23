@@ -1,0 +1,148 @@
+{
+  "name": "test-ssh-flow",
+  "id": "a0b9067a-0b2a-4ced-b117-d231f49042f7",
+  "nodes": [
+    {
+      "id": "a432be87-9e3f-4e20-9d4a-4013e74dd725",
+      "feature": "onHttp",
+      "category": "http",
+      "name": "Trigger",
+      "x": 288,
+      "y": 84,
+      "params": {
+        "url": {
+          "type": "textMentions",
+          "value": "/api/flows/sshtest_vna"
+        },
+        "method": {
+          "type": "choice",
+          "value": "GET"
+        },
+        "token": {
+          "type": "token"
+        },
+        "securityComment": {
+          "type": "comment"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ]
+        },
+        "immediate_response": {
+          "type": "bool",
+          "value": true
+        },
+        "response_timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "4301c489-2bee-4dd1-b4d1-ce729012e890",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "2.8"
+    },
+    {
+      "id": "4301c489-2bee-4dd1-b4d1-ce729012e890",
+      "feature": "sshCommand",
+      "category": "ssh",
+      "name": "SSH test",
+      "x": 276,
+      "y": 216,
+      "params": {
+        "host": {
+          "type": "textMentions",
+          "value": "vna-ssh-test"
+        },
+        "port": {
+          "type": "int",
+          "value": 2222
+        },
+        "username": {
+          "type": "textMentions",
+          "value": "testuser"
+        },
+        "password": {
+          "type": "password",
+          "value": "testpass123"
+        },
+        "command": {
+          "type": "textareaMentions",
+          "value": "echo hello from vna && whoami && exit 3"
+        },
+        "timeout": {
+          "type": "int",
+          "value": 30
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "stdout",
+              "parameter": "stdout",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            },
+            {
+              "name": "stderr",
+              "parameter": "stderr",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            },
+            {
+              "name": "exitCode",
+              "parameter": "exitCode",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "int"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "connections": [],
+      "featureVersion": "1.0",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": [],
+  "folder": "Integration"
+}

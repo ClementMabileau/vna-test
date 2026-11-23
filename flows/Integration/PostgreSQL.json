@@ -1,0 +1,439 @@
+{
+  "id": "39b6e061-7559-4a4e-a84e-ad6cf6144e72",
+  "tenantId": "7035b279-5e36-4607-bbfa-2ae7dec0f406",
+  "name": "PostgreSQL",
+  "system": false,
+  "nodes": [
+    {
+      "id": "8444366d-e4f5-446f-950f-d3fad9446406",
+      "feature": "onHttp",
+      "category": "http",
+      "featureVersion": "2.8",
+      "x": 624,
+      "y": 60,
+      "params": {
+        "url": {
+          "value": "/api/flows/postgreSQL",
+          "type": "textMentions"
+        },
+        "method": {
+          "value": "GET",
+          "type": "choice"
+        },
+        "token": {
+          "value": null,
+          "type": "token"
+        },
+        "securityComment": {
+          "value": null,
+          "type": "comment"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "origin": "query",
+              "type": "int",
+              "name": "active",
+              "parameter": "active",
+              "mandatory": false
+            }
+          ],
+          "type": "VariablesList"
+        },
+        "immediate_response": {
+          "value": true,
+          "type": "bool"
+        },
+        "response_timeout": {
+          "value": 60,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "838ce7de-4e62-4208-b6a3-5abb096117b9",
+          "inputId": "input"
+        }
+      ],
+      "name": "Start Test",
+      "note": ""
+    },
+    {
+      "id": "838ce7de-4e62-4208-b6a3-5abb096117b9",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 432,
+      "y": 288,
+      "params": {
+        "msg": {
+          "value": "Hello",
+          "type": "textareaMentions"
+        },
+        "level": {
+          "value": "INFO",
+          "type": "choice"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "aa3e4bd7-5a1a-4e04-b5a6-d8155bdc3bff",
+          "inputId": "input"
+        }
+      ],
+      "name": "Trace",
+      "note": ""
+    },
+    {
+      "id": "794e16b1-e1c9-4d23-8c28-b4ce887faf37",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 96,
+      "y": 1056,
+      "params": {},
+      "connections": [],
+      "name": "Fin",
+      "note": ""
+    },
+    {
+      "id": "e193966c-f9d5-4b2a-80f3-317dd5848159",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 504,
+      "y": 684,
+      "params": {},
+      "connections": [],
+      "name": "Fin error",
+      "note": ""
+    },
+    {
+      "id": "aa3e4bd7-5a1a-4e04-b5a6-d8155bdc3bff",
+      "feature": "postgreSQL",
+      "category": "database",
+      "featureVersion": "1.0",
+      "x": 324,
+      "y": 468,
+      "params": {
+        "server": {
+          "value": "localhost",
+          "type": "textMentions"
+        },
+        "port": {
+          "value": "5432",
+          "type": "textMentions"
+        },
+        "database": {
+          "value": "testdb",
+          "type": "textMentions"
+        },
+        "user": {
+          "value": "postgres",
+          "type": "textMentions"
+        },
+        "password": {
+          "value": "testpass123",
+          "type": "textMentions"
+        },
+        "query": {
+          "value": "INSERT INTO products (name, price, in_stock, quantity, tags, metadata, release_date)\nVALUES ('Gadget Max', 59.90, false, 0, ARRAY['electronics','new'], '{\"color\":\"red\",\"weight_kg\":0.8}', '2025-01-15')\nRETURNING *\n",
+          "type": "textareaMentions"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "result",
+              "parameter": "result.recordset",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "rowsAffected",
+              "parameter": "rowsAffected",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "int"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            }
+          ],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "err",
+          "targetNodeId": "e193966c-f9d5-4b2a-80f3-317dd5848159",
+          "inputId": "input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "90bcddfd-78a9-4695-a96b-048527abc711",
+          "inputId": "input"
+        }
+      ],
+      "name": "INSERT Query"
+    },
+    {
+      "id": "90bcddfd-78a9-4695-a96b-048527abc711",
+      "feature": "postgreSQL",
+      "category": "database",
+      "featureVersion": "1.0",
+      "x": 156,
+      "y": 624,
+      "params": {
+        "server": {
+          "value": "localhost",
+          "type": "textMentions"
+        },
+        "port": {
+          "value": "5432",
+          "type": "textMentions"
+        },
+        "database": {
+          "value": "testdb",
+          "type": "textMentions"
+        },
+        "user": {
+          "value": "postgres",
+          "type": "textMentions"
+        },
+        "password": {
+          "value": "testpass123",
+          "type": "textMentions"
+        },
+        "query": {
+          "value": "SELECT id, name, price, in_stock, quantity, tags, metadata, created_at, release_date FROM products ORDER BY created_at\n",
+          "type": "textareaMentions"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "result",
+              "parameter": "result.recordset",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "rowsAffected",
+              "parameter": "rowsAffected",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "int"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            }
+          ],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "9d292b83-89ac-43a4-962b-7a99b413a7ed",
+          "inputId": "input"
+        }
+      ],
+      "name": "SELECT Query"
+    },
+    {
+      "id": "9d292b83-89ac-43a4-962b-7a99b413a7ed",
+      "feature": "postgreSQL",
+      "category": "database",
+      "featureVersion": "1.0",
+      "x": 96,
+      "y": 768,
+      "params": {
+        "server": {
+          "value": "localhost",
+          "type": "textMentions"
+        },
+        "port": {
+          "value": "5432",
+          "type": "textMentions"
+        },
+        "database": {
+          "value": "testdb",
+          "type": "textMentions"
+        },
+        "user": {
+          "value": "postgres",
+          "type": "textMentions"
+        },
+        "password": {
+          "value": "testpass123",
+          "type": "textMentions"
+        },
+        "query": {
+          "value": "UPDATE products SET price = price * 1.1, in_stock = true WHERE name = 'Gadget Max'\n",
+          "type": "textareaMentions"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "result",
+              "parameter": "result.recordset",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "rowsAffected",
+              "parameter": "rowsAffected",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "int"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            }
+          ],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "5c640e89-cc49-46a0-9682-ee6196c6b50a",
+          "inputId": "input"
+        }
+      ],
+      "name": "UPDATE  Query"
+    },
+    {
+      "id": "5c640e89-cc49-46a0-9682-ee6196c6b50a",
+      "feature": "postgreSQL",
+      "category": "database",
+      "featureVersion": "1.0",
+      "x": 72,
+      "y": 900,
+      "params": {
+        "server": {
+          "value": "localhost",
+          "type": "textMentions"
+        },
+        "port": {
+          "value": "5432",
+          "type": "textMentions"
+        },
+        "database": {
+          "value": "testdb",
+          "type": "textMentions"
+        },
+        "user": {
+          "value": "postgres",
+          "type": "textMentions"
+        },
+        "password": {
+          "value": "testpass123",
+          "type": "textMentions"
+        },
+        "query": {
+          "value": "DELETE FROM products WHERE name = 'Gadget Max'\n",
+          "type": "textareaMentions"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "result",
+              "parameter": "result.recordset",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "rowsAffected",
+              "parameter": "rowsAffected",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "int"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            }
+          ],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "794e16b1-e1c9-4d23-8c28-b4ce887faf37",
+          "inputId": "input"
+        }
+      ],
+      "name": "DELETE Query"
+    }
+  ],
+  "folder": "Integration"
+}

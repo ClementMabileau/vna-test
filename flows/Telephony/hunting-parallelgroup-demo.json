@@ -1,0 +1,488 @@
+{
+  "name": "hunting-parallelgroup-demo",
+  "id": "1056cfcc-2b88-45dd-bf89-7b9d76c1ae6a",
+  "folder": "Telephony",
+  "nodes": [
+    {
+      "id": "in_call",
+      "feature": "incomingCall",
+      "category": "softcmp",
+      "name": "Appel entrant (XXXXX)",
+      "x": 600,
+      "y": 108,
+      "params": {
+        "phoneDisplay": {
+          "type": "phoneDisplay"
+        },
+        "callednumber": {
+          "type": "callednumber",
+          "value": "1500000"
+        },
+        "activateDtmf": {
+          "type": "bool",
+          "value": true
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "callingNumber",
+              "parameter": "callingNumber",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "calledNumber",
+              "parameter": "calledNumber",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "callingName",
+              "parameter": "callingName",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "callingNumberType",
+              "parameter": "callingNumberType",
+              "displayed": false,
+              "editable": false,
+              "type": "object"
+            },
+            {
+              "name": "calledNumberType",
+              "parameter": "calledNumberType",
+              "displayed": false,
+              "editable": false,
+              "type": "object"
+            },
+            {
+              "name": "chargingNumber",
+              "parameter": "chargingNumber",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "initialCalledNumber",
+              "parameter": "initialCalledNumber",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "diversionReason",
+              "parameter": "diversionReason",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "redirectingNumber",
+              "parameter": "redirectingNumber",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "redirectingName",
+              "parameter": "redirectingName",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "abcfMessageRef",
+              "parameter": "abcfMessageRef",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "partyCategory",
+              "parameter": "partyCategory",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "correlatorData",
+              "parameter": "correlatorData",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "globalCallId",
+              "parameter": "globalCallId",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "callReference",
+              "parameter": "callRef",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            }
+          ]
+        },
+        "auto_answer": {
+          "type": "bool",
+          "value": true
+        },
+        "sipHeader": {
+          "type": "sipHeader",
+          "value": {
+            "checked": false,
+            "sipHeadersNames": []
+          }
+        }
+      },
+      "connections": [
+        {
+          "outputId": "msg",
+          "targetNodeId": "7db41051-bee7-4edb-a5dd-e3096fb7be11",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "2.1"
+    },
+    {
+      "id": "b08b4477-321f-4bb9-a794-441573af4472",
+      "feature": "makeCall",
+      "category": "softcmp",
+      "featureVersion": "1.9",
+      "x": 432,
+      "y": 444,
+      "params": {
+        "phoneDisplay": {
+          "value": null,
+          "type": "phoneDisplay"
+        },
+        "number": {
+          "value": "",
+          "type": "phoneNumber"
+        },
+        "ringingTimer": {
+          "value": 30,
+          "type": "numberOrVarFormat"
+        },
+        "callingNumber": {
+          "value": "VAR(tenantDid)",
+          "type": "phoneNumber"
+        },
+        "correlatorData": {
+          "value": "",
+          "type": "phoneDisplay"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "callingNumber",
+              "parameter": "callingNumber",
+              "displayed": false,
+              "type": "string"
+            },
+            {
+              "name": "calledNumber",
+              "parameter": "calledNumber",
+              "displayed": false,
+              "type": "string"
+            },
+            {
+              "name": "abcfMessageRef",
+              "parameter": "abcfMessageRef",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "callReference",
+              "parameter": "callRef",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "originalCalledNumber",
+              "parameter": "originalCalledNumber",
+              "displayed": false,
+              "type": "string"
+            }
+          ],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "makeCallDone",
+          "targetNodeId": "d5d5bf94-58e4-4a49-8b6f-13842b15c4d1",
+          "inputId": "input"
+        }
+      ],
+      "name": "Appeler",
+      "note": ""
+    },
+    {
+      "id": "d19ab44c-1c00-4f74-a774-bd321d4c00d2",
+      "feature": "makeCall",
+      "category": "softcmp",
+      "featureVersion": "1.9",
+      "x": 708,
+      "y": 444,
+      "params": {
+        "phoneDisplay": {
+          "value": null,
+          "type": "phoneDisplay"
+        },
+        "number": {
+          "value": "",
+          "type": "phoneNumber"
+        },
+        "ringingTimer": {
+          "value": 30,
+          "type": "numberOrVarFormat"
+        },
+        "callingNumber": {
+          "value": "VAR(tenantDid)",
+          "type": "phoneNumber"
+        },
+        "correlatorData": {
+          "value": "",
+          "type": "phoneDisplay"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "callingNumber",
+              "parameter": "callingNumber",
+              "displayed": false,
+              "type": "string"
+            },
+            {
+              "name": "calledNumber",
+              "parameter": "calledNumber",
+              "displayed": false,
+              "type": "string"
+            },
+            {
+              "name": "abcfMessageRef",
+              "parameter": "abcfMessageRef",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "callReference",
+              "parameter": "callRef",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "originalCalledNumber",
+              "parameter": "originalCalledNumber",
+              "displayed": false,
+              "type": "string"
+            }
+          ],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "makeCallDone",
+          "targetNodeId": "d5d5bf94-58e4-4a49-8b6f-13842b15c4d1",
+          "inputId": "input"
+        }
+      ],
+      "name": "Appeler",
+      "note": ""
+    },
+    {
+      "id": "35a321ac-73ef-4997-82d3-f7b6249843d4",
+      "feature": "makeCall",
+      "category": "softcmp",
+      "featureVersion": "1.9",
+      "x": 984,
+      "y": 444,
+      "params": {
+        "phoneDisplay": {
+          "value": null,
+          "type": "phoneDisplay"
+        },
+        "number": {
+          "value": "",
+          "type": "phoneNumber"
+        },
+        "ringingTimer": {
+          "value": 30,
+          "type": "numberOrVarFormat"
+        },
+        "callingNumber": {
+          "value": "VAR(tenantDid)",
+          "type": "phoneNumber"
+        },
+        "correlatorData": {
+          "value": "",
+          "type": "phoneDisplay"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "callingNumber",
+              "parameter": "callingNumber",
+              "displayed": false,
+              "type": "string"
+            },
+            {
+              "name": "calledNumber",
+              "parameter": "calledNumber",
+              "displayed": false,
+              "type": "string"
+            },
+            {
+              "name": "abcfMessageRef",
+              "parameter": "abcfMessageRef",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "callReference",
+              "parameter": "callRef",
+              "displayed": false,
+              "editable": false,
+              "type": "string"
+            },
+            {
+              "name": "originalCalledNumber",
+              "parameter": "originalCalledNumber",
+              "displayed": false,
+              "type": "string"
+            }
+          ],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "makeCallDone",
+          "targetNodeId": "d5d5bf94-58e4-4a49-8b6f-13842b15c4d1",
+          "inputId": "input"
+        }
+      ],
+      "name": "Appeler",
+      "note": ""
+    },
+    {
+      "id": "7db41051-bee7-4edb-a5dd-e3096fb7be11",
+      "feature": "split",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 600,
+      "y": 240,
+      "params": {
+        "output": {
+          "value": 4,
+          "type": "outputsNumber"
+        },
+        "comment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "split1",
+          "targetNodeId": "b08b4477-321f-4bb9-a794-441573af4472",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split2",
+          "targetNodeId": "d19ab44c-1c00-4f74-a774-bd321d4c00d2",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split3",
+          "targetNodeId": "35a321ac-73ef-4997-82d3-f7b6249843d4",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split0",
+          "targetNodeId": "5996aa59-37d2-4d69-94a2-fe1e9db312dc",
+          "inputId": "input"
+        }
+      ],
+      "name": "Split",
+      "note": ""
+    },
+    {
+      "id": "5996aa59-37d2-4d69-94a2-fe1e9db312dc",
+      "feature": "announcement",
+      "category": "softcmp",
+      "featureVersion": "2.8",
+      "x": 144,
+      "y": 444,
+      "params": {
+        "file": {
+          "value": "",
+          "type": "prompt"
+        },
+        "bargein": {
+          "value": true,
+          "type": "bool"
+        },
+        "timeout": {
+          "value": 0,
+          "type": "int"
+        }
+      },
+      "connections": [],
+      "name": "Annonce",
+      "note": ""
+    },
+    {
+      "id": "d5d5bf94-58e4-4a49-8b6f-13842b15c4d1",
+      "feature": "race",
+      "category": "dev",
+      "featureVersion": "1.0",
+      "x": 696,
+      "y": 612,
+      "params": {},
+      "connections": [],
+      "name": "Course",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": []
+}

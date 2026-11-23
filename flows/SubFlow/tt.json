@@ -1,0 +1,84 @@
+{
+  "name": "tt",
+  "id": "4c168ab0-6114-4ca3-b5de-c12d2b534ae3",
+  "nodes": [
+    {
+      "id": "91d2b6fb-2e30-4d64-9b16-cd2540ebbf47",
+      "feature": "input",
+      "category": "subflow",
+      "featureVersion": "1.1",
+      "x": 300,
+      "y": 510,
+      "params": {
+        "variables_comment": {
+          "value": null,
+          "type": "comment"
+        },
+        "variables": {
+          "value": [],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "7e458064-54c6-4697-9ce9-61baf419123e",
+          "inputId": "input"
+        }
+      ],
+      "name": "Entrée"
+    },
+    {
+      "note": "",
+      "feature": "trace",
+      "x": 300,
+      "name": "Trace résultat",
+      "y": 660,
+      "id": "7e458064-54c6-4697-9ce9-61baf419123e",
+      "category": "dev",
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "Speech-to-text terminé - voir transcribedText dans le payload de cette activité"
+        },
+        "level": {
+          "type": "choice",
+          "value": "INFO"
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "aba8ffab-c2dc-4ba1-bd48-4aba47d9c857",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "id": "aba8ffab-c2dc-4ba1-bd48-4aba47d9c857",
+      "feature": "output",
+      "category": "subflow",
+      "featureVersion": "1.1",
+      "x": 300,
+      "y": 810,
+      "params": {
+        "output": {
+          "type": "int",
+          "value": 1
+        },
+        "outputcomment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [],
+      "name": "Sortie",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": [],
+  "folder": "SubFlow"
+}

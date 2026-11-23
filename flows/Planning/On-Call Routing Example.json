@@ -1,0 +1,269 @@
+{
+  "name": "On-Call Routing Example",
+  "id": "d3e97dd1-6afd-4ff7-a4d8-9a6cdecab634",
+  "folder": "Planning",
+  "nodes": [
+    {
+      "id": "58b1f9be-b95a-493b-b92f-11f5056f3d71",
+      "feature": "onHttp",
+      "category": "http",
+      "x": 468,
+      "y": 60,
+      "params": {
+        "url": {
+          "value": "/api/flows/oncall-example-en",
+          "type": "textMentions"
+        },
+        "method": {
+          "value": "GET",
+          "type": "choice"
+        },
+        "token": {
+          "value": null,
+          "type": "token"
+        },
+        "securityComment": {
+          "value": null,
+          "type": "comment"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ],
+          "type": "VariablesList"
+        },
+        "immediate_response": {
+          "value": true,
+          "type": "bool"
+        },
+        "response_timeout": {
+          "value": 60,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "a810ce87-d6b0-4e2b-8ced-a9f961aac581",
+          "inputId": "input"
+        },
+        {
+          "outputId": "err",
+          "targetNodeId": "8678c6c9-895a-400f-aac1-877a8b6299a5",
+          "inputId": "input"
+        }
+      ],
+      "name": "Incoming Request",
+      "note": "",
+      "featureVersion": "2.8"
+    },
+    {
+      "id": "a810ce87-d6b0-4e2b-8ced-a9f961aac581",
+      "feature": "astreinte",
+      "category": "planning",
+      "x": 348,
+      "y": 204,
+      "params": {
+        "configId": {
+          "value": "e814e7b9-64ab-4d0a-872d-e226927d37a1",
+          "type": "tenantAstreinteConfig"
+        },
+        "checkDateTime": {
+          "value": null,
+          "type": "dateTimeOrVarFormat"
+        },
+        "wholeDay": {
+          "value": false,
+          "type": "bool"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "onCallPersons",
+              "parameter": "onCallPersons",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "firstOnCallPerson",
+              "parameter": "firstOnCallPerson",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "found",
+          "targetNodeId": "b6fac8d5-2a68-4308-83e3-27fa370ee9b7",
+          "inputId": "input"
+        },
+        {
+          "outputId": "noOnCall",
+          "targetNodeId": "8678c6c9-895a-400f-aac1-877a8b6299a5",
+          "inputId": "input"
+        },
+        {
+          "outputId": "err",
+          "targetNodeId": "8678c6c9-895a-400f-aac1-877a8b6299a5",
+          "inputId": "input"
+        }
+      ],
+      "name": "Check On-Call",
+      "note": "",
+      "featureVersion": "1.0"
+    },
+    {
+      "id": "b6fac8d5-2a68-4308-83e3-27fa370ee9b7",
+      "feature": "variable",
+      "category": "dev",
+      "x": 228,
+      "y": 372,
+      "params": {
+        "variable": {
+          "value": [
+            {
+              "name": "firstOnCallPersonName",
+              "type": "string",
+              "value": "VAR(firstOnCallPerson).name"
+            },
+            {
+              "name": "firstOnCallPersonNumber",
+              "type": "string",
+              "value": "VAR(firstOnCallPerson).phones[0].number"
+            }
+          ],
+          "type": "variableMgt"
+        },
+        "comment": {
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "d7e131bc-1cd3-4085-adae-5bed9236a51a",
+          "inputId": "input"
+        },
+        {
+          "outputId": "err",
+          "targetNodeId": "8678c6c9-895a-400f-aac1-877a8b6299a5",
+          "inputId": "input"
+        }
+      ],
+      "name": "Extract Contact Details",
+      "note": "",
+      "featureVersion": "3.1"
+    },
+    {
+      "id": "d7e131bc-1cd3-4085-adae-5bed9236a51a",
+      "feature": "sendRainbowMessage",
+      "category": "rainbow",
+      "x": 84,
+      "y": 552,
+      "params": {
+        "message": {
+          "value": "An emergency has been reported. On-call contact: VAR(firstOnCallPersonName), phone: VAR(firstOnCallPersonNumber).",
+          "type": "textareaMentions"
+        },
+        "messageType": {
+          "value": "Emergency",
+          "type": "choice"
+        },
+        "users": {
+          "value": null,
+          "type": "users"
+        },
+        "groups": {
+          "value": null,
+          "type": "groups"
+        },
+        "bubbleList": {
+          "value": null,
+          "type": "bubble"
+        },
+        "format": {
+          "value": "text",
+          "type": "choice"
+        },
+        "jid": {
+          "value": "",
+          "type": "textMentions"
+        },
+        "attachments": {
+          "value": null,
+          "type": "attachments"
+        },
+        "receiptTimeout": {
+          "value": 5,
+          "type": "int"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "status",
+              "parameter": "status",
+              "displayed": false,
+              "editable": false,
+              "type": "object"
+            }
+          ],
+          "type": "VariablesList"
+        },
+        "comment": {
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "sent",
+          "targetNodeId": "8678c6c9-895a-400f-aac1-877a8b6299a5",
+          "inputId": "input"
+        },
+        {
+          "outputId": "err",
+          "targetNodeId": "8678c6c9-895a-400f-aac1-877a8b6299a5",
+          "inputId": "input"
+        }
+      ],
+      "name": "Notify On-Call Contact",
+      "note": "",
+      "featureVersion": "2.7"
+    },
+    {
+      "id": "8678c6c9-895a-400f-aac1-877a8b6299a5",
+      "feature": "end",
+      "category": "dev",
+      "x": 636,
+      "y": 684,
+      "params": {},
+      "connections": [],
+      "name": "End",
+      "note": "",
+      "featureVersion": "1.1"
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": []
+}

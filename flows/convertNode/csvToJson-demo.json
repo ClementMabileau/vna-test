@@ -1,0 +1,193 @@
+{
+  "name": "csvToJson-demo",
+  "id": "62968833-455b-47b8-b4b2-7078452eecde",
+  "nodes": [
+    {
+      "id": "n4_end",
+      "feature": "end",
+      "category": "dev",
+      "name": "End",
+      "x": 100,
+      "y": 460,
+      "params": {},
+      "connections": [],
+      "featureVersion": "1.1"
+    },
+    {
+      "id": "f5d2e75d-c830-4879-bcb4-9e71165b25c0",
+      "feature": "onHttp",
+      "category": "http",
+      "featureVersion": "2.8",
+      "x": 72,
+      "y": 156,
+      "params": {
+        "url": {
+          "type": "textMentions",
+          "value": "/api/flows/csv-json-post-demo"
+        },
+        "method": {
+          "type": "choice",
+          "value": "POST"
+        },
+        "token": {
+          "type": "token"
+        },
+        "securityComment": {
+          "type": "comment"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "file"
+            }
+          ]
+        },
+        "immediate_response": {
+          "type": "bool",
+          "value": true
+        },
+        "response_timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "5864bc46-df42-452a-83e7-356464fcca54",
+          "inputId": "input"
+        },
+        {
+          "outputId": "err",
+          "targetNodeId": "n4_end",
+          "inputId": "in_input"
+        }
+      ],
+      "name": "Trigger (POST + file)",
+      "note": ""
+    },
+    {
+      "id": "5864bc46-df42-452a-83e7-356464fcca54",
+      "feature": "csvToJson",
+      "category": "dev",
+      "featureVersion": "1.0",
+      "x": 84,
+      "y": 312,
+      "params": {
+        "attachments": {
+          "value": [
+            "VAR(body)"
+          ],
+          "type": "attachments"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "result",
+              "parameter": "result",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            }
+          ],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "n4_end",
+          "inputId": "in_input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "n4_end",
+          "inputId": "in_input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "n4_end",
+          "inputId": "in_input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "n4_end",
+          "inputId": "in_input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "n4_end",
+          "inputId": "in_input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "n4_end",
+          "inputId": "in_input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "n4_end",
+          "inputId": "in_input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "n4_end",
+          "inputId": "in_input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "n4_end",
+          "inputId": "in_input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "n4_end",
+          "inputId": "in_input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "n4_end",
+          "inputId": "in_input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "n4_end",
+          "inputId": "in_input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "n4_end",
+          "inputId": "input"
+        }
+      ],
+      "name": "CSV vers JSON",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": true,
+  "frames": [],
+  "folder": "convertNode"
+}

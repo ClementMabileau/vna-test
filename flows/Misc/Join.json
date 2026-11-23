@@ -1,6 +1,7 @@
 {
   "name": "Join",
   "id": "cf1efa08-5abb-4294-b073-e090f791bb9e",
+  "folder": "Misc",
   "nodes": [
     {
       "id": "e844865f-076e-45bf-abff-1399e731f8d3",
@@ -196,7 +197,7 @@
       "id": "fd9068af-7058-460c-af36-0d9f6c50d0e1",
       "feature": "condition",
       "category": "dev",
-      "featureVersion": "2.2",
+      "featureVersion": "2.3",
       "x": 216,
       "y": 1080,
       "params": {
@@ -216,6 +217,10 @@
             }
           ],
           "type": "variableValues"
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
         }
       },
       "connections": [
@@ -256,7 +261,7 @@
       "id": "28013e51-548a-47d4-9a5c-7c1c51e53187",
       "feature": "condition",
       "category": "dev",
-      "featureVersion": "2.2",
+      "featureVersion": "2.3",
       "x": 72,
       "y": 588,
       "params": {
@@ -276,6 +281,10 @@
             }
           ],
           "type": "variableValues"
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
         }
       },
       "connections": [
@@ -471,37 +480,9 @@
       ],
       "name": "Join",
       "note": ""
-    },
-    {
-      "id": "0a158521-122d-442b-b6c9-9e50ea2d9ff5",
-      "feature": "loop",
-      "category": "dev",
-      "featureVersion": "1.2",
-      "x": 96,
-      "y": 168,
-      "params": {
-        "list": {
-          "value": "",
-          "type": "text"
-        },
-        "variable": {
-          "value": [
-            {
-              "type": "",
-              "name": "currentItem"
-            }
-          ],
-          "type": "variableCurrentItem"
-        },
-        "comment": {
-          "value": null,
-          "type": "comment"
-        }
-      },
-      "connections": [],
-      "name": "Loop",
-      "note": ""
     }
   ],
-  "globalVariables": []
+  "globalVariables": [],
+  "test": false,
+  "frames": []
 }

@@ -1,6 +1,7 @@
 {
   "name": "Test Speech To Text",
   "id": "2c7864ab-d602-4887-a8ce-1d04e1141d8d",
+  "folder": "Misc",
   "nodes": [
     {
       "note": "",

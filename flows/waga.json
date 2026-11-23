@@ -1,0 +1,140 @@
+{
+  "name": "waga",
+  "id": "6ab3d0c7-3676-4e0d-b80a-d1265ba9a807",
+  "nodes": [
+    {
+      "id": "457828c1-b048-4d49-aa46-bd26bcae3f1b",
+      "feature": "onHttp",
+      "category": "http",
+      "featureVersion": "2.8",
+      "x": 540,
+      "y": 192,
+      "params": {
+        "url": {
+          "value": "/api/flows/",
+          "type": "textMentions"
+        },
+        "method": {
+          "value": "GET",
+          "type": "choice"
+        },
+        "token": {
+          "value": null,
+          "type": "token"
+        },
+        "securityComment": {
+          "value": null,
+          "type": "comment"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ],
+          "type": "VariablesList"
+        },
+        "immediate_response": {
+          "value": true,
+          "type": "bool"
+        },
+        "response_timeout": {
+          "value": 60,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "046a624e-13df-4b04-9985-d04f88615795",
+          "inputId": "input"
+        },
+        {
+          "outputId": "err",
+          "targetNodeId": "2b11ab11-36d7-46f3-b737-f3a75b0191e3",
+          "inputId": "input"
+        }
+      ],
+      "name": "On HTTP",
+      "note": ""
+    },
+    {
+      "id": "046a624e-13df-4b04-9985-d04f88615795",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 396,
+      "y": 372,
+      "params": {
+        "msg": {
+          "value": "Message Trace",
+          "type": "textareaMentions"
+        },
+        "level": {
+          "value": "info",
+          "type": "choice"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "681a90a5-1193-484b-b3d3-80b81a9c3648",
+          "inputId": "input"
+        }
+      ],
+      "name": "Trace",
+      "note": ""
+    },
+    {
+      "id": "2b11ab11-36d7-46f3-b737-f3a75b0191e3",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 698,
+      "y": 372,
+      "params": {
+        "msg": {
+          "value": "Message Trace",
+          "type": "textareaMentions"
+        },
+        "level": {
+          "value": "info",
+          "type": "choice"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "681a90a5-1193-484b-b3d3-80b81a9c3648",
+          "inputId": "input"
+        }
+      ],
+      "name": "Trace",
+      "note": ""
+    },
+    {
+      "id": "681a90a5-1193-484b-b3d3-80b81a9c3648",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 540,
+      "y": 540,
+      "params": {},
+      "connections": [],
+      "name": "End",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": [],
+  "folder": null
+}

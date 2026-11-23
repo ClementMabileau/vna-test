@@ -1,0 +1,186 @@
+{
+  "name": "xml-json-post-demo",
+  "test": true,
+  "globalVariables": [],
+  "nodes": [
+    {
+      "id": "pdemo_http",
+      "feature": "onHttp",
+      "category": "http",
+      "name": "Trigger (POST + file)",
+      "x": 100,
+      "y": 100,
+      "params": {
+        "url": {
+          "type": "textMentions",
+          "value": "/api/flows/xml-json-post-demo"
+        },
+        "method": {
+          "type": "choice",
+          "value": "POST"
+        },
+        "token": {
+          "type": "token"
+        },
+        "securityComment": {
+          "type": "comment"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ]
+        },
+        "immediate_response": {
+          "type": "bool",
+          "value": true
+        },
+        "response_timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "request",
+          "targetNodeId": "pdemo_x2j"
+        }
+      ],
+      "featureVersion": "2.8"
+    },
+    {
+      "id": "pdemo_x2j",
+      "feature": "xmlToJson",
+      "category": "dev",
+      "name": "XML to JSON",
+      "x": 100,
+      "y": 220,
+      "params": {
+        "attachments": {
+          "type": "attachments",
+          "value": [
+            "VAR(body)"
+          ]
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "result",
+              "parameter": "result",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "pdemo_j2x"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "pdemo_end"
+        }
+      ],
+      "featureVersion": "1.0"
+    },
+    {
+      "id": "pdemo_j2x",
+      "feature": "jsonToXml",
+      "category": "dev",
+      "name": "JSON to XML",
+      "x": 100,
+      "y": 340,
+      "params": {
+        "json": {
+          "type": "textareaMentions",
+          "value": "VAR(result)"
+        },
+        "rootTag": {
+          "type": "textMentions",
+          "value": "reconverted"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "result",
+              "parameter": "result",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "pdemo_end"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "pdemo_end"
+        }
+      ],
+      "featureVersion": "1.0"
+    },
+    {
+      "id": "pdemo_end",
+      "feature": "end",
+      "category": "dev",
+      "name": "End",
+      "x": 100,
+      "y": 460,
+      "params": {},
+      "connections": [],
+      "featureVersion": "1.1"
+    }
+  ],
+  "id": "0d40fbb3-4497-468f-99ea-60e3e9308f9a",
+  "folder": "convertNode"
+}

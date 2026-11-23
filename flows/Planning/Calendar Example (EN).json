@@ -1,0 +1,167 @@
+{
+  "name": "Calendar Example (EN)",
+  "folder": "Planning",
+  "nodes": [
+    {
+      "id": "http_trigger",
+      "feature": "onHttp",
+      "category": "http",
+      "name": "Incoming Request",
+      "x": 300,
+      "y": 60,
+      "params": {
+        "url": {
+          "type": "textMentions",
+          "value": "/api/flows/calendar-example"
+        },
+        "method": {
+          "type": "choice",
+          "value": "GET"
+        },
+        "token": {
+          "type": "token"
+        },
+        "securityComment": {
+          "type": "comment"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ]
+        },
+        "immediate_response": {
+          "type": "bool",
+          "value": true
+        },
+        "response_timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "cal_check",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "2.8"
+    },
+    {
+      "id": "cal_check",
+      "feature": "calendar",
+      "category": "planning",
+      "name": "Check Calendar",
+      "x": 300,
+      "y": 180,
+      "params": {
+        "calendarId": {
+          "type": "tenantCalendar",
+          "value": "UK public holidays 2026"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "open",
+          "targetNodeId": "trace_open",
+          "inputId": "input"
+        },
+        {
+          "outputId": "closed",
+          "targetNodeId": "trace_closed",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "1.0"
+    },
+    {
+      "id": "trace_open",
+      "feature": "trace",
+      "category": "dev",
+      "name": "Trace - Not a holiday",
+      "x": 150,
+      "y": 300,
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "Today is not a holiday.\n"
+        },
+        "level": {
+          "type": "choice",
+          "value": "info"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "end_open",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "2.2"
+    },
+    {
+      "id": "trace_closed",
+      "feature": "trace",
+      "category": "dev",
+      "name": "Trace - Holiday",
+      "x": 450,
+      "y": 300,
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "Today is a public holiday.\n"
+        },
+        "level": {
+          "type": "choice",
+          "value": "info"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "end_closed",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "2.2"
+    },
+    {
+      "id": "end_open",
+      "feature": "end",
+      "category": "dev",
+      "name": "End",
+      "x": 150,
+      "y": 420,
+      "params": {},
+      "connections": [],
+      "featureVersion": "1.1"
+    },
+    {
+      "id": "end_closed",
+      "feature": "end",
+      "category": "dev",
+      "name": "End",
+      "x": 450,
+      "y": 420,
+      "params": {},
+      "connections": [],
+      "featureVersion": "1.1"
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": [],
+  "id": "f2528fd8-edeb-4754-a92c-bfdec4b26c75"
+}

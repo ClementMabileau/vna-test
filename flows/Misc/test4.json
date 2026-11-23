@@ -1,0 +1,230 @@
+{
+  "name": "test4",
+  "id": "f83aebe7-8311-4cf6-822c-9409ebbb2220",
+  "folder": "Misc",
+  "nodes": [
+    {
+      "id": "22c1fcf6-6ec7-4b37-b46d-7e23c1ea76a9",
+      "feature": "input",
+      "category": "subflow",
+      "featureVersion": "1.1",
+      "x": 552,
+      "y": 678,
+      "params": {
+        "variables_comment": {
+          "value": null,
+          "type": "comment"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "body",
+              "type": "object",
+              "parameter": "body"
+            },
+            {
+              "name": "clientip",
+              "type": "string",
+              "parameter": "clientip"
+            },
+            {
+              "name": "callingNumber",
+              "type": "string",
+              "parameter": "callingNumber"
+            },
+            {
+              "name": "calledNumber",
+              "type": "string",
+              "parameter": "calledNumber"
+            },
+            {
+              "name": "abcfMessageRef",
+              "type": "string",
+              "parameter": "abcfMessageRef"
+            },
+            {
+              "name": "error",
+              "type": "string",
+              "parameter": "error"
+            },
+            {
+              "name": "callReference",
+              "type": "string",
+              "parameter": "callReference"
+            }
+          ],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "6a64d4b7-bdec-4a45-a4a1-7e242f1722d2",
+          "inputId": "input"
+        }
+      ],
+      "name": "Entrée"
+    },
+    {
+      "id": "6a64d4b7-bdec-4a45-a4a1-7e242f1722d2",
+      "feature": "announcement",
+      "category": "softcmp",
+      "featureVersion": "2.8",
+      "x": 552,
+      "y": 828,
+      "params": {
+        "file": {
+          "value": "",
+          "type": "prompt"
+        },
+        "bargein": {
+          "value": true,
+          "type": "bool"
+        },
+        "timeout": {
+          "value": 0,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "ok",
+          "targetNodeId": "5dcc6713-b58e-4ab3-9e22-e9decbf69135",
+          "inputId": "input"
+        },
+        {
+          "outputId": "callReleased",
+          "targetNodeId": "931326ec-24c5-4824-b632-a49624356391",
+          "inputId": "input"
+        }
+      ],
+      "name": "Annonce",
+      "note": ""
+    },
+    {
+      "id": "5dcc6713-b58e-4ab3-9e22-e9decbf69135",
+      "feature": "output",
+      "category": "subflow",
+      "featureVersion": "1.1",
+      "x": 552,
+      "y": 978,
+      "params": {
+        "output": {
+          "type": "int",
+          "value": 1
+        },
+        "outputcomment": {
+          "value": null,
+          "type": "comment"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "body",
+              "type": "object",
+              "parameter": "body"
+            },
+            {
+              "name": "clientip",
+              "type": "string",
+              "parameter": "clientip"
+            },
+            {
+              "name": "callingNumber",
+              "type": "string",
+              "parameter": "callingNumber"
+            },
+            {
+              "name": "calledNumber",
+              "type": "string",
+              "parameter": "calledNumber"
+            },
+            {
+              "name": "abcfMessageRef",
+              "type": "string",
+              "parameter": "abcfMessageRef"
+            },
+            {
+              "name": "error",
+              "type": "string",
+              "parameter": "error"
+            },
+            {
+              "name": "callReference",
+              "type": "string",
+              "parameter": "callReference"
+            }
+          ]
+        }
+      },
+      "connections": [],
+      "name": "Sortie",
+      "note": ""
+    },
+    {
+      "id": "931326ec-24c5-4824-b632-a49624356391",
+      "feature": "output",
+      "category": "subflow",
+      "featureVersion": "1.1",
+      "x": 752,
+      "y": 978,
+      "params": {
+        "output": {
+          "type": "int",
+          "value": 2
+        },
+        "outputcomment": {
+          "value": null,
+          "type": "comment"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "body",
+              "type": "object",
+              "parameter": "body"
+            },
+            {
+              "name": "clientip",
+              "type": "string",
+              "parameter": "clientip"
+            },
+            {
+              "name": "callingNumber",
+              "type": "string",
+              "parameter": "callingNumber"
+            },
+            {
+              "name": "calledNumber",
+              "type": "string",
+              "parameter": "calledNumber"
+            },
+            {
+              "name": "abcfMessageRef",
+              "type": "string",
+              "parameter": "abcfMessageRef"
+            },
+            {
+              "name": "error",
+              "type": "string",
+              "parameter": "error"
+            },
+            {
+              "name": "callReference",
+              "type": "string",
+              "parameter": "callReference"
+            }
+          ]
+        }
+      },
+      "connections": [],
+      "name": "Sortie",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": []
+}

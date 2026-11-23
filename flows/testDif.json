@@ -1,0 +1,207 @@
+{
+  "name": "testDif",
+  "id": "e4e603fc-fceb-426c-82e3-e8626a7948a3",
+  "nodes": [
+    {
+      "note": "",
+      "feature": "onHttp",
+      "x": 540,
+      "name": "On HTTP",
+      "y": 192,
+      "id": "3beccc21-f322-4484-a354-a405d11d899d",
+      "category": "http",
+      "params": {
+        "response_timeout": {
+          "type": "int",
+          "value": 60
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "displayed": true,
+              "nameEditable": true,
+              "originEditable": false,
+              "editable": true,
+              "removable": false,
+              "parameter": "body",
+              "name": "body",
+              "parameterEditable": false,
+              "type": "object"
+            }
+          ]
+        },
+        "immediate_response": {
+          "type": "bool",
+          "value": true
+        },
+        "method": {
+          "type": "choice",
+          "value": "GET"
+        },
+        "securityComment": {
+          "type": "comment",
+          "value": null
+        },
+        "url": {
+          "type": "textMentions",
+          "value": "/api/flows/"
+        },
+        "token": {
+          "type": "token",
+          "value": null
+        }
+      },
+      "featureVersion": "2.8",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "request",
+          "targetNodeId": "b500e988-1c80-499e-9bcf-b99a6efac8be"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "1b7eddb5-0542-44ec-a022-4ec78ee6ff29"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "trace",
+      "x": 396,
+      "name": "Trace",
+      "y": 372,
+      "id": "b500e988-1c80-499e-9bcf-b99a6efac8be",
+      "category": "dev",
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "Message Trace"
+        },
+        "level": {
+          "type": "choice",
+          "value": "info"
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "f79c8b32-8865-4f54-8f5b-0eb3401cf6f3"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "trace",
+      "x": 698,
+      "name": "Trace",
+      "y": 372,
+      "id": "1b7eddb5-0542-44ec-a022-4ec78ee6ff29",
+      "category": "dev",
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "zkjfskszkf"
+        },
+        "level": {
+          "type": "choice",
+          "value": "info"
+        }
+      },
+      "featureVersion": "2.2",
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "done",
+          "targetNodeId": "f79c8b32-8865-4f54-8f5b-0eb3401cf6f3"
+        }
+      ]
+    },
+    {
+      "note": "",
+      "feature": "end",
+      "x": 540,
+      "name": "End",
+      "y": 540,
+      "id": "f79c8b32-8865-4f54-8f5b-0eb3401cf6f3",
+      "category": "dev",
+      "params": {},
+      "featureVersion": "1.1",
+      "connections": []
+    },
+    {
+      "id": "43b1e69b-73be-4c56-aec2-e9f2077cabfc",
+      "feature": "calendar",
+      "category": "planning",
+      "featureVersion": "1.0",
+      "x": 276,
+      "y": 684,
+      "params": {
+        "calendarId": {
+          "value": "",
+          "type": "tenantCalendar"
+        }
+      },
+      "connections": [],
+      "name": "Calendar",
+      "note": ""
+    },
+    {
+      "id": "965dea6d-1839-44d5-9bb7-d80efa24cd23",
+      "feature": "astreinte",
+      "category": "planning",
+      "featureVersion": "1.0",
+      "x": 888,
+      "y": 504,
+      "params": {
+        "configId": {
+          "value": "",
+          "type": "tenantAstreinteConfig"
+        },
+        "checkDateTime": {
+          "value": null,
+          "type": "dateTimeOrVarFormat"
+        },
+        "wholeDay": {
+          "value": false,
+          "type": "bool"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "onCallPersons",
+              "parameter": "onCallPersons",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "firstOnCallPerson",
+              "parameter": "firstOnCallPerson",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ],
+          "type": "VariablesList"
+        }
+      },
+      "connections": [],
+      "name": "On-Call",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": [],
+  "folder": null
+}

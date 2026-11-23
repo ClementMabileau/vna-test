@@ -64,84 +64,13 @@
       },
       "connections": [
         {
-          "outputId": "split0",
-          "targetNodeId": "splitA",
-          "inputId": "input"
-        },
-        {
           "outputId": "split1",
           "targetNodeId": "waitZ",
           "inputId": "input"
-        }
-      ]
-    },
-    {
-      "feature": "split",
-      "id": "splitA",
-      "x": 180,
-      "y": 240,
-      "category": "dev",
-      "name": "SplitA",
-      "featureVersion": "1.1",
-      "params": {
-        "output": {
-          "value": 2,
-          "type": "outputsNumber"
-        }
-      },
-      "connections": [
-        {
-          "outputId": "split0",
-          "targetNodeId": "waitX",
-          "inputId": "input"
         },
         {
-          "outputId": "split1",
-          "targetNodeId": "waitY",
-          "inputId": "input"
-        }
-      ]
-    },
-    {
-      "feature": "wait",
-      "id": "waitX",
-      "x": 36,
-      "y": 372,
-      "category": "dev",
-      "name": "Wait X 10s",
-      "featureVersion": "1.2",
-      "params": {
-        "time": {
-          "value": 10,
-          "type": "int"
-        }
-      },
-      "connections": [
-        {
-          "outputId": "next",
-          "targetNodeId": "0f6cb64a-c59e-4f71-9f81-1163747149ff",
-          "inputId": "input"
-        }
-      ]
-    },
-    {
-      "feature": "wait",
-      "id": "waitY",
-      "x": 252,
-      "y": 360,
-      "category": "dev",
-      "name": "Wait Y 15s",
-      "featureVersion": "1.2",
-      "params": {
-        "time": {
-          "value": 15,
-          "type": "int"
-        }
-      },
-      "connections": [
-        {
-          "outputId": "next",
-          "targetNodeId": "81a14c54-a350-45be-9b86-eb223de8f7f9",
+          "outputId": "split0",
+          "targetNodeId": "2caebe08-ba3d-4476-8ea7-94ad935ccf97",
           "inputId": "input"
         }
       ]
@@ -157,46 +86,6 @@
       "params": {
         "time": {
           "value": 3,
-          "type": "int"
-        }
-      },
-      "connections": [
-        {
-          "outputId": "next",
-          "targetNodeId": "raceOuter",
-          "inputId": "input"
-        }
-      ]
-    },
-    {
-      "feature": "race",
-      "id": "raceInner",
-      "x": 132,
-      "y": 636,
-      "category": "dev",
-      "featureVersion": "1.0",
-      "name": "Race Inner",
-      "note": "",
-      "params": {},
-      "connections": [
-        {
-          "outputId": "next",
-          "targetNodeId": "waitMid",
-          "inputId": "input"
-        }
-      ]
-    },
-    {
-      "feature": "wait",
-      "id": "waitMid",
-      "x": 144,
-      "y": 756,
-      "category": "dev",
-      "name": "Wait Mid 1s",
-      "featureVersion": "1.2",
-      "params": {
-        "time": {
-          "value": 1,
           "type": "int"
         }
       },
@@ -264,12 +153,152 @@
       "connections": []
     },
     {
-      "id": "0f6cb64a-c59e-4f71-9f81-1163747149ff",
+      "id": "2caebe08-ba3d-4476-8ea7-94ad935ccf97",
+      "feature": "split",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 156,
+      "y": 204,
+      "params": {
+        "output": {
+          "value": 2,
+          "type": "outputsNumber"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "split0",
+          "targetNodeId": "0cc66084-d213-4e17-b6d5-6a698f9b09ae",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split1",
+          "targetNodeId": "fce0375e-800f-4fb7-b614-b97c1470d927",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split0",
+          "targetNodeId": "0cc66084-d213-4e17-b6d5-6a698f9b09ae",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split1",
+          "targetNodeId": "fce0375e-800f-4fb7-b614-b97c1470d927",
+          "inputId": "input"
+        }
+      ],
+      "name": "SplitA",
+      "note": ""
+    },
+    {
+      "id": "0cc66084-d213-4e17-b6d5-6a698f9b09ae",
+      "feature": "wait",
+      "category": "dev",
+      "featureVersion": "1.2",
+      "x": 12,
+      "y": 336,
+      "params": {
+        "time": {
+          "value": 10,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "9bffaf68-5d54-4576-a08c-5dd96e306359",
+          "inputId": "input"
+        },
+        {
+          "outputId": "next",
+          "targetNodeId": "9bffaf68-5d54-4576-a08c-5dd96e306359",
+          "inputId": "input"
+        }
+      ],
+      "name": "Wait X 10s",
+      "note": ""
+    },
+    {
+      "id": "fce0375e-800f-4fb7-b614-b97c1470d927",
+      "feature": "wait",
+      "category": "dev",
+      "featureVersion": "1.2",
+      "x": 228,
+      "y": 324,
+      "params": {
+        "time": {
+          "value": 15,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "eb79fcda-1fd4-4b2f-af5e-1fec0f52bd28",
+          "inputId": "input"
+        },
+        {
+          "outputId": "next",
+          "targetNodeId": "eb79fcda-1fd4-4b2f-af5e-1fec0f52bd28",
+          "inputId": "input"
+        }
+      ],
+      "name": "Wait Y 15s",
+      "note": ""
+    },
+    {
+      "id": "6e771f13-355a-4dee-8232-cac865cf160f",
+      "feature": "race",
+      "category": "dev",
+      "featureVersion": "1.0",
+      "x": 108,
+      "y": 600,
+      "params": {},
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "516ea1a8-5603-445e-84d4-0fbb56e79030",
+          "inputId": "input"
+        },
+        {
+          "outputId": "next",
+          "targetNodeId": "516ea1a8-5603-445e-84d4-0fbb56e79030",
+          "inputId": "input"
+        }
+      ],
+      "name": "Race Inner",
+      "note": ""
+    },
+    {
+      "id": "516ea1a8-5603-445e-84d4-0fbb56e79030",
+      "feature": "wait",
+      "category": "dev",
+      "featureVersion": "1.2",
+      "x": 120,
+      "y": 720,
+      "params": {
+        "time": {
+          "value": 1,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "raceOuter",
+          "inputId": "input"
+        }
+      ],
+      "name": "Wait Mid 1s",
+      "note": ""
+    },
+    {
+      "id": "9bffaf68-5d54-4576-a08c-5dd96e306359",
       "feature": "trace",
       "category": "dev",
       "featureVersion": "2.2",
-      "x": 12,
-      "y": 504,
+      "x": -12,
+      "y": 468,
       "params": {
         "level": {
           "value": "INFO",
@@ -283,7 +312,12 @@
       "connections": [
         {
           "outputId": "done",
-          "targetNodeId": "raceInner",
+          "targetNodeId": "6e771f13-355a-4dee-8232-cac865cf160f",
+          "inputId": "input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "6e771f13-355a-4dee-8232-cac865cf160f",
           "inputId": "input"
         }
       ],
@@ -291,12 +325,12 @@
       "note": ""
     },
     {
-      "id": "81a14c54-a350-45be-9b86-eb223de8f7f9",
+      "id": "eb79fcda-1fd4-4b2f-af5e-1fec0f52bd28",
       "feature": "trace",
       "category": "dev",
       "featureVersion": "2.2",
-      "x": 240,
-      "y": 504,
+      "x": 216,
+      "y": 468,
       "params": {
         "level": {
           "value": "INFO",
@@ -310,7 +344,12 @@
       "connections": [
         {
           "outputId": "done",
-          "targetNodeId": "raceInner",
+          "targetNodeId": "6e771f13-355a-4dee-8232-cac865cf160f",
+          "inputId": "input"
+        },
+        {
+          "outputId": "done",
+          "targetNodeId": "6e771f13-355a-4dee-8232-cac865cf160f",
           "inputId": "input"
         }
       ],

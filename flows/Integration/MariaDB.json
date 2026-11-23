@@ -1,6 +1,7 @@
 {
   "name": "MariaDB",
   "id": "e152c734-0b5d-48f2-a641-71c0b12992ef",
+  "folder": "Integration",
   "nodes": [
     {
       "id": "1ff6ac69-2074-4bea-bc19-007258fe943c",
@@ -128,7 +129,7 @@
       "id": "ed7a72cd-9b00-4449-ae05-8210ed67094b",
       "feature": "condition",
       "category": "dev",
-      "featureVersion": "2.2",
+      "featureVersion": "2.3",
       "x": 900,
       "y": 228,
       "params": {
@@ -148,6 +149,10 @@
             }
           ],
           "type": "variableValues"
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
         }
       },
       "connections": [

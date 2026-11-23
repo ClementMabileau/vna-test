@@ -1,6 +1,7 @@
 {
   "name": "Examples",
   "id": "94c29681-02ae-4cba-a01f-7579d3f7e969",
+  "folder": "Rainbow",
   "nodes": [
     {
       "note": "",
@@ -1337,9 +1338,13 @@
               "value": "Fog"
             }
           ]
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
         }
       },
-      "featureVersion": "2.2",
+      "featureVersion": "2.3",
       "connections": [
         {
           "inputId": "input",
@@ -1409,9 +1414,13 @@
               "value": "Clouds"
             }
           ]
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
         }
       },
-      "featureVersion": "2.2",
+      "featureVersion": "2.3",
       "connections": [
         {
           "outputId": "Thunderstorm",

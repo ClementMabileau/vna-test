@@ -1,0 +1,151 @@
+{
+  "name": "SubflowDemo-Parent",
+  "id": "bbc43d3a-854e-4ebb-b644-e14414c7e297",
+  "nodes": [
+    {
+      "feature": "onHttp",
+      "id": "6568020b-ce1c-4ba9-9c40-982ca2e92453",
+      "x": 60,
+      "params": {
+        "variables": {
+          "value": [
+            {
+              "originEditable": false,
+              "parameter": "body",
+              "type": "object",
+              "nameEditable": true,
+              "removable": false,
+              "editable": true,
+              "name": "body",
+              "parameterEditable": false,
+              "displayed": true
+            }
+          ],
+          "type": "VariablesList"
+        },
+        "response_timeout": {
+          "value": 60,
+          "type": "int"
+        },
+        "method": {
+          "value": "GET",
+          "type": "choice"
+        },
+        "immediate_response": {
+          "value": true,
+          "type": "bool"
+        },
+        "token": {
+          "value": null,
+          "type": "token"
+        },
+        "url": {
+          "value": "/api/flows/subflowDemo2",
+          "type": "textMentions"
+        },
+        "securityComment": {
+          "value": null,
+          "type": "comment"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "2a9db94e-748c-4a27-ba70-97a9413b8b86",
+          "inputId": "input"
+        }
+      ],
+      "category": "http",
+      "y": 60,
+      "name": "HTTP Entrant",
+      "featureVersion": "2.8",
+      "note": ""
+    },
+    {
+      "feature": "subflow",
+      "id": "c8e52d25-efa4-4a44-afd8-d7853f5729a2",
+      "x": 192,
+      "params": {
+        "flow": {
+          "value": {
+            "id": "79cd8d69-1b26-412a-806b-9c3d07f61c54",
+            "name": "SubflowDemo-Child"
+          },
+          "type": "subflow"
+        },
+        "variables": {
+          "value": [],
+          "type": "VariablesList"
+        },
+        "output": {
+          "value": 2,
+          "type": "outputsNumber"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "subflow0",
+          "targetNodeId": "82e39854-775a-4cbc-9cd8-d746ecc0673c",
+          "inputId": "input"
+        }
+      ],
+      "category": "subflow",
+      "y": 408,
+      "name": "Subflow",
+      "featureVersion": "1.2",
+      "note": ""
+    },
+    {
+      "id": "2a9db94e-748c-4a27-ba70-97a9413b8b86",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 144,
+      "y": 252,
+      "params": {
+        "msg": {
+          "value": "je suis dans le flow principale",
+          "type": "textareaMentions"
+        },
+        "level": {
+          "value": "info",
+          "type": "choice"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "c8e52d25-efa4-4a44-afd8-d7853f5729a2",
+          "inputId": "input"
+        }
+      ],
+      "name": "je suis dans le flow principale",
+      "note": ""
+    },
+    {
+      "id": "82e39854-775a-4cbc-9cd8-d746ecc0673c",
+      "feature": "trace",
+      "category": "dev",
+      "featureVersion": "2.2",
+      "x": 156,
+      "y": 552,
+      "params": {
+        "msg": {
+          "value": "je suis dans le flow principale",
+          "type": "textareaMentions"
+        },
+        "level": {
+          "value": "info",
+          "type": "choice"
+        }
+      },
+      "connections": [],
+      "name": "je suis dans le flow principale",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": [],
+  "folder": "SubFlow"
+}

@@ -641,9 +641,13 @@
               "value": "0"
             }
           ]
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
         }
       },
-      "featureVersion": "2.2",
+      "featureVersion": "2.3",
       "connections": [
         {
           "inputId": "input",
@@ -847,9 +851,13 @@
               "value": "true"
             }
           ]
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
         }
       },
-      "featureVersion": "2.2",
+      "featureVersion": "2.3",
       "connections": [
         {
           "inputId": "input",
@@ -1937,7 +1945,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "notConnectedCalls",
@@ -1949,7 +1957,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "busyCalls",
@@ -1961,7 +1969,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "outOfServiceCalls",
@@ -1973,7 +1981,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "succeededNotifications",
@@ -1985,7 +1993,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "failedNotificationsForNonAnalogPhones",
@@ -1997,7 +2005,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "failedNotificationsForAnalogPhones",
@@ -2009,7 +2017,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             }
           ]
         },
@@ -2066,7 +2074,7 @@
           "value": "1"
         }
       },
-      "featureVersion": "3.7",
+      "featureVersion": "3.8",
       "connections": [
         {
           "inputId": "input",
@@ -2357,8 +2365,13 @@
       "y": 2484,
       "id": "9baf848e-f58e-4219-b80f-f413daa6ac4d",
       "category": "softcmp",
-      "params": {},
-      "featureVersion": "1.1",
+      "params": {
+        "callRef": {
+          "type": "textMentions",
+          "value": "VAR(callReference)"
+        }
+      },
+      "featureVersion": "1.2",
       "connections": [
         {
           "inputId": "input",
@@ -2389,7 +2402,7 @@
           "value": 0
         }
       },
-      "featureVersion": "2.7",
+      "featureVersion": "2.8",
       "connections": [
         {
           "inputId": "input",
@@ -2583,9 +2596,13 @@
               "value": "5"
             }
           ]
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
         }
       },
-      "featureVersion": "2.2",
+      "featureVersion": "2.3",
       "connections": [
         {
           "inputId": "input",
@@ -2721,7 +2738,7 @@
           "value": 0
         }
       },
-      "featureVersion": "2.7",
+      "featureVersion": "2.8",
       "connections": [
         {
           "inputId": "input",
@@ -2757,7 +2774,7 @@
           "value": 0
         }
       },
-      "featureVersion": "2.7",
+      "featureVersion": "2.8",
       "connections": [
         {
           "inputId": "input",
@@ -2901,7 +2918,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "notConnectedCalls",
@@ -2913,7 +2930,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "busyCalls",
@@ -2925,7 +2942,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "outOfServiceCalls",
@@ -2937,7 +2954,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "succeededNotifications",
@@ -2949,7 +2966,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "failedNotificationsForNonAnalogPhones",
@@ -2961,7 +2978,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "failedNotificationsForAnalogPhones",
@@ -2973,7 +2990,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             }
           ]
         },
@@ -3030,7 +3047,7 @@
           "value": "1"
         }
       },
-      "featureVersion": "3.7",
+      "featureVersion": "3.8",
       "connections": [
         {
           "inputId": "input",
@@ -3082,7 +3099,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "notConnectedCalls",
@@ -3094,7 +3111,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "busyCalls",
@@ -3106,7 +3123,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "outOfServiceCalls",
@@ -3118,7 +3135,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "succeededNotifications",
@@ -3130,7 +3147,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "failedNotificationsForNonAnalogPhones",
@@ -3142,7 +3159,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "failedNotificationsForAnalogPhones",
@@ -3154,7 +3171,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             }
           ]
         },
@@ -3211,7 +3228,7 @@
           "value": "1"
         }
       },
-      "featureVersion": "3.7",
+      "featureVersion": "3.8",
       "connections": [
         {
           "inputId": "input",
@@ -3263,7 +3280,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "notConnectedCalls",
@@ -3275,7 +3292,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "busyCalls",
@@ -3287,7 +3304,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "outOfServiceCalls",
@@ -3299,7 +3316,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "succeededNotifications",
@@ -3311,7 +3328,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "failedNotificationsForNonAnalogPhones",
@@ -3323,7 +3340,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "failedNotificationsForAnalogPhones",
@@ -3335,7 +3352,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             }
           ]
         },
@@ -3392,7 +3409,7 @@
           "value": "1"
         }
       },
-      "featureVersion": "3.7",
+      "featureVersion": "3.8",
       "connections": [
         {
           "inputId": "input",
@@ -3444,7 +3461,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "notConnectedCalls",
@@ -3456,7 +3473,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "busyCalls",
@@ -3468,7 +3485,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "outOfServiceCalls",
@@ -3480,7 +3497,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "succeededNotifications",
@@ -3492,7 +3509,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "failedNotificationsForNonAnalogPhones",
@@ -3504,7 +3521,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             },
             {
               "name": "failedNotificationsForAnalogPhones",
@@ -3516,7 +3533,7 @@
               "typeEditable": false,
               "mandatoryEditable": false,
               "removable": false,
-              "type": "array"
+              "type": "string"
             }
           ]
         },
@@ -3573,7 +3590,7 @@
           "value": "1"
         }
       },
-      "featureVersion": "3.7",
+      "featureVersion": "3.8",
       "connections": [
         {
           "inputId": "input",
@@ -4053,36 +4070,42 @@
           "type": "VariablesList",
           "value": [
             {
-              "displayed": false,
-              "parameter": "callingNumber",
               "name": "callingNumber",
+              "parameter": "callingNumber",
+              "displayed": false,
               "type": "string"
             },
             {
-              "displayed": false,
-              "parameter": "calledNumber",
               "name": "calledNumber",
+              "parameter": "calledNumber",
+              "displayed": false,
               "type": "string"
             },
             {
-              "displayed": false,
-              "editable": false,
-              "parameter": "abcfMessageRef",
               "name": "abcfMessageRef",
+              "parameter": "abcfMessageRef",
+              "displayed": false,
+              "editable": false,
               "type": "string"
             },
             {
-              "displayed": false,
-              "editable": false,
-              "parameter": "error",
               "name": "error",
+              "parameter": "error",
+              "displayed": false,
+              "editable": false,
               "type": "string"
             },
             {
+              "name": "callReference",
+              "parameter": "callRef",
               "displayed": false,
               "editable": false,
-              "parameter": "callRef",
-              "name": "callReference",
+              "type": "string"
+            },
+            {
+              "name": "originalCalledNumber",
+              "parameter": "originalCalledNumber",
+              "displayed": false,
               "type": "string"
             }
           ]
@@ -4100,7 +4123,7 @@
           "value": 30
         }
       },
-      "featureVersion": "1.8",
+      "featureVersion": "1.9",
       "connections": [
         {
           "inputId": "input",
@@ -4365,9 +4388,13 @@
               "value": "isNull"
             }
           ]
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
         }
       },
-      "featureVersion": "2.2",
+      "featureVersion": "2.3",
       "connections": [
         {
           "inputId": "input",

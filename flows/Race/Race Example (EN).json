@@ -1,0 +1,195 @@
+{
+  "name": "Race Example (EN)",
+  "folder": "Race",
+  "nodes": [
+    {
+      "id": "http_trigger",
+      "feature": "onHttp",
+      "category": "http",
+      "name": "Incoming Request",
+      "x": 300,
+      "y": 60,
+      "params": {
+        "url": {
+          "type": "textMentions",
+          "value": "/api/flows/race-example"
+        },
+        "method": {
+          "type": "choice",
+          "value": "GET"
+        },
+        "token": {
+          "type": "token"
+        },
+        "securityComment": {
+          "type": "comment"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ]
+        },
+        "immediate_response": {
+          "type": "bool",
+          "value": true
+        },
+        "response_timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "splitter",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "2.8"
+    },
+    {
+      "id": "splitter",
+      "feature": "split",
+      "category": "dev",
+      "name": "Split",
+      "x": 300,
+      "y": 180,
+      "params": {
+        "output": {
+          "type": "outputsNumber",
+          "value": 2
+        },
+        "comment": {
+          "type": "comment",
+          "value": null
+        }
+      },
+      "connections": [
+        {
+          "outputId": "split0",
+          "targetNodeId": "wait_fast",
+          "inputId": "input"
+        },
+        {
+          "outputId": "split1",
+          "targetNodeId": "wait_slow",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "1.1"
+    },
+    {
+      "id": "wait_fast",
+      "feature": "wait",
+      "category": "dev",
+      "name": "Wait - Fast branch (2s)",
+      "x": 150,
+      "y": 300,
+      "params": {
+        "time": {
+          "type": "int",
+          "value": 2
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "race_node",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "1.2"
+    },
+    {
+      "id": "wait_slow",
+      "feature": "wait",
+      "category": "dev",
+      "name": "Wait - Slow branch (6s)",
+      "x": 450,
+      "y": 300,
+      "params": {
+        "time": {
+          "type": "int",
+          "value": 6
+        }
+      },
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "race_node",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "1.2"
+    },
+    {
+      "id": "race_node",
+      "feature": "race",
+      "category": "dev",
+      "name": "Race",
+      "x": 300,
+      "y": 420,
+      "params": {},
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "trace_winner",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "1.0"
+    },
+    {
+      "id": "trace_winner",
+      "feature": "trace",
+      "category": "dev",
+      "name": "Trace - First branch won",
+      "x": 300,
+      "y": 540,
+      "params": {
+        "msg": {
+          "type": "textareaMentions",
+          "value": "The fastest branch reached the race node first; the other branch was cancelled.\n"
+        },
+        "level": {
+          "type": "choice",
+          "value": "info"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "end_node",
+          "inputId": "input"
+        }
+      ],
+      "featureVersion": "2.2"
+    },
+    {
+      "id": "end_node",
+      "feature": "end",
+      "category": "dev",
+      "name": "End",
+      "x": 300,
+      "y": 660,
+      "params": {},
+      "connections": [],
+      "featureVersion": "1.1"
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": [],
+  "id": "782e98cc-742c-4f3f-bbed-1281a22acbe3"
+}

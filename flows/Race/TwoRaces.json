@@ -141,7 +141,7 @@
       "connections": [
         {
           "outputId": "next",
-          "targetNodeId": "race2",
+          "targetNodeId": "757cb2fc-91eb-4238-a82e-e69f1ce7a7f3",
           "inputId": "input"
         }
       ]
@@ -185,7 +185,7 @@
       "x": 276,
       "y": 540,
       "category": "dev",
-      "featureVersion": "2.2",
+      "featureVersion": "2.3",
       "name": "Condition",
       "note": "",
       "params": {
@@ -205,17 +205,26 @@
             }
           ],
           "type": "variableValues"
+        },
+        "variableType": {
+          "type": "string",
+          "value": ""
         }
       },
       "connections": [
         {
-          "outputId": "closed",
-          "targetNodeId": "race2",
+          "outputId": "else",
+          "targetNodeId": "race1",
           "inputId": "input"
         },
         {
           "outputId": "else",
           "targetNodeId": "race1",
+          "inputId": "input"
+        },
+        {
+          "outputId": "closed",
+          "targetNodeId": "757cb2fc-91eb-4238-a82e-e69f1ce7a7f3",
           "inputId": "input"
         }
       ]
@@ -234,29 +243,6 @@
         {
           "outputId": "next",
           "targetNodeId": "trace1",
-          "inputId": "input"
-        }
-      ]
-    },
-    {
-      "feature": "race",
-      "id": "race2",
-      "x": 480,
-      "y": 672,
-      "category": "dev",
-      "featureVersion": "1.0",
-      "name": "Race droite",
-      "note": "",
-      "params": {},
-      "connections": [
-        {
-          "outputId": "next",
-          "targetNodeId": "trace2",
-          "inputId": "input"
-        },
-        {
-          "outputId": "next",
-          "targetNodeId": "trace2",
           "inputId": "input"
         }
       ]
@@ -288,32 +274,6 @@
       ]
     },
     {
-      "feature": "trace",
-      "id": "trace2",
-      "x": 504,
-      "y": 780,
-      "category": "dev",
-      "name": "Trace",
-      "featureVersion": "2.2",
-      "params": {
-        "level": {
-          "value": "INFO",
-          "type": "choice"
-        },
-        "msg": {
-          "value": "RACE2 DROITE WON",
-          "type": "textareaMentions"
-        }
-      },
-      "connections": [
-        {
-          "outputId": "done",
-          "targetNodeId": "end2",
-          "inputId": "input"
-        }
-      ]
-    },
-    {
       "feature": "end",
       "id": "end1",
       "x": 84,
@@ -334,6 +294,55 @@
       "featureVersion": "1.1",
       "params": {},
       "connections": []
+    },
+    {
+      "feature": "race",
+      "id": "757cb2fc-91eb-4238-a82e-e69f1ce7a7f3",
+      "x": 480,
+      "y": 672,
+      "category": "dev",
+      "featureVersion": "1.0",
+      "name": "Race droite",
+      "note": "",
+      "params": {},
+      "connections": [
+        {
+          "outputId": "next",
+          "targetNodeId": "77892d3d-e827-433e-b76b-dc2ce0806651",
+          "inputId": "input"
+        },
+        {
+          "outputId": "next",
+          "targetNodeId": "77892d3d-e827-433e-b76b-dc2ce0806651",
+          "inputId": "input"
+        }
+      ]
+    },
+    {
+      "feature": "trace",
+      "id": "77892d3d-e827-433e-b76b-dc2ce0806651",
+      "x": 480,
+      "y": 780,
+      "category": "dev",
+      "name": "Trace",
+      "featureVersion": "2.2",
+      "params": {
+        "level": {
+          "value": "INFO",
+          "type": "choice"
+        },
+        "msg": {
+          "value": "RACE1 DROITE WON",
+          "type": "textareaMentions"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "end2",
+          "inputId": "input"
+        }
+      ]
     }
   ],
   "globalVariables": [],

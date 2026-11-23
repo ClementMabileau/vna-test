@@ -1,0 +1,214 @@
+{
+  "system": "false",
+  "nodes": [
+    {
+      "feature": "onHttp",
+      "x": 60,
+      "name": "Declenchement urgence",
+      "y": 60,
+      "id": "2ba9a1ec-0227-4316-a9b3-a8c7e71af255",
+      "category": "http",
+      "params": {
+        "method": {
+          "type": "choice",
+          "value": "GET"
+        },
+        "url": {
+          "type": "textMentions",
+          "value": "/api/flows/urgence"
+        },
+        "token": {
+          "type": "token"
+        },
+        "securityComment": {
+          "type": "comment"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ]
+        },
+        "immediate_response": {
+          "type": "bool",
+          "value": true
+        },
+        "response_timeout": {
+          "type": "int",
+          "value": 60
+        }
+      },
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "request",
+          "targetNodeId": "f54ef03c-0b65-4bfb-9528-9121d8c69d26"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "879c0f00-4bd6-429f-a932-43d0bb3236b3"
+        }
+      ],
+      "featureVersion": "2.8"
+    },
+    {
+      "feature": "astreinte",
+      "x": 60,
+      "name": "Personne d'astreinte",
+      "y": 220,
+      "id": "f54ef03c-0b65-4bfb-9528-9121d8c69d26",
+      "category": "planning",
+      "params": {
+        "wholeDay": {
+          "type": "bool",
+          "value": true
+        },
+        "configId": {
+          "type": "tenantAstreinteConfig",
+          "value": ""
+        },
+        "checkDateTime": {
+          "type": "dateTimeOrVarFormat"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "onCallPersons",
+              "parameter": "onCallPersons",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "firstOnCallPerson",
+              "parameter": "firstOnCallPerson",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "found",
+          "targetNodeId": "84a2f0d8-5c5a-4348-b0c7-29217d8a7795"
+        },
+        {
+          "inputId": "input",
+          "outputId": "noOnCall",
+          "targetNodeId": "879c0f00-4bd6-429f-a932-43d0bb3236b3"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "879c0f00-4bd6-429f-a932-43d0bb3236b3"
+        }
+      ],
+      "featureVersion": "1.0"
+    },
+    {
+      "feature": "sendRainbowMessage",
+      "x": 60,
+      "name": "Notifier l'astreinte",
+      "y": 380,
+      "id": "84a2f0d8-5c5a-4348-b0c7-29217d8a7795",
+      "category": "rainbow",
+      "params": {
+        "messageType": {
+          "type": "choice",
+          "value": "Emergency"
+        },
+        "format": {
+          "type": "choice",
+          "value": "text"
+        },
+        "message": {
+          "type": "textareaMentions",
+          "value": "Urgence signalee. Merci de verifier la situation."
+        },
+        "comment": {
+          "type": "comment"
+        },
+        "users": {
+          "type": "users"
+        },
+        "groups": {
+          "type": "groups"
+        },
+        "bubbleList": {
+          "type": "bubble"
+        },
+        "jid": {
+          "type": "textMentions",
+          "value": ""
+        },
+        "attachments": {
+          "type": "attachments"
+        },
+        "variables": {
+          "type": "VariablesList",
+          "value": [
+            {
+              "name": "status",
+              "parameter": "status",
+              "displayed": false,
+              "editable": false,
+              "type": "object"
+            }
+          ]
+        },
+        "receiptTimeout": {
+          "type": "int",
+          "value": 5
+        }
+      },
+      "connections": [
+        {
+          "inputId": "input",
+          "outputId": "sent",
+          "targetNodeId": "879c0f00-4bd6-429f-a932-43d0bb3236b3"
+        },
+        {
+          "inputId": "input",
+          "outputId": "err",
+          "targetNodeId": "879c0f00-4bd6-429f-a932-43d0bb3236b3"
+        }
+      ],
+      "featureVersion": "2.7"
+    },
+    {
+      "feature": "end",
+      "x": 60,
+      "name": "Fin",
+      "y": 540,
+      "id": "879c0f00-4bd6-429f-a932-43d0bb3236b3",
+      "category": "dev",
+      "params": {},
+      "connections": [],
+      "featureVersion": "1.1"
+    }
+  ],
+  "name": "Urgence - Copie",
+  "id": "8c2f99b2-047d-4da7-8aa3-0677f15925e9",
+  "folder": "Planning"
+}

@@ -7,8 +7,8 @@
       "feature": "onHttp",
       "category": "http",
       "featureVersion": "2.8",
-      "x": 228,
-      "y": 96,
+      "x": 600,
+      "y": 192,
       "params": {
         "url": {
           "value": "/api/flows/test",
@@ -66,8 +66,8 @@
       "feature": "end",
       "category": "dev",
       "featureVersion": "1.1",
-      "x": 132,
-      "y": 528,
+      "x": 576,
+      "y": 636,
       "params": {},
       "connections": [],
       "name": "Fin",
@@ -78,8 +78,8 @@
       "feature": "end",
       "category": "dev",
       "featureVersion": "1.1",
-      "x": 348,
-      "y": 528,
+      "x": 912,
+      "y": 648,
       "params": {},
       "connections": [],
       "name": "Fin",
@@ -90,8 +90,8 @@
       "feature": "variable",
       "category": "dev",
       "featureVersion": "3.1",
-      "x": 324,
-      "y": 240,
+      "x": 624,
+      "y": 324,
       "params": {
         "variable": {
           "type": "variableMgt",
@@ -111,7 +111,7 @@
       "connections": [
         {
           "outputId": "done",
-          "targetNodeId": "5101baeb-1375-4983-a168-7cb1cbad838b",
+          "targetNodeId": "106b4138-1cc0-4f67-a5b6-354711dbc76f",
           "inputId": "input"
         }
       ],
@@ -119,15 +119,15 @@
       "note": ""
     },
     {
-      "id": "5101baeb-1375-4983-a168-7cb1cbad838b",
+      "id": "106b4138-1cc0-4f67-a5b6-354711dbc76f",
       "feature": "astreinte",
       "category": "planning",
       "featureVersion": "1.0",
-      "x": 276,
-      "y": 360,
+      "x": 624,
+      "y": 504,
       "params": {
         "configId": {
-          "value": "",
+          "value": "da8abef2-6062-4974-9aaa-23298253ce9b",
           "type": "tenantAstreinteConfig"
         },
         "checkDateTime": {
@@ -176,11 +176,42 @@
           "inputId": "input"
         }
       ],
-      "name": "On-Call",
+      "name": "Astreinte",
       "note": ""
     }
   ],
   "globalVariables": [],
   "test": false,
-  "frames": []
+  "frames": [
+    {
+      "id": "6187cd9f-b7d8-4f5a-b580-c2a21ddaf0dc",
+      "name": "Groupe 1",
+      "x": 540,
+      "y": 172,
+      "width": 465,
+      "height": 273,
+      "color": "#2061F1",
+      "comment": "azertuioofgd"
+    },
+    {
+      "id": "40e58a87-c562-4ca9-a979-14925adbe9ea",
+      "name": "Groupe 2",
+      "x": 540,
+      "y": 484,
+      "width": 461,
+      "height": 303,
+      "color": "#FB8C00"
+    },
+    {
+      "id": "3979f02f-a886-4835-8a6f-8dc1b02477a7",
+      "name": "Groupe 3",
+      "x": 516,
+      "y": 136,
+      "width": 541,
+      "height": 686,
+      "color": "#8E24AA",
+      "comment": "azertaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ],
+  "folder": "Planning"
 }

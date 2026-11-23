@@ -1,0 +1,172 @@
+{
+  "name": "MariaDBTimeOut",
+  "id": "c9dad409-6c5c-47c7-87d0-8a35f689e635",
+  "nodes": [
+    {
+      "id": "34b65422-4fff-48ff-b4b6-6227804eb6dd",
+      "feature": "onHttp",
+      "category": "http",
+      "featureVersion": "2.8",
+      "x": 720,
+      "y": 120,
+      "params": {
+        "url": {
+          "value": "/api/flows/MariaDB",
+          "type": "textMentions"
+        },
+        "method": {
+          "value": "GET",
+          "type": "choice"
+        },
+        "token": {
+          "value": null,
+          "type": "token"
+        },
+        "securityComment": {
+          "value": null,
+          "type": "comment"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "body",
+              "parameter": "body",
+              "displayed": true,
+              "editable": true,
+              "originEditable": false,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            }
+          ],
+          "type": "VariablesList"
+        },
+        "immediate_response": {
+          "value": true,
+          "type": "bool"
+        },
+        "response_timeout": {
+          "value": 60,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "request",
+          "targetNodeId": "0962470c-ca7c-4c07-8234-17a5ae0c5351",
+          "inputId": "input"
+        }
+      ],
+      "name": "On HTTP",
+      "note": ""
+    },
+    {
+      "id": "0962470c-ca7c-4c07-8234-17a5ae0c5351",
+      "feature": "mariaDB",
+      "category": "database",
+      "featureVersion": "1.0",
+      "x": 732,
+      "y": 324,
+      "params": {
+        "server": {
+          "value": "10.255.255.1",
+          "type": "textMentions"
+        },
+        "port": {
+          "value": "3306",
+          "type": "textMentions"
+        },
+        "database": {
+          "value": "testdb",
+          "type": "textMentions"
+        },
+        "user": {
+          "value": "root",
+          "type": "textMentions"
+        },
+        "password": {
+          "value": "x",
+          "type": "textMentions"
+        },
+        "query": {
+          "value": "SELECT 1;",
+          "type": "textareaMentions"
+        },
+        "variables": {
+          "value": [
+            {
+              "name": "result",
+              "parameter": "result.recordset",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "object"
+            },
+            {
+              "name": "rowsAffected",
+              "parameter": "result.rowsAffected",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "int"
+            },
+            {
+              "name": "error",
+              "parameter": "error",
+              "displayed": true,
+              "editable": true,
+              "nameEditable": true,
+              "parameterEditable": false,
+              "removable": false,
+              "type": "string"
+            }
+          ],
+          "type": "VariablesList"
+        },
+        "timeout": {
+          "value": 3,
+          "type": "int"
+        }
+      },
+      "connections": [
+        {
+          "outputId": "done",
+          "targetNodeId": "e9d3826a-3731-49ca-976a-6ceb135da3b2",
+          "inputId": "input"
+        },
+        {
+          "outputId": "timeout",
+          "targetNodeId": "e9d3826a-3731-49ca-976a-6ceb135da3b2",
+          "inputId": "input"
+        },
+        {
+          "outputId": "err",
+          "targetNodeId": "e9d3826a-3731-49ca-976a-6ceb135da3b2",
+          "inputId": "input"
+        }
+      ],
+      "name": "MariaDB query"
+    },
+    {
+      "id": "e9d3826a-3731-49ca-976a-6ceb135da3b2",
+      "feature": "end",
+      "category": "dev",
+      "featureVersion": "1.1",
+      "x": 744,
+      "y": 468,
+      "params": {},
+      "connections": [],
+      "name": "End",
+      "note": ""
+    }
+  ],
+  "globalVariables": [],
+  "test": false,
+  "frames": [],
+  "folder": null
+}

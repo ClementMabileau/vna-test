@@ -1,6 +1,7 @@
 {
   "name": "Calendar",
   "id": "27006de8-4d32-4751-821c-6dd6b819a826",
+  "folder": "Planning",
   "nodes": [
     {
       "id": "b0ffdd77-7b6b-4549-b7a7-4250632385ed",
@@ -177,7 +178,7 @@
       "y": 684,
       "params": {
         "businessHoursId": {
-          "value": "default",
+          "value": "test",
           "type": "tenantBusinessHours"
         }
       },
@@ -232,7 +233,7 @@
       "y": 288,
       "params": {
         "calendarId": {
-          "value": "French public holidays 2026 (modifié)",
+          "value": "UK public holidays 2026",
           "type": "tenantCalendar"
         }
       },
@@ -314,7 +315,7 @@
           "type": "bool"
         },
         "mainCause": {
-          "value": "French calandar",
+          "value": "uk calandar",
           "type": "textMentions"
         },
         "secondCause": {
