@@ -54,7 +54,7 @@
       "connections": [
         {
           "outputId": "request",
-          "targetNodeId": "66736ebb-9d94-4bd1-85c8-3c372a7d168d",
+          "targetNodeId": "56bc1f6e-c4e4-4dee-ad3e-a4bdafe8f2fc",
           "inputId": "input"
         }
       ],
@@ -74,12 +74,12 @@
       "note": ""
     },
     {
-      "id": "66736ebb-9d94-4bd1-85c8-3c372a7d168d",
+      "id": "56bc1f6e-c4e4-4dee-ad3e-a4bdafe8f2fc",
       "feature": "conference",
       "category": "softcmp",
       "featureVersion": "2.19",
-      "x": 252,
-      "y": 252,
+      "x": 288,
+      "y": 276,
       "params": {
         "phoneDisplay": {
           "value": null,
@@ -94,10 +94,61 @@
           "type": "comment"
         },
         "users": {
-          "value": null,
+          "value": [
+            {
+              "id": "fdd9013b-f434-41ef-946c-8c94e80f5fb7",
+              "displayName": "TestConf Alice"
+            },
+            {
+              "id": "99068f88-28e7-452c-b8f7-980016076cb3",
+              "displayName": "TestConf Bob"
+            },
+            {
+              "id": "113243b3-3b0a-4c4f-9130-8763c725acce",
+              "displayName": "TestConf Charlie"
+            },
+            {
+              "id": "04f4f64a-9871-4585-aa6d-cee23458b273",
+              "displayName": "TestConf Dave"
+            }
+          ],
           "type": "users"
         },
         "groups": {
+          "value": [
+            {
+              "id": "f001a952-421f-46ba-b328-2b5d54d838ef",
+              "name": "urgence2",
+              "custo1": null,
+              "custo2": null,
+              "custo3": null,
+              "custo4": null,
+              "custo5": null,
+              "usedip": "239.0.0.0",
+              "usedporthandset": "40010",
+              "usedportloudspeaker": "40008",
+              "idleporthandset": "40014",
+              "idleportloudspeaker": "40012",
+              "callMobile": false,
+              "tenantId": "7035b279-5e36-4607-bbfa-2ae7dec0f406",
+              "moderator": true
+            }
+          ],
+          "type": "groups"
+        },
+        "fallback_groups": {
+          "value": [],
+          "type": "fallbackGroups"
+        },
+        "moderators_comment": {
+          "value": null,
+          "type": "comment"
+        },
+        "moderators": {
+          "value": null,
+          "type": "users"
+        },
+        "moderator_groups": {
           "value": [
             {
               "id": "f001a952-421f-46ba-b328-2b5d54d838ef",
@@ -118,12 +169,39 @@
           ],
           "type": "groups"
         },
-        "fallback_groups": {
-          "value": [],
-          "type": "fallbackGroups"
-        },
         "otherusers": {
-          "value": [],
+          "value": [
+            {
+              "number": "9974"
+            },
+            {
+              "number": "9975"
+            },
+            {
+              "number": "9976"
+            },
+            {
+              "number": "9977"
+            },
+            {
+              "number": "9978"
+            },
+            {
+              "number": "9979"
+            },
+            {
+              "number": "9980"
+            },
+            {
+              "number": "9981"
+            },
+            {
+              "number": "9982"
+            },
+            {
+              "number": "9983"
+            }
+          ],
           "type": "otherusers"
         },
         "caller_callBack": {
@@ -135,7 +213,7 @@
           "type": "bool"
         },
         "ringing_timeout": {
-          "value": 15000,
+          "value": 30,
           "type": "int"
         },
         "ack_to_connect": {
